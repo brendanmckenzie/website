@@ -10,7 +10,6 @@ import {
 } from "../components/Bulma";
 import "../style/style.scss";
 
-
 type Props = {
   data: { honegumi: { latestPosts: any } };
 };
@@ -24,7 +23,6 @@ const HomePage: React.FC<Props> = ({
     <>
       <Helmet>
         <title>{`Brendan McKenzie`}</title>
-        <meta name="description" content={`page.seoDescription`} />
       </Helmet>
       <Section>
         <Container>
