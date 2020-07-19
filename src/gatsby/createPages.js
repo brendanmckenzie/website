@@ -46,7 +46,7 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
     .forEach((node) => {
       try {
         const component = require.resolve(
-          `../src/templates/${node.entry.type}.tsx`
+          `../templates/${node.entry.type}.tsx`
         );
 
         createPage({
