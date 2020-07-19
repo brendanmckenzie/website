@@ -1,0 +1,26 @@
+$family-sans-serif: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Roboto",
+  "Segoe UI", sans-serif;
+
+@import "../../node_modules/bulma/bulma.sass";
+
+pre {
+  white-space: pre-wrap;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dl.is-horizontal {
+  display: grid;
+  grid-template-columns: max-content auto;
+  column-gap: $gap / 2;
+
+  dt {
+    grid-column-start: 1;
+  }
+
+  dd {
+    grid-column-start: 2;
+  }
+}
