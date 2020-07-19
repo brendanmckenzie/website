@@ -69,7 +69,7 @@ const BlogPost: React.FC<{ data: { honegumi: { page: BlogPost } } }> = ({
         <small>
           Powered by{" "}
           <a
-            href="https://hon.takeoffgo.com/"
+            href="https://hon.takeoffgo.com/docs/"
             target="_blank"
             rel="noopener noreferrer"
           >
