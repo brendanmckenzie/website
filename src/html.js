@@ -20,6 +20,7 @@ const HTML = (props) => {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans"
         />
+        <link rel="icon" type="image/jpeg" href="/assets/images/photo.jpg" />
       </head>
       <body {...props.bodyAttributes}>
         {props.preBodyComponents}
