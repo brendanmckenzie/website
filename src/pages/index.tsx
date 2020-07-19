@@ -75,10 +75,7 @@ const HomePage: React.FC<Props> = ({
                   <li key={ent.id}>
                     {new Date(ent.date).toLocaleDateString()}{" "}
                     <Link
-                      to={`/posts/${ent.date.substr(0, 4)}/${parseInt(
-                        ent.date.substr(5, 2),
-                        10
-                      )}/${ent.alias}`}
+                      to={`/posts/${ent.date.substr(0, 4)}/${ent.alias}`}
                     >
                       {ent.title}
                     </Link>{" "}
