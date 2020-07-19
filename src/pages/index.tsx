@@ -8,6 +8,8 @@ import {
   Column,
   Buttons,
 } from "../components/Bulma";
+import "../style/style.scss";
+
 
 type Props = {
   data: { honegumi: { latestPosts: any } };
