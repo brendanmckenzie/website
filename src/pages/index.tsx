@@ -28,7 +28,20 @@ const HomePage: React.FC<Props> = ({
         <Container>
           <Columns>
             <Column>
-              <h1 className="title is-1">Brendan McKenzie</h1>
+              <Columns>
+                <Column>
+                  <h1 className="title is-1">Brendan McKenzie</h1>
+                </Column>
+                <Column narrow>
+                  <figure className="image is-128x128">
+                    <img
+                      className="is-rounded"
+                      src="/assets/images/photo.jpg"
+                    />
+                  </figure>
+                </Column>
+              </Columns>
+
               <p>
                 Software and technology enthusiast, focussed on pressing the
                 envelope with emerging technologies.
@@ -74,9 +87,7 @@ const HomePage: React.FC<Props> = ({
                 {latestPosts.nodes.map((ent) => (
                   <li key={ent.id}>
                     {new Date(ent.date).toLocaleDateString()}{" "}
-                    <Link
-                      to={`/posts/${ent.date.substr(0, 4)}/${ent.alias}`}
-                    >
+                    <Link to={`/posts/${ent.date.substr(0, 4)}/${ent.alias}`}>
                       {ent.title}
                     </Link>{" "}
                     <small>{ent.category}</small>
