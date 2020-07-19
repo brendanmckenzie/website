@@ -64,6 +64,20 @@ const BlogPost: React.FC<{ data: { honegumi: { page: BlogPost } } }> = ({
         </Columns>
       </Container>
     </Section>
+    <Section>
+      <div className="has-text-centered">
+        <small>
+          Powered by{" "}
+          <a
+            href="https://hon.takeoffgo.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Honegumi
+          </a>
+        </small>
+      </div>
+    </Section>
   </>
 );
 
