@@ -1,7 +1,7 @@
 const query = `
   query($skip: Int!) {
     honegumi {
-      allPages(
+      taxonomy(
         skip: $skip
         take: 50
         filter: { path: ["website"] }
@@ -24,15 +24,15 @@ const query = `
 
 const loadPage = async (graphql, skip) => {
   const results = await graphql(query, { skip });
-  if (results.data.honegumi.allPages.pageInfo.hasNextPage) {
-    return results.data.honegumi.allPages.nodes.concat(
+  if (results.data.honegumi.taxonomy.pageInfo.hasNextPage) {
+    return results.data.honegumi.taxonomy.nodes.concat(
       await loadPage(
         graphql,
-        skip + results.data.honegumi.allPages.nodes.length
+        skip + results.data.honegumi.taxonomy.nodes.length
       )
     );
   } else {
-    return results.data.honegumi.allPages.nodes;
+    return results.data.honegumi.taxonomy.nodes;
   }
 };
 

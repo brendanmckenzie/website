@@ -11,12 +11,14 @@ import {
 import "../style/style.scss";
 
 type Props = {
-  data: { honegumi: { latestPosts: any } };
+  data: { honegumi: { entries: { latestPosts: any } } };
 };
 
 const HomePage: React.FC<Props> = ({
   data: {
-    honegumi: { latestPosts },
+    honegumi: {
+      entries: { latestPosts },
+    },
   },
 }) => {
   return (
@@ -121,13 +123,15 @@ export default HomePage;
 export const query = graphql`
   query {
     honegumi {
-      latestPosts: allBlogPosts(skip: 0, take: 10, orderBy: DATE_DESC) {
-        nodes {
-          id
-          title
-          date
-          alias
-          category
+      entries {
+        latestPosts: allBlogPosts(skip: 0, take: 10, orderBy: DATE_DESC) {
+          nodes {
+            id
+            title
+            date
+            alias
+            category
+          }
         }
       }
     }

@@ -17,9 +17,13 @@ type BlogPost = {
   summary: string;
 };
 
-const BlogPost: React.FC<{ data: { honegumi: { page: BlogPost } } }> = ({
+const BlogPost: React.FC<{
+  data: { honegumi: { entries: { page: BlogPost } } };
+}> = ({
   data: {
-    honegumi: { page },
+    honegumi: {
+      entries: { page },
+    },
   },
 }) => (
   <>
@@ -86,15 +90,17 @@ export default BlogPost;
 export const query = graphql`
   query($entryId: String!) {
     honegumi {
-      page: blogPost(id: $entryId) {
-        id
-        title
-        body
-        alias
-        date
-        tags
-        category
-        summary
+      entries {
+        page: blogPost(id: $entryId) {
+          id
+          title
+          body
+          alias
+          date
+          tags
+          category
+          summary
+        }
       }
     }
   }
