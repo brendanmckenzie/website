@@ -3,6 +3,10 @@ try {
 } catch {}
 
 module.exports = {
+  siteMetadata: {
+    siteUrl: "https://www.brendanmckenzie.com",
+  },
+
   plugins: [
     "gatsby-plugin-typescript",
     "gatsby-plugin-sass",
