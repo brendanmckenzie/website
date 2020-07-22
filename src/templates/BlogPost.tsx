@@ -18,39 +18,33 @@ type BlogPost = {
 };
 
 const BlogPost: React.FC<{
-  data: { honegumi: { entries: { page: BlogPost } } };
-}> = ({
-  data: {
-    honegumi: {
-      entries: { page },
-    },
-  },
-}) => (
+  data: { post: BlogPost };
+}> = ({ data: { post } }) => (
   <>
     <Helmet>
-      <title>{`${page.title} - Brendan McKenzie`}</title>
-      <meta name="description" content={page.summary} />
+      <title>{`${post.title} - Brendan McKenzie`}</title>
+      <meta name="description" content={post.summary} />
     </Helmet>
 
     <Section>
       <Container>
         <Columns>
           <Column span={4}>
-            <h1 className="title">{page.title}</h1>
-            <h2 className="subtitle">{page.summary}</h2>
+            <h1 className="title">{post.title}</h1>
+            <h2 className="subtitle">{post.summary}</h2>
             <dl className="is-horizontal">
               <dt>Posted</dt>
-              <dd>{page.date}</dd>
-              {page.category && (
+              <dd>{post.date}</dd>
+              {post.category && (
                 <>
                   <dt>Category</dt>
-                  <dd>{page.category}</dd>
+                  <dd>{post.category}</dd>
                 </>
               )}
-              {page.tags && (
+              {post.tags && (
                 <>
                   <dt>Tags</dt>
-                  <dd>{page.tags}</dd>
+                  <dd>{post.tags}</dd>
                 </>
               )}
             </dl>
@@ -63,7 +57,7 @@ const BlogPost: React.FC<{
             </Link>
           </Column>
           <Column>
-            <Markdown className="content" source={page.body} />
+            <Markdown className="content" source={post.body} />
           </Column>
         </Columns>
       </Container>
@@ -89,19 +83,15 @@ export default BlogPost;
 
 export const query = graphql`
   query($entryId: String!) {
-    honegumi {
-      entries {
-        page: blogPost(id: $entryId) {
-          id
-          title
-          body
-          alias
-          date
-          tags
-          category
-          summary
-        }
-      }
+    post: honBlogPost(id: { eq: $entryId }) {
+      id
+      title
+      body
+      alias
+      date
+      tags
+      category
+      summary
     }
   }
 `;

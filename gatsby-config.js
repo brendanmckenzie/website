@@ -21,15 +21,10 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
-      resolve: "gatsby-source-graphql",
+      resolve: "gatsby-source-honegumi",
       options: {
-        typeName: "Hon",
-        fieldName: "honegumi",
-        refetchInterval: 300,
-        url: process.env.HON_URL,
-        headers: {
-          "X-Token": process.env.HON_TOKEN,
-        },
+        project: "87a71e8f-e9a9-44e7-9035-f6e4b524d9fe",
+        token: "b3lCqJVzQaKr70C/Fpx/MWNz/3i1POcOqaVWHhLE",
       },
     },
     {
