@@ -6682,7 +6682,7 @@ gatsby-source-filesystem@^2.3.19:
 
 gatsby-source-honegumi@brendanmckenzie/gatsby-source-honegumi.git:
   version "1.0.0"
-  resolved "https://codeload.github.com/brendanmckenzie/gatsby-source-honegumi/tar.gz/289e042ab765eee26a5a330ef56f064294263692"
+  resolved "https://codeload.github.com/brendanmckenzie/gatsby-source-honegumi/tar.gz/4d17c16b1c6d83ff6d6258b27b7eed19f383493b"
   dependencies:
     "@graphql-tools/wrap" "^6.0.14"
     "@types/node-fetch" "^2.5.7"

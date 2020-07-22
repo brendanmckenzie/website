@@ -23,9 +23,12 @@ module.exports = {
     {
       resolve: "gatsby-source-honegumi",
       options: {
-        project: "87a71e8f-e9a9-44e7-9035-f6e4b524d9fe",
-        token: "b3lCqJVzQaKr70C/Fpx/MWNz/3i1POcOqaVWHhLE",
+        project: process.env.HON_PROJECT,
+        token: process.env.HON_TOKEN,
         taxonomySkip: 1,
+        defaultTaxonomy: true,
+        resolveComponent: (input) =>
+          require.resolve(`./src/templates/${input.model}.tsx`),
       },
     },
     {
