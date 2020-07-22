@@ -25,6 +25,7 @@ module.exports = {
       options: {
         project: "87a71e8f-e9a9-44e7-9035-f6e4b524d9fe",
         token: "b3lCqJVzQaKr70C/Fpx/MWNz/3i1POcOqaVWHhLE",
+        taxonomySkip: 1,
       },
     },
     {

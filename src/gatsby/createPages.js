@@ -1,10 +1,11 @@
 const query = `
-query {
-  allHonBlogPost {
+{
+  allHonTaxonomy {
     nodes {
       id
-      alias
-      date
+      path
+      model
+      entryId
     }
   }
 }
@@ -12,21 +13,19 @@ query {
 
 exports.createPages = async ({ actions: { createPage }, graphql }) => {
   const posts = await graphql(query);
-  posts.data.allHonBlogPost.nodes.forEach((node) => {
+  posts.data.allHonTaxonomy.nodes.forEach((node) => {
     try {
-      const component = require.resolve(`../templates/BlogPost.tsx`);
+      const component = require.resolve(`../templates/${node.model}.tsx`);
       createPage({
-        path: "/posts/" + [node.date.substr(0, 4), node.alias].join("/"),
+        path: node.path,
         component,
         context: {
-          entryId: node.id,
+          entryId: node.entryId,
         },
       });
     } catch (ex) {
       console.warn(
-        `error creating page for path '${node.path.join("/")}' of type '${
-          node.entry.type
-        }'`
+        `error creating page for path '${node.path}' of type '${node.model}'`
       );
       console.warn(ex);
     }
