@@ -23,7 +23,7 @@ const HomePage: React.FC<Props> = ({ data: { latestPosts } }) => {
       <Section>
         <Container>
           <Columns>
-            <Column>
+            <Column span={4}>
               <Columns>
                 <Column>
                   <h1 className="title is-1">Brendan McKenzie</h1>
