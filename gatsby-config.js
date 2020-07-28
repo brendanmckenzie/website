@@ -25,10 +25,11 @@ module.exports = {
       options: {
         project: process.env.HON_PROJECT,
         token: process.env.HON_TOKEN,
-        taxonomySkip: 1,
-        defaultTaxonomy: true,
-        resolveComponent: (input) =>
-          require.resolve(`./src/templates/${input.model}.tsx`),
+        taxonomy: {
+          skip: 1,
+          resolveComponent: (input) =>
+            require.resolve(`./src/templates/${input.model}.tsx`),
+        },
       },
     },
     {
