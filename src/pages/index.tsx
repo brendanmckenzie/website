@@ -116,7 +116,7 @@ export default HomePage;
 
 export const query = graphql`
   query {
-    latestPosts: allHonBlogPost(
+    latestPosts: allHonPost(
       sort: { fields: date, order: DESC }
       limit: 15
     ) {

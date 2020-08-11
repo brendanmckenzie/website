@@ -27,7 +27,7 @@ module.exports = {
         environment: process.env.HON_ENVIRONMENT,
         token: process.env.HON_TOKEN,
         taxonomy: {
-          skip: 1,
+          skip: 2,
           resolveComponent: (input) =>
             require.resolve(`./src/templates/${input.model}.tsx`),
         },

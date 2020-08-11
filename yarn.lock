@@ -6052,7 +6052,7 @@ gatsby-source-filesystem@^2.3.19:
 
 gatsby-source-honegumi@brendanmckenzie/gatsby-source-honegumi:
   version "1.0.0"
-  resolved "https://codeload.github.com/brendanmckenzie/gatsby-source-honegumi/tar.gz/a0d6c98ae54acea6aa12130698b0592ebb7eb5a8"
+  resolved "https://codeload.github.com/brendanmckenzie/gatsby-source-honegumi/tar.gz/1839d3eceacca7c3d5ffb6399a1fdeb9dbd5f754"
   dependencies:
     gatsby "^2.23.22"
     gatsby-source-filesystem "^2.3.19"

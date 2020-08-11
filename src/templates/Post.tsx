@@ -1,25 +1,25 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql, Link, PageProps } from "gatsby";
 import { Helmet } from "react-helmet";
 import Markdown from "react-markdown";
 
 import "../style/style.scss";
 import { Container, Section, Columns, Column } from "../components/Bulma";
 
-type BlogPost = {
-  id: string;
-  title: string;
-  body: string;
-  alias: string;
-  date: string;
-  tags: string;
-  category: string;
-  summary: string;
-};
+type BlogPost = PageProps<{
+  post: {
+    id: string;
+    title: string;
+    body: string;
+    alias: string;
+    date: string;
+    tags: string;
+    category: string;
+    summary: string;
+  };
+}>;
 
-const BlogPost: React.FC<{
-  data: { post: BlogPost };
-}> = ({ data: { post } }) => (
+const BlogPost: React.FC<BlogPost> = ({ data: { post } }) => (
   <>
     <Helmet>
       <title>{`${post.title} - Brendan McKenzie`}</title>
@@ -83,7 +83,7 @@ export default BlogPost;
 
 export const query = graphql`
   query($entryId: String!) {
-    post: honBlogPost(id: { eq: $entryId }) {
+    post: honPost(id: { eq: $entryId }) {
       id
       title
       body
