@@ -24,6 +24,7 @@ module.exports = {
       resolve: "gatsby-source-honegumi",
       options: {
         project: process.env.HON_PROJECT,
+        environment: process.env.HON_ENVIRONMENT,
         token: process.env.HON_TOKEN,
         taxonomy: {
           skip: 1,
