@@ -6050,13 +6050,14 @@ gatsby-source-filesystem@^2.3.19:
     valid-url "^1.0.9"
     xstate "^4.11.0"
 
-gatsby-source-honegumi@brendanmckenzie/gatsby-source-honegumi:
-  version "1.0.0"
-  resolved "https://codeload.github.com/brendanmckenzie/gatsby-source-honegumi/tar.gz/1839d3eceacca7c3d5ffb6399a1fdeb9dbd5f754"
+gatsby-source-pokko@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/gatsby-source-pokko/-/gatsby-source-pokko-0.0.1.tgz#b4fde121c2beb80cec61d7e548e19cd83bcd9eb6"
+  integrity sha512-flB3jhY3dp+eWCpaHWuYHPMnClwI3UWm/refFdkQE+swSpq3z4pn1XWZBaAJGyDFk9K/GDbTO5Z413tpE11XFw==
   dependencies:
     gatsby "^2.23.22"
     gatsby-source-filesystem "^2.3.19"
-    honegumi-sync brendanmckenzie/honegumi-sync
+    pokko-sync "^0.0.1"
 
 gatsby-telemetry@^1.3.18:
   version "1.3.18"
@@ -6858,18 +6859,6 @@ homedir-polyfill@^1.0.1:
   integrity sha512-eSmmWE5bZTK2Nou4g0AI3zZ9rswp7GRKoKXS1BLUkvPviOqs4YTN1djQIqrXy9k5gEtdLPy86JjRwsNM9tnDcA==
   dependencies:
     parse-passwd "^1.0.0"
-
-honegumi-sync@brendanmckenzie/honegumi-sync:
-  version "1.0.0"
-  resolved "https://codeload.github.com/brendanmckenzie/honegumi-sync/tar.gz/337b218945aabf85016eda8ec2bf580cf6e86b65"
-  dependencies:
-    "@apollo/client" "^3.1.0"
-    cross-fetch "^3.0.5"
-    graphql "^15.3.0"
-    sqlite3 "^5.0.0"
-    subscriptions-transport-ws "^0.9.17"
-    ts-node "^8.10.2"
-    typescript "^3.9.7"
 
 hosted-git-info@^2.1.4:
   version "2.8.8"
@@ -10072,6 +10061,19 @@ pnp-webpack-plugin@^1.6.4:
   integrity sha512-7Wjy+9E3WwLOEL30D+m8TSTF7qJJUJLONBnwQp0518siuMxUQUbgZwssaFX+QKlZkjHZcw/IpZCt/H0srrntSg==
   dependencies:
     ts-pnp "^1.1.6"
+
+pokko-sync@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/pokko-sync/-/pokko-sync-0.0.1.tgz#d0b6e60bef78307a8288a9e67807948436092814"
+  integrity sha512-GFf9R7g6WFL9gkPU++NMs9ilpcRIURMCz7vFDA0tnllESxiuSqsSEZHz6xEyRdcq0mSOP5cJDNxmwjmkkLx2sg==
+  dependencies:
+    "@apollo/client" "^3.1.0"
+    cross-fetch "^3.0.5"
+    graphql "^15.3.0"
+    sqlite3 "^5.0.0"
+    subscriptions-transport-ws "^0.9.17"
+    ts-node "^8.10.2"
+    typescript "^3.9.7"
 
 portfinder@^1.0.26:
   version "1.0.26"

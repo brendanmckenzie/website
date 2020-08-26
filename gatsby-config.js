@@ -21,11 +21,11 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
-      resolve: "gatsby-source-honegumi",
+      resolve: "gatsby-source-pokko",
       options: {
-        project: process.env.HON_PROJECT,
-        environment: process.env.HON_ENVIRONMENT,
-        token: process.env.HON_TOKEN,
+        project: process.env.POK_PROJECT,
+        environment: process.env.POK_ENVIRONMENT,
+        token: process.env.POK_TOKEN,
         taxonomy: {
           skip: 2,
           resolveComponent: (input) =>

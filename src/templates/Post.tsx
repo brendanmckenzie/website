@@ -67,11 +67,11 @@ const BlogPost: React.FC<BlogPost> = ({ data: { post } }) => (
         <small>
           Powered by{" "}
           <a
-            href="https://hon.takeoffgo.com/docs/"
+            href="https://www.pokko.io/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Honegumi
+            Pokko
           </a>
         </small>
       </div>
@@ -83,7 +83,7 @@ export default BlogPost;
 
 export const query = graphql`
   query($entryId: String!) {
-    post: honPost(id: { eq: $entryId }) {
+    post: pokPost(id: { eq: $entryId }) {
       id
       title
       body

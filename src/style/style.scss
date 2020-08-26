@@ -24,3 +24,12 @@ dl.is-horizontal {
     grid-column-start: 2;
   }
 }
+
+.content p,
+.content li {
+  font-family: "IBM Plex Serif";
+
+  strong {
+    font-family: $family-sans-serif;
+  }
+}

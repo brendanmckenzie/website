@@ -29,7 +29,7 @@ export const ModuleList: React.FC<Props> = ({ modules }) => (
 );
 
 export const query = graphql`
-  fragment Module_Fragment on Hon_Module {
+  fragment Module_Fragment on Pok_Module {
     type
   }
 `;

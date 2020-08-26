@@ -46,7 +46,7 @@ const HomePage: React.FC<Props> = ({ data: { latestPosts } }) => {
               <Buttons>
                 <a
                   href="https://www.twitter.com/officialbmck"
-                  className="button is-outlined is-link is-rounded"
+                  className="button is-link is-rounded"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -57,7 +57,7 @@ const HomePage: React.FC<Props> = ({ data: { latestPosts } }) => {
                 </a>
                 <a
                   href="https://github.com/brendanmckenzie"
-                  className="button is-outlined is-dark is-rounded"
+                  className="button is-dark is-rounded"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -68,7 +68,7 @@ const HomePage: React.FC<Props> = ({ data: { latestPosts } }) => {
                 </a>
                 <a
                   href="mailto:hello@brendanmckenzie.com"
-                  className="button is-light is-rounded"
+                  className="button is-rounded"
                 >
                   <span className="icon">
                     <i className="fa fa-envelope" />
@@ -76,37 +76,43 @@ const HomePage: React.FC<Props> = ({ data: { latestPosts } }) => {
                   <span>Email</span>
                 </a>
               </Buttons>
+
+              <div className="has-text-centered">
+                <small>
+                  Powered by{" "}
+                  <a
+                    href="https://www.pokko.io/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Pokko
+                  </a>
+                </small>
+              </div>
             </Column>
             <Column>
               <h2 className="title is-2">Latest posts</h2>
               <ul>
                 {latestPosts.nodes.map((ent) => (
-                  <li key={ent.id}>
-                    {new Date(ent.date).toLocaleDateString()}{" "}
-                    <Link to={`/posts/${ent.date.substr(0, 4)}/${ent.alias}`}>
-                      {ent.title}
-                    </Link>{" "}
-                    <small>{ent.category}</small>
+                  <li key={ent.id} className="media">
+                    <div className="media-left">
+                      {new Date(ent.date).toLocaleDateString()}{" "}
+                    </div>
+                    <div className="media-content">
+                      <Link to={`/posts/${ent.date.substr(0, 4)}/${ent.alias}`}>
+                        <strong>{ent.title}</strong>
+                      </Link>
+                      <div className="content">{ent.summary}</div>
+                    </div>
+                    <div className="media-right">
+                      <small>{ent.category}</small>
+                    </div>
                   </li>
                 ))}
               </ul>
             </Column>
           </Columns>
         </Container>
-      </Section>
-      <Section>
-        <div className="has-text-centered">
-          <small>
-            Powered by{" "}
-            <a
-              href="https://hon.takeoffgo.com/docs/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Honegumi
-            </a>
-          </small>
-        </div>
       </Section>
     </>
   );
@@ -116,16 +122,14 @@ export default HomePage;
 
 export const query = graphql`
   query {
-    latestPosts: allHonPost(
-      sort: { fields: date, order: DESC }
-      limit: 15
-    ) {
+    latestPosts: allPokPost(sort: { fields: date, order: DESC }, limit: 15) {
       nodes {
         id
         title
         date
         alias
         category
+        summary
       }
     }
   }

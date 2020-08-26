@@ -18,7 +18,7 @@ const HTML = (props) => {
         ></script>
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans"
+          href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|IBM+Plex+Serif"
         />
         <link rel="icon" type="image/jpeg" href="/assets/images/photo.jpg" />
       </head>
