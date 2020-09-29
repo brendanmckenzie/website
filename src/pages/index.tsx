@@ -24,19 +24,10 @@ const HomePage: React.FC<Props> = ({ data: { latestPosts } }) => {
         <Container>
           <Columns>
             <Column span={4}>
-              <Columns>
-                <Column>
-                  <h1 className="title is-1">Brendan McKenzie</h1>
-                </Column>
-                <Column narrow>
-                  <figure className="image is-128x128">
-                    <img
-                      className="is-rounded"
-                      src="/assets/images/photo.jpg"
-                    />
-                  </figure>
-                </Column>
-              </Columns>
+              <figure className="image is-128x128">
+                <img className="is-rounded" src="/assets/images/photo.jpg" />
+              </figure>
+              <h1 className="title is-1">Brendan McKenzie</h1>
 
               <p>
                 Software and technology enthusiast, focussed on pressing the
