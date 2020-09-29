@@ -6050,10 +6050,10 @@ gatsby-source-filesystem@^2.3.19:
     valid-url "^1.0.9"
     xstate "^4.11.0"
 
-gatsby-source-pokko@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/gatsby-source-pokko/-/gatsby-source-pokko-0.0.2.tgz#274ae2616a9b5fb09479429b100fc6135f3aa5af"
-  integrity sha512-uDJHKyQg24kX4U4uRUzyv7myQPJrT1JN7BnYCoDMSoeIHzZFchW0VfCg47yZsaRMwtZ92mZirPG50XyZt56bSw==
+gatsby-source-pokko@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/gatsby-source-pokko/-/gatsby-source-pokko-0.0.3.tgz#bd63da5c3b91e248161b1e795d400afe8766aea7"
+  integrity sha512-Lxg7Sd+OTmYS1EZK7d3Y9XnXnovLm8JNH7MK2BxenlsKx4QT77tq64p27necCXBXZJ7EqcoOeOd1SeheCeVV7A==
   dependencies:
     gatsby "^2.23.22"
     gatsby-source-filesystem "^2.3.19"
