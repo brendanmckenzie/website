@@ -25,11 +25,39 @@ dl.is-horizontal {
   }
 }
 
-.content p,
-.content li {
-  font-family: "IBM Plex Serif";
+.content {
+  line-height: 1.8;
+  max-width: 60ch;
 
-  strong {
-    font-family: $family-sans-serif;
+  p,
+  li {
+    font-family: "IBM Plex Serif";
+
+    strong {
+      font-family: $family-sans-serif;
+    }
+  }
+
+  p:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.article {
+  &__container {
+    margin: 0 auto;
+    max-width: 60ch;
+    display: grid;
+    row-gap: 2rem;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 900;
+    font-family: "IBM Plex Serif";
+  }
+
+  &__body {
+    line-height: 1.8;
   }
 }

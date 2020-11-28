@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import Markdown from "react-markdown";
 
 import "../style/style.scss";
-import { Container, Section, Columns, Column } from "../components/Bulma";
+import { Section } from "../components/Bulma";
 
 type BlogPost = PageProps<{
   post: {
@@ -27,40 +27,17 @@ const BlogPost: React.FC<BlogPost> = ({ data: { post } }) => (
     </Helmet>
 
     <Section>
-      <Container>
-        <Columns>
-          <Column span={4}>
-            <h1 className="title">{post.title}</h1>
-            <h2 className="subtitle">{post.summary}</h2>
-            <dl className="is-horizontal">
-              <dt>Posted</dt>
-              <dd>{post.date}</dd>
-              {post.category && (
-                <>
-                  <dt>Category</dt>
-                  <dd>{post.category}</dd>
-                </>
-              )}
-              {post.tags && (
-                <>
-                  <dt>Tags</dt>
-                  <dd>{post.tags}</dd>
-                </>
-              )}
-            </dl>
-            <hr />
-            <Link to="/" className="button is-rounded">
-              <span className="icon">
-                <i className="fad fa-arrow-left" />
-              </span>
-              <span>Home</span>
-            </Link>
-          </Column>
-          <Column>
-            <Markdown className="content" source={post.body} />
-          </Column>
-        </Columns>
-      </Container>
+      <div className="article__container">
+        <h1 className="article__actions">
+          <Link to="/">brendanmckenzie.com</Link>
+        </h1>
+        <div className="article__header">
+          <h1 className="article__title">{post.title}</h1>
+          <p>Posted {new Date(post.date).toLocaleDateString()}</p>
+        </div>
+        <hr />
+        <Markdown className="article__body content" source={post.body} />
+      </div>
     </Section>
     <Section>
       <div className="has-text-centered">

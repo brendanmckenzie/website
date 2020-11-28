@@ -23,6 +23,7 @@ module.exports = {
     {
       resolve: "gatsby-source-pokko",
       options: {
+        region: process.env.POK_REGION,
         project: process.env.POK_PROJECT,
         environment: process.env.POK_ENVIRONMENT,
         token: process.env.POK_TOKEN,
