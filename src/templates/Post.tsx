@@ -33,7 +33,7 @@ const BlogPost: React.FC<BlogPost> = ({ data: { post } }) => (
         </h1>
         <div className="article__header">
           <h1 className="article__title">{post.title}</h1>
-          <p>Posted {new Date(post.date).toLocaleDateString()}</p>
+          <p>Posted {new Date(post.date).toLocaleDateString("en-AU")}</p>
         </div>
         <hr />
         <Markdown className="article__body content" source={post.body} />

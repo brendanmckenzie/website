@@ -87,7 +87,7 @@ const HomePage: React.FC<Props> = ({ data: { latestPosts } }) => {
                 {latestPosts.nodes.map((ent) => (
                   <li key={ent.id} className="media">
                     <div className="media-left">
-                      {new Date(ent.date).toLocaleDateString()}{" "}
+                      {new Date(ent.date).toLocaleDateString("en-AU")}
                     </div>
                     <div className="media-content">
                       <Link to={`/posts/${ent.date.substr(0, 4)}/${ent.alias}`}>
