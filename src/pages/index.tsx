@@ -83,19 +83,19 @@ const HomePage: React.FC<Props> = ({ data: { latestPosts } }) => {
             </Column>
             <Column>
               <h2 className="title is-2">Latest posts</h2>
-              <ul>
+              <ul className="post-listing__container">
                 {latestPosts.nodes.map((ent) => (
-                  <li key={ent.id} className="media">
-                    <div className="media-left">
+                  <li key={ent.id} className="post-listing__item">
+                    <div className="post-listing__item--date">
                       {new Date(ent.date).toLocaleDateString("en-AU")}
                     </div>
-                    <div className="media-content">
+                    <div className="post-listing__item--detail">
                       <Link to={`/posts/${ent.date.substr(0, 4)}/${ent.alias}`}>
                         <strong>{ent.title}</strong>
                       </Link>
                       <div className="content">{ent.summary}</div>
                     </div>
-                    <div className="media-right">
+                    <div className="post-listing__item--category">
                       <small>{ent.category}</small>
                     </div>
                   </li>

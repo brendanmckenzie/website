@@ -3,6 +3,12 @@ $family-sans-serif: "Rubik", -apple-system, BlinkMacSystemFont, "Roboto",
 
 @import "../../node_modules/bulma/bulma.sass";
 
+@mixin mobile {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
 pre {
   white-space: pre-wrap;
 }
@@ -58,5 +64,39 @@ dl.is-horizontal {
 
   &__body {
     line-height: 1.8;
+  }
+}
+
+.post-listing {
+  &__container {
+    display: grid;
+    grid-auto-flow: row;
+    row-gap: 2rem;
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    column-gap: 1rem;
+    row-gap: 0.5rem;
+
+    &--date {
+      grid-area: date;
+    }
+
+    &--detail {
+      grid-area: detail;
+    }
+
+    &--category {
+      grid-area: category;
+    }
+
+    @include mobile {
+      justify-content: space-between;
+      grid-template:
+        "date category"
+        "detail detail";
+    }
   }
 }
