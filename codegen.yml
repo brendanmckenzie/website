@@ -1,0 +1,18 @@
+schema:
+  - https://au-syd1.pokko.io/72074862-21c3-43ee-a1bb-3742c6fa857c/e1d5cdf5-70d2-4f53-8374-8e1a40a6170a/graphql:
+      headers:
+        X-Token: ${POK_TOKEN}
+documents:
+  - pokko/queries/*.graphql
+generates:
+  ./pokko/queries.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+      - fragment-matcher
+    # config:
+    #   withHooks: true
+    #   withHOC: false
+    #   apolloClientVersion: 3
+    #   useExplicitTyping: true

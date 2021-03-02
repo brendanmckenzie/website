@@ -1,0 +1,37 @@
+query ListPosts {
+  entries {
+    allPost(orderBy: DATE_DESC, take: 15) {
+      ...PostListing
+    }
+  }
+}
+
+query GetPost($path: [String!]!) {
+  entry(path: $path) {
+    ... on Post {
+      id
+      title
+      body
+      alias
+      date
+      tags
+      category
+      summary
+    }
+  }
+}
+
+fragment PostListing on PostCollection {
+  nodes {
+    ...PostSummary
+  }
+}
+
+fragment PostSummary on Post {
+  id
+  title
+  date
+  summary
+  category
+  alias
+}

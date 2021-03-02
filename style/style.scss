@@ -1,7 +1,7 @@
 $family-sans-serif: "Rubik", -apple-system, BlinkMacSystemFont, "Roboto",
   "Segoe UI", sans-serif;
 
-@import "../../node_modules/bulma/bulma.sass";
+@import "../node_modules/bulma/bulma.sass";
 
 @mixin mobile {
   @media screen and (max-width: 768px) {
