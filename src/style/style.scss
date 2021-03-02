@@ -77,7 +77,7 @@ dl.is-horizontal {
   &__item {
     display: grid;
     grid-template-columns: auto 1fr auto;
-    grid-template: "date detail category";
+    grid-template-areas: "date detail category";
     column-gap: 1rem;
     row-gap: 0.5rem;
 
@@ -91,11 +91,13 @@ dl.is-horizontal {
 
     &--category {
       grid-area: category;
+      justify-self: end;
     }
 
     @include mobile {
       justify-content: space-between;
-      grid-template:
+      grid-template-columns: initial;
+      grid-template-areas:
         "date category"
         "detail detail";
     }
