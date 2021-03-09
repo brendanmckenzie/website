@@ -22,6 +22,12 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => (
         href="https://fonts.googleapis.com/css?family=Rubik|IBM+Plex+Serif"
       />
       <link rel="icon" type="image/jpeg" href="/assets/images/photo.jpg" />
+      <script
+        async
+        defer
+        data-domain="brendanmckenzie.com"
+        src="https://plausible.io/js/plausible.js"
+      ></script>
     </Head>
     <Component {...pageProps} />
   </>

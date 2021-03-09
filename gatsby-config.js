@@ -34,15 +34,6 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: "gatsby-plugin-google-gtag",
-      options: {
-        trackingIds: ["UA-25382310-1"],
-        pluginConfig: {
-          head: true,
-        },
-      },
-    },
     "gatsby-plugin-sitemap",
   ],
 };
