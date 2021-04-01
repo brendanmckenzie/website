@@ -48,7 +48,7 @@ export const getStaticProps: GetStaticProps<GetPostQuery> = async ({
     },
   });
 
-  if (!res.data) {
+  if (!res.data.entry) {
     return { notFound: true, revalidate };
   }
 
