@@ -1,6 +1,8 @@
 $family-sans-serif: "Rubik", -apple-system, BlinkMacSystemFont, "Roboto",
   "Segoe UI", sans-serif;
 
+$body-color: #222;
+
 @import "../node_modules/bulma/bulma.sass";
 
 @mixin mobile {
@@ -33,16 +35,6 @@ dl.is-horizontal {
 
 .content {
   line-height: 1.8;
-  max-width: 60ch;
-
-  p,
-  li {
-    font-family: "IBM Plex Serif";
-
-    strong {
-      font-family: $family-sans-serif;
-    }
-  }
 
   p:not(:last-child) {
     margin-bottom: 1.5rem;
@@ -52,9 +44,13 @@ dl.is-horizontal {
 .article {
   &__container {
     margin: 0 auto;
-    max-width: 60ch;
+    max-width: 72ch;
     display: grid;
     row-gap: 2rem;
+  }
+
+  &__meta {
+    // color:
   }
 
   &__title {

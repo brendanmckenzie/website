@@ -1,5 +1,5 @@
 import React from "react";
-import { Helmet } from "react-helmet";
+import Head from "next/head";
 import Markdown from "react-markdown";
 
 import { Section } from "../Bulma";
@@ -19,10 +19,10 @@ type BlogPost = {
 
 export const BlogPostPage: React.FC<BlogPost> = ({ post }) => (
   <>
-    <Helmet>
-      <title>{`${post.title} - Brendan McKenzie`}</title>
+    <Head>
+      <title>{post.title} - Brendan McKenzie</title>
       <meta name="description" content={post.summary} />
-    </Helmet>
+    </Head>
 
     <Section>
       <div className="article__container">
@@ -31,9 +31,8 @@ export const BlogPostPage: React.FC<BlogPost> = ({ post }) => (
         </h1>
         <div className="article__header">
           <h1 className="article__title">{post.title}</h1>
-          <p>Posted {new Date(post.date).toLocaleDateString("en-AU")}</p>
+          <p className="article__meta">Posted {new Date(post.date).toLocaleDateString("en-AU")}</p>
         </div>
-        <hr />
         <Markdown className="article__body content" source={post.body} />
       </div>
     </Section>

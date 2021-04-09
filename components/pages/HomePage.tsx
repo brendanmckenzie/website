@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Helmet } from "react-helmet";
+import Head from "next/head";
 import { Section, Container, Columns, Column, Buttons } from "../Bulma";
 
 export type HomePageProps = {
@@ -15,9 +15,9 @@ export type HomePageProps = {
 
 export const HomePage: React.FC<HomePageProps> = ({ latestPosts }) => (
   <>
-    <Helmet>
-      <title>{`Brendan McKenzie`}</title>
-    </Helmet>
+    <Head>
+      <title>Brendan McKenzie</title>
+    </Head>
     <Section>
       <Container>
         <Columns>
