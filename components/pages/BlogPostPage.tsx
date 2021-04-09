@@ -26,12 +26,14 @@ export const BlogPostPage: React.FC<BlogPost> = ({ post }) => (
 
     <Section>
       <div className="article__container">
-        <h1 className="article__actions">
+        <div className="article__actions">
           <a href="/">brendanmckenzie.com</a>
-        </h1>
+        </div>
         <div className="article__header">
           <h1 className="article__title">{post.title}</h1>
-          <p className="article__meta">Posted {new Date(post.date).toLocaleDateString("en-AU")}</p>
+          <p className="article__meta">
+            Posted {new Date(post.date).toLocaleDateString("en-AU")}
+          </p>
         </div>
         <Markdown className="article__body content" source={post.body} />
       </div>

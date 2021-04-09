@@ -2,6 +2,11 @@ $family-sans-serif: "Rubik", -apple-system, BlinkMacSystemFont, "Roboto",
   "Segoe UI", sans-serif;
 
 $body-color: #222;
+$weight-bold: 500;
+$weight-semibold: 500;
+$weight-medium: 500;
+$weight-normal: 300;
+$weight-light: 300;
 
 @import "../node_modules/bulma/bulma.sass";
 
@@ -56,6 +61,7 @@ dl.is-horizontal {
   &__title {
     font-size: 2rem;
     font-weight: 900;
+    text-transform: uppercase;
   }
 
   &__body {

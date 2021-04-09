@@ -89,7 +89,7 @@ export const HomePage: React.FC<HomePageProps> = ({ latestPosts }) => (
                   </div>
                   <div className="post-listing__item--detail">
                     <a href={`/posts/${ent.date.substr(0, 4)}/${ent.alias}`}>
-                      <strong>{ent.title}</strong>
+                      {ent.title}
                     </a>
                     <div className="content">{ent.summary}</div>
                   </div>
