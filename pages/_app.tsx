@@ -19,7 +19,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => (
       ></script>
       <link rel="preconnect" href="https://fonts.gstatic.com" />
       <link
-        href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;500&amp;display=swap"
+        href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&amp;display=swap"
         rel="stylesheet"
       />
 

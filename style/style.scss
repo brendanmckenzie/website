@@ -5,10 +5,10 @@ $body-color: #222;
 $weight-bold: 500;
 $weight-semibold: 500;
 $weight-medium: 500;
-$weight-normal: 300;
-$weight-light: 300;
+$weight-normal: 400;
+$weight-light: 400;
 
-@import "../node_modules/bulma/bulma.sass";
+@import "~bulma/bulma.sass";
 
 @mixin mobile {
   @media screen and (max-width: 768px) {
@@ -55,7 +55,7 @@ dl.is-horizontal {
   }
 
   &__meta {
-    // color:
+    color: $grey;
   }
 
   &__title {
@@ -66,6 +66,7 @@ dl.is-horizontal {
 
   &__body {
     line-height: 1.8;
+    overflow: auto;
   }
 }
 
