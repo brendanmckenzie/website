@@ -19,7 +19,6 @@ query GetPost($path: [String!]!) {
       summary
       image {
         url(process: { height: 600, width: 1200, fit: COVER, position: CENTRE })
-        size
         height
         width
       }

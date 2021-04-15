@@ -490,7 +490,7 @@ export type GetPostQuery = (
     & Pick<Post, 'id' | 'title' | 'body' | 'alias' | 'date' | 'tags' | 'category' | 'summary'>
     & { image?: Maybe<(
       { __typename?: 'PokMedia' }
-      & Pick<PokMedia, 'url' | 'size' | 'height' | 'width'>
+      & Pick<PokMedia, 'url' | 'height' | 'width'>
     )> }
   ) | { __typename?: 'PostList' } | { __typename?: 'Seo' } | { __typename?: 'Title' }> }
 );
@@ -575,7 +575,6 @@ export const GetPostDocument = gql`
       summary
       image {
         url(process: {height: 600, width: 1200, fit: COVER, position: CENTRE})
-        size
         height
         width
       }
