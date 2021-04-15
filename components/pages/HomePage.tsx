@@ -28,7 +28,7 @@ export const HomePage: React.FC<HomePageProps> = ({ latestPosts }) => (
             <h1 className="title is-1">Brendan McKenzie</h1>
 
             <p>
-              Software and technology enthusiast, focussed on pressing the
+              Software and technology enthusiast, focussed on pushing the
               envelope with emerging technologies.
             </p>
             <hr />
