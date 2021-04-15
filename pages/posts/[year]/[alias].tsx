@@ -4,6 +4,7 @@ import {
   GetPostDocument,
   GetPostQuery,
   GetPostQueryVariables,
+  PokMedia,
 } from "../../../pokko/queries";
 import { client } from "../../../lib/pokko";
 import { BlogPostPage } from "../../../components/pages/BlogPostPage";
@@ -21,6 +22,7 @@ const Post: React.FC<GetPostQuery> = ({ entry }) => {
           id: entry.id!,
           body: entry.body!,
           tags: entry.tags!,
+          image: entry.image as PokMedia,
         }}
       />
     );

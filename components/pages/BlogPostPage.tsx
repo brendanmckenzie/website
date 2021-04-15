@@ -1,8 +1,12 @@
 import React from "react";
 import Head from "next/head";
+import Image from "next/image";
 import Markdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 import { Section } from "../Bulma";
+import { PokMedia } from "../../pokko/queries";
 
 type BlogPost = {
   post: {
@@ -14,6 +18,7 @@ type BlogPost = {
     tags: string;
     category: string;
     summary: string;
+    image?: PokMedia;
   };
 };
 
@@ -32,10 +37,20 @@ export const BlogPostPage: React.FC<BlogPost> = ({ post }) => (
         <div className="article__header">
           <h1 className="article__title">{post.title}</h1>
           <p className="article__meta">
-            Posted {new Date(post.date).toLocaleDateString("en-AU")}
+            Posted:{" "}
+            {new Date(post.date).toLocaleDateString("en-AU", {
+              dateStyle: "full",
+            })}
           </p>
         </div>
-        <Markdown className="article__body content" source={post.body} />
+        {post.image ? (
+          <Image src={post.image.url} height={600} width={1200} />
+        ) : null}
+        <Markdown
+          className="article__body content"
+          source={post.body}
+          renderers={renderers}
+        />
       </div>
     </Section>
     <Section>
@@ -54,3 +69,22 @@ export const BlogPostPage: React.FC<BlogPost> = ({ post }) => (
     </Section>
   </>
 );
+
+const renderers: { [nodeType: string]: React.ElementType } = {
+  code({ node, className, ...props }) {
+    if (props.language) {
+      return (
+        <SyntaxHighlighter
+          language={props.language}
+          PreTag="pre"
+          style={dracula}
+          showLineNumbers
+        >
+          {props.value}
+        </SyntaxHighlighter>
+      );
+    }
+
+    return <pre className={className}>{props.value}</pre>;
+  },
+};
