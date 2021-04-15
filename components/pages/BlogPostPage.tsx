@@ -43,7 +43,7 @@ export const BlogPostPage: React.FC<BlogPost> = ({ post }) => (
             })}
           </p>
         </div>
-        {post.image?.url.split("/")[4] !== "" ? (
+        {post.image?.url && post.image?.url.split("/")[4] !== "" ? (
           <Image src={post.image.url} height={600} width={1200} />
         ) : null}
         <Markdown
