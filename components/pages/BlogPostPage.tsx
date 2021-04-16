@@ -37,7 +37,6 @@ export const BlogPostPage: React.FC<BlogPost> = ({ post }) => (
         <div className="article__header">
           <h1 className="article__title">{post.title}</h1>
           <p className="article__meta">
-            Posted:{" "}
             {new Date(post.date).toLocaleDateString("en-AU", {
               dateStyle: "full",
             })}

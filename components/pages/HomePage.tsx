@@ -84,10 +84,13 @@ export const HomePage: React.FC<HomePageProps> = ({ latestPosts }) => (
             <ul className="post-listing__container">
               {latestPosts.map((ent) => (
                 <li key={ent.id} className="post-listing__item">
-                  <div className="post-listing__item--date">
-                    {new Date(ent.date).toLocaleDateString("en-AU")}
-                  </div>
+                  <div className="post-listing__item--date"></div>
                   <div className="post-listing__item--detail">
+                    {new Date(ent.date).toLocaleDateString("en-AU", {
+                      day: "numeric",
+                      month: "short",
+                    })}
+                    {" "}&mdash;{" "}
                     <a href={`/posts/${ent.date.substr(0, 4)}/${ent.alias}`}>
                       {ent.title}
                     </a>
