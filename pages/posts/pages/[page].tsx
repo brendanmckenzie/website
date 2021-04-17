@@ -73,7 +73,7 @@ export const getStaticProps: GetStaticProps<ListPostsQuery> = async ({
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = Array.from({
     length: 4,
-  }).map((_, page) => ({ params: { page: page.toString(10) } }));
+  }).map((_, page) => ({ params: { page: (page + 1).toString(10) } }));
 
   return {
     paths,
