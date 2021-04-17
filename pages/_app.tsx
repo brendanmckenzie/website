@@ -13,10 +13,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => (
         name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
       />
-      <script
-        src="https://kit.fontawesome.com/cf8e377f62.js"
-        crossOrigin="anonymous"
-      ></script>
+
       <link rel="preconnect" href="https://fonts.gstatic.com" />
       <link
         href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&amp;display=swap"
