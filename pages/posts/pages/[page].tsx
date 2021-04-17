@@ -20,20 +20,22 @@ const PostListingPage: React.FC<ListPostsQuery & { page: number }> = ({
   return (
     <PostListPage
       loading={router.isFallback}
-      posts={entries.allPost.nodes.map((ent) => ({
-        alias: ent.alias!,
-        title: ent.title!,
-        category: ent.category!,
-        date: ent.date!,
-        summary: ent.summary!,
-        id: ent.id!,
-        url: {
-          pathname: "/posts/[year]/[alias]",
-          query: { year: ent.date.substr(0, 4), alias: ent.alias },
-        },
-      }))}
+      posts={
+        entries?.allPost.nodes.map((ent) => ({
+          alias: ent.alias!,
+          title: ent.title!,
+          category: ent.category!,
+          date: ent.date!,
+          summary: ent.summary!,
+          id: ent.id!,
+          url: {
+            pathname: "/posts/[year]/[alias]",
+            query: { year: ent.date.substr(0, 4), alias: ent.alias },
+          },
+        })) ?? []
+      }
       nextUrl={
-        entries.allPost.pageInfo.hasNextPage
+        entries?.allPost.pageInfo.hasNextPage
           ? {
               pathname: "/posts/pages/[page]",
               query: { page: (page + 1).toString(10) },
