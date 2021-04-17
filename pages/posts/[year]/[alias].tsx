@@ -7,7 +7,7 @@ import {
   PokMedia,
 } from "../../../pokko/queries";
 import { client } from "../../../lib/pokko";
-import { BlogPostPage } from "../../../components/pages/BlogPostPage";
+import { BlogPostPage } from "../../../components/pages/BlogPostPage/BlogPostPage";
 
 const Post: React.FC<GetPostQuery> = ({ entry }) => {
   if (entry.__typename === "Post") {

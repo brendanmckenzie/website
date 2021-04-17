@@ -1,6 +1,6 @@
-query ListPosts {
+query ListPosts($skip: Int!, $take: Int!) {
   entries {
-    allPost(orderBy: DATE_DESC, take: 15) {
+    allPost(orderBy: DATE_DESC, skip: $skip, take: $take) {
       ...PostListing
     }
   }
@@ -30,6 +30,10 @@ fragment PostListing on PostCollection {
   nodes {
     ...PostSummary
   }
+  pageInfo {
+    hasNextPage
+    hasPrevPage
+  }
 }
 
 fragment PostSummary on Post {
@@ -39,4 +43,12 @@ fragment PostSummary on Post {
   summary
   category
   alias
+}
+
+query PostCount {
+  entries {
+    allPost {
+      totalCount
+    }
+  }
 }

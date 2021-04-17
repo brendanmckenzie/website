@@ -464,7 +464,10 @@ export enum TitleOrderBy {
   TitleDesc = 'TITLE_DESC'
 }
 
-export type ListPostsQueryVariables = Exact<{ [key: string]: never; }>;
+export type ListPostsQueryVariables = Exact<{
+  skip: Scalars['Int'];
+  take: Scalars['Int'];
+}>;
 
 
 export type ListPostsQuery = (
@@ -500,12 +503,29 @@ export type PostListingFragment = (
   & { nodes: Array<Maybe<(
     { __typename?: 'Post' }
     & PostSummaryFragment
-  )>> }
+  )>>, pageInfo: (
+    { __typename?: 'PageInfo' }
+    & Pick<PageInfo, 'hasNextPage' | 'hasPrevPage'>
+  ) }
 );
 
 export type PostSummaryFragment = (
   { __typename?: 'Post' }
   & Pick<Post, 'id' | 'title' | 'date' | 'summary' | 'category' | 'alias'>
+);
+
+export type PostCountQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PostCountQuery = (
+  { __typename?: 'Query' }
+  & { entries?: Maybe<(
+    { __typename?: 'Entries' }
+    & { allPost?: Maybe<(
+      { __typename?: 'PostCollection' }
+      & Pick<PostCollection, 'totalCount'>
+    )> }
+  )> }
 );
 
 export const PostSummaryFragmentDoc = gql`
@@ -523,12 +543,16 @@ export const PostListingFragmentDoc = gql`
   nodes {
     ...PostSummary
   }
+  pageInfo {
+    hasNextPage
+    hasPrevPage
+  }
 }
     ${PostSummaryFragmentDoc}`;
 export const ListPostsDocument = gql`
-    query ListPosts {
+    query ListPosts($skip: Int!, $take: Int!) {
   entries {
-    allPost(orderBy: DATE_DESC, take: 15) {
+    allPost(orderBy: DATE_DESC, skip: $skip, take: $take) {
       ...PostListing
     }
   }
@@ -547,10 +571,12 @@ export const ListPostsDocument = gql`
  * @example
  * const { data, loading, error } = useListPostsQuery({
  *   variables: {
+ *      skip: // value for 'skip'
+ *      take: // value for 'take'
  *   },
  * });
  */
-export function useListPostsQuery(baseOptions?: Apollo.QueryHookOptions<ListPostsQuery, ListPostsQueryVariables>) {
+export function useListPostsQuery(baseOptions: Apollo.QueryHookOptions<ListPostsQuery, ListPostsQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<ListPostsQuery, ListPostsQueryVariables>(ListPostsDocument, options);
       }
@@ -610,6 +636,42 @@ export function useGetPostLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Ge
 export type GetPostQueryHookResult = ReturnType<typeof useGetPostQuery>;
 export type GetPostLazyQueryHookResult = ReturnType<typeof useGetPostLazyQuery>;
 export type GetPostQueryResult = Apollo.QueryResult<GetPostQuery, GetPostQueryVariables>;
+export const PostCountDocument = gql`
+    query PostCount {
+  entries {
+    allPost {
+      totalCount
+    }
+  }
+}
+    `;
+
+/**
+ * __usePostCountQuery__
+ *
+ * To run a query within a React component, call `usePostCountQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePostCountQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePostCountQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function usePostCountQuery(baseOptions?: Apollo.QueryHookOptions<PostCountQuery, PostCountQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PostCountQuery, PostCountQueryVariables>(PostCountDocument, options);
+      }
+export function usePostCountLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PostCountQuery, PostCountQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PostCountQuery, PostCountQueryVariables>(PostCountDocument, options);
+        }
+export type PostCountQueryHookResult = ReturnType<typeof usePostCountQuery>;
+export type PostCountLazyQueryHookResult = ReturnType<typeof usePostCountLazyQuery>;
+export type PostCountQueryResult = Apollo.QueryResult<PostCountQuery, PostCountQueryVariables>;
 
       export interface PossibleTypesResultData {
         possibleTypes: {

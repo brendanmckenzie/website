@@ -6,7 +6,7 @@ import {
   ListPostsQueryVariables,
 } from "../pokko/queries";
 import { client } from "../lib/pokko";
-import { HomePage } from "../components/pages/HomePage";
+import { HomePage } from "../components/pages/HomePage/HomePage";
 
 const Home: React.FC<ListPostsQuery> = ({ entries }) => (
   <HomePage
@@ -17,6 +17,10 @@ const Home: React.FC<ListPostsQuery> = ({ entries }) => (
       date: ent.date!,
       summary: ent.summary!,
       id: ent.id!,
+      url: {
+        pathname: "/posts/[year]/[alias]",
+        query: { year: ent.date.substr(0, 4), alias: ent.alias },
+      },
     }))}
   />
 );
@@ -27,6 +31,10 @@ export const getStaticProps: GetStaticProps<ListPostsQuery> = async () => {
   const res = await client.query<ListPostsQuery, ListPostsQueryVariables>({
     query: ListPostsDocument,
     fetchPolicy: "network-only",
+    variables: {
+      skip: 0,
+      take: 4,
+    },
   });
 
   if (!res.data) {

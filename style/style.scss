@@ -1,119 +1,87 @@
-$family-sans-serif: "Rubik", -apple-system, BlinkMacSystemFont, "Roboto",
-  "Segoe UI", sans-serif;
+@import "./mixins.scss";
 
-$body-color: #222;
-$weight-bold: 500;
-$weight-semibold: 500;
-$weight-medium: 500;
-$weight-normal: 400;
-$weight-light: 400;
-
-@import "~bulma/bulma.sass";
-
-@mixin mobile {
-  @media screen and (max-width: 768px) {
-    @content;
-  }
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+hr {
+  background-color: whitesmoke;
+  border: none;
+  display: block;
+  height: 2px;
+  margin: 1.5rem 0;
+}
+
+body {
+  color: #444;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+
+  font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI",
+    sans-serif;
+}
+
+code {
+  background-color: whitesmoke;
+  color: #da1039;
+  font-size: 0.875em;
+  font-weight: normal;
+  padding: 0.25em 0.5em 0.25em;
+}
+
+pre code {
+  padding: 0;
+}
+
+code,
 pre {
-  white-space: pre-wrap;
+  -moz-osx-font-smoothing: auto;
+  -webkit-font-smoothing: auto;
+  font-family: "IBM Plex Mono", monospace;
 }
 
-dt {
-  font-weight: bold;
-}
+a {
+  text-decoration: none;
 
-dl.is-horizontal {
-  display: grid;
-  grid-template-columns: max-content auto;
-  column-gap: $gap / 2;
-
-  dt {
-    grid-column-start: 1;
-  }
-
-  dd {
-    grid-column-start: 2;
-  }
-}
-
-.content {
-  line-height: 1.8;
-
-  p:not(:last-child) {
-    margin-bottom: 1.5rem;
-  }
-}
-
-.article {
-  &__container {
-    margin: 0 auto;
-    max-width: 72ch;
-    display: grid;
-    row-gap: 2rem;
-
-    @include mobile {
-      row-gap: 1rem;
-    }
-  }
-
-  &__meta {
-    color: $grey;
-  }
-
-  &__title {
-    font-size: 2rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    line-height: 1.2;
-  }
-
-  &__body {
-    line-height: 1.8;
-    overflow: auto;
-  }
-}
-
-.post-listing {
-  &__container {
-    display: grid;
-    grid-auto-flow: row;
-    row-gap: 2rem;
-  }
-
-  &__item {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    grid-template-areas: "date detail category";
-    column-gap: 1rem;
-    row-gap: 0.5rem;
-
-    &--date {
-      grid-area: date;
-    }
-
-    &--detail {
-      grid-area: detail;
-    }
-
-    &--category {
-      grid-area: category;
-      justify-self: end;
-    }
-
-    @include mobile {
-      justify-content: space-between;
-      grid-template-columns: initial;
-      grid-template-areas:
-        "date category"
-        "detail detail";
-    }
-  }
-}
-
-@include mobile {
-  .section {
-    padding: 1rem;
-  }
+  color: #3895d3;
 }

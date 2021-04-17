@@ -1,0 +1,77 @@
+@import "../../../style/mixins.scss";
+
+.container {
+  @include container;
+
+  display: grid;
+  row-gap: 2rem;
+
+  @include mobile {
+    row-gap: 1rem;
+  }
+}
+
+.actions {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1rem;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.meta {
+  color: #666;
+}
+
+.content {
+  line-height: 1.8;
+  overflow: auto;
+
+  p:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  li + li {
+    margin-top: 0.25em;
+  }
+
+  p,
+  dl,
+  ol,
+  ul,
+  blockquote,
+  pre,
+  table {
+    &:not(:last-child) {
+      margin-bottom: 1em;
+    }
+  }
+
+  ol {
+    list-style-position: outside;
+
+    margin-top: 1em;
+    padding: 1em;
+  }
+  ul {
+    list-style: disc outside;
+    margin-top: 1em;
+    padding: 1em;
+  }
+
+  pre {
+    overflow-x: auto;
+    white-space: pre;
+    word-wrap: normal;
+  }
+}

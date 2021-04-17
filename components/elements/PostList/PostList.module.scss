@@ -1,0 +1,36 @@
+@import "../../../style/mixins.scss";
+
+.list {
+  display: grid;
+  row-gap: 1.5rem;
+}
+
+.item {
+  display: grid;
+  row-gap: 0.5rem;
+}
+
+.item-detail {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  column-gap: 1rem;
+  row-gap: 0;
+  align-items: center;
+
+  @include mobile {
+    grid-template-columns: unset;
+  }
+
+  span {
+    font-size: 0.75rem;
+  }
+
+  a {
+    line-height: 1.2;
+  }
+}
+
+.item-summary {
+  color: #666;
+  line-height: 1.4;
+}

@@ -1,1 +1,0 @@
-Everything in here is nextjs related
