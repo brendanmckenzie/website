@@ -4,6 +4,9 @@ import {
   GetPostDocument,
   GetPostQuery,
   GetPostQueryVariables,
+  ListPostsDocument,
+  ListPostsQuery,
+  ListPostsQueryVariables,
   PokMedia,
 } from "../../../pokko/queries";
 import { client } from "../../../lib/pokko";
@@ -61,8 +64,19 @@ export const getStaticProps: GetStaticProps<GetPostQuery> = async ({
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const res = await client.query<ListPostsQuery, ListPostsQueryVariables>({
+    query: ListPostsDocument,
+    fetchPolicy: "network-only",
+    variables: {
+      skip: 0,
+      take: 5,
+    },
+  });
+
   return {
-    paths: [],
+    paths: res.data.entries.allPost.nodes.map((ent) => ({
+      params: { year: ent.date.substr(0, 4), alias: ent.alias },
+    })),
     fallback: "blocking",
   };
 };
