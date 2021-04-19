@@ -24,7 +24,7 @@
   align-items: center;
   justify-content: center;
   grid-auto-flow: column;
-  column-gap: 2rem;
+  column-gap: 1.5rem;
 
   a {
     display: grid;
@@ -34,8 +34,8 @@
     border-radius: 40px;
 
     svg {
-      height: 1.5rem;
-      width: 1.5rem;
+      height: 1.25rem;
+      width: 1.25rem;
     }
   }
 }
@@ -53,6 +53,28 @@
 
 .github {
   background-color: #181717;
+
+  color: white;
+  svg {
+    path {
+      fill: white;
+    }
+  }
+}
+
+.instagram {
+  background-color: #e4405f;
+
+  color: white;
+  svg {
+    path {
+      fill: white;
+    }
+  }
+}
+
+.linkedin {
+  background-color: #0a66c2;
 
   color: white;
   svg {
