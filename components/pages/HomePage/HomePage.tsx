@@ -15,6 +15,10 @@ export const HomePage: React.FC<HomePageProps> = ({ latestPosts }) => (
   <>
     <Head>
       <title>Brendan McKenzie</title>
+      <meta
+        name="description"
+        content="Software and technology enthusiast, focussed on pushing the envelope with emerging technologies."
+      />
     </Head>
     <div className={style.container}>
       <div className={style.header}>
@@ -34,6 +38,7 @@ export const HomePage: React.FC<HomePageProps> = ({ latestPosts }) => (
           className={style.twitter}
           target="_blank"
           rel="noreferrer noopener"
+          aria-label="Twitter"
         >
           <Twitter />
         </a>
@@ -42,6 +47,7 @@ export const HomePage: React.FC<HomePageProps> = ({ latestPosts }) => (
           className={style.github}
           target="_blank"
           rel="noreferrer noopener"
+          aria-label="Github"
         >
           <Github />
         </a>
@@ -50,6 +56,7 @@ export const HomePage: React.FC<HomePageProps> = ({ latestPosts }) => (
           className={style.instagram}
           target="_blank"
           rel="noreferrer noopener"
+          aria-label="Instagram"
         >
           <Instagram />
         </a>
@@ -58,10 +65,15 @@ export const HomePage: React.FC<HomePageProps> = ({ latestPosts }) => (
           className={style.linkedin}
           target="_blank"
           rel="noreferrer noopener"
+          aria-label="LinkedIn"
         >
           <LinkedIn />
         </a>
-        <a href="mailto:hello@brendanmckenzie.com" className={style.email}>
+        <a
+          href="mailto:hello@brendanmckenzie.com"
+          className={style.email}
+          aria-label="Email"
+        >
           <Email />
         </a>
       </div>
@@ -72,7 +84,7 @@ export const HomePage: React.FC<HomePageProps> = ({ latestPosts }) => (
 
       <div className={style.footer}>
         <Link href="/posts/pages/1">
-          <a>More</a>
+          <a>More articles</a>
         </Link>
       </div>
 
