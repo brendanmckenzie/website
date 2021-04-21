@@ -59,13 +59,15 @@ export const BlogPostPage: React.FC<BlogPost> = ({ post }) => (
 );
 
 const components: { [nodeType: string]: React.ElementType } = {
-  code({ node, className, ...props }) {
+  code({ node, className, children, ...props }) {
     const match = /language-(\w+)/.exec(className || "");
+    console.log(props);
     return match ? (
       <SyntaxHighlighter
         language={match[1]}
         style={dracula}
         showLineNumbers
+        children={children.map((str) => str?.trimEnd("\n"))}
         {...props}
       />
     ) : (
