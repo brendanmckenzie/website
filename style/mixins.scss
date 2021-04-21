@@ -12,3 +12,22 @@
     margin: 1rem;
   }
 }
+
+@mixin post-list-footer {
+  margin-top: 1rem;
+  padding: 1rem 0;
+  text-align: center;
+
+  a {
+    padding: 0.75rem 1.75rem;
+    background-color: #3895d3;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 0.5rem;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
