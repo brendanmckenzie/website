@@ -9,7 +9,7 @@ import {
   ListPostsQueryVariables,
   PokMedia,
 } from "../../../pokko/queries";
-import { client } from "../../../lib/pokko";
+import { client, clientPreview } from "../../../lib/pokko";
 import { BlogPostPage } from "../../../components/pages/BlogPostPage/BlogPostPage";
 
 const Post: React.FC<GetPostQuery> = ({ entry }) => {
@@ -37,9 +37,11 @@ const Post: React.FC<GetPostQuery> = ({ entry }) => {
 const revalidate = 5;
 
 export const getStaticProps: GetStaticProps<GetPostQuery> = async ({
+  preview,
   params,
 }) => {
-  const res = await client.query<GetPostQuery, GetPostQueryVariables>({
+  const clientActual = preview ? clientPreview : client;
+  const res = await clientActual.query<GetPostQuery, GetPostQueryVariables>({
     query: GetPostDocument,
     fetchPolicy: "network-only",
     variables: {

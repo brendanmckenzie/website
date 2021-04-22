@@ -5,7 +5,7 @@ import {
   ListPostsQuery,
   ListPostsQueryVariables,
 } from "../pokko/queries";
-import { client } from "../lib/pokko";
+import { client, clientPreview } from "../lib/pokko";
 import { HomePage } from "../components/pages/HomePage/HomePage";
 
 const Home: React.FC<ListPostsQuery> = ({ entries }) => (
@@ -27,15 +27,20 @@ const Home: React.FC<ListPostsQuery> = ({ entries }) => (
 
 const revalidate = 5;
 
-export const getStaticProps: GetStaticProps<ListPostsQuery> = async () => {
-  const res = await client.query<ListPostsQuery, ListPostsQueryVariables>({
-    query: ListPostsDocument,
-    fetchPolicy: "network-only",
-    variables: {
-      skip: 0,
-      take: 4,
-    },
-  });
+export const getStaticProps: GetStaticProps<ListPostsQuery> = async (
+  context
+) => {
+  const clientActual = context.preview ? clientPreview : client;
+  const res = await clientActual.query<ListPostsQuery, ListPostsQueryVariables>(
+    {
+      query: ListPostsDocument,
+      fetchPolicy: "network-only",
+      variables: {
+        skip: 0,
+        take: 4,
+      },
+    }
+  );
 
   if (!res.data) {
     return { notFound: true, revalidate };

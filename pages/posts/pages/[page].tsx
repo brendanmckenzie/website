@@ -5,7 +5,7 @@ import {
   ListPostsQuery,
   ListPostsQueryVariables,
 } from "../../../pokko/queries";
-import { client } from "../../../lib/pokko";
+import { client, clientPreview } from "../../../lib/pokko";
 import { useRouter } from "next/router";
 import { PostListPage } from "../../../components/pages/PostListPage/PostListPage";
 
@@ -47,18 +47,23 @@ const PostListingPage: React.FC<ListPostsQuery & { page: number }> = ({
 };
 
 export const getStaticProps: GetStaticProps<ListPostsQuery> = async ({
+  preview,
   params,
 }) => {
+  const clientActual = preview ? clientPreview : client;
+
   const revalidate = 60;
   const page = parseInt(params.page as string, 10);
-  const res = await client.query<ListPostsQuery, ListPostsQueryVariables>({
-    query: ListPostsDocument,
-    fetchPolicy: "network-only",
-    variables: {
-      skip: (page - 1) * pageSize,
-      take: pageSize,
-    },
-  });
+  const res = await clientActual.query<ListPostsQuery, ListPostsQueryVariables>(
+    {
+      query: ListPostsDocument,
+      fetchPolicy: "network-only",
+      variables: {
+        skip: (page - 1) * pageSize,
+        take: pageSize,
+      },
+    }
+  );
 
   if (!res.data || res.data.entries.allPost.nodes.length === 0) {
     return { notFound: true, revalidate };
