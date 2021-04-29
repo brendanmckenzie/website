@@ -59,10 +59,10 @@ export const BlogPostPage: React.FC<BlogPost> = ({ post }) => (
 );
 
 const components: { [nodeType: string]: React.ElementType } = {
-  code({ node, className, children, ...props }) {
+  code({ node, inline, className, children, ...props }) {
     const match = /language-(\w+)/.exec(className || "");
 
-    return match ? (
+    return !inline && match ? (
       <SyntaxHighlighter
         language={match[1]}
         style={dracula}
@@ -71,7 +71,9 @@ const components: { [nodeType: string]: React.ElementType } = {
         {...props}
       />
     ) : (
-      <code className={className} {...props} />
+      <code className={className} {...props}>
+        {children}
+      </code>
     );
   },
 };
