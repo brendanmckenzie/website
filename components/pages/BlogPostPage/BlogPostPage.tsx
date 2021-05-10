@@ -59,6 +59,22 @@ export const BlogPostPage: React.FC<BlogPost> = ({ post }) => (
 );
 
 const components: { [nodeType: string]: React.ElementType } = {
+  a({ node, children, href, ...props }) {
+    if (href.startsWith("http:") || href.startsWith("https:")) {
+      return (
+        <a href={href} {...props} rel="noreferrer noopener" target="_blank">
+          {children}
+        </a>
+      );
+    } else {
+      return (
+        <a href={href} {...props}>
+          {children}
+        </a>
+      );
+    }
+  },
+
   code({ node, inline, className, children, ...props }) {
     const match = /language-(\w+)/.exec(className || "");
 
