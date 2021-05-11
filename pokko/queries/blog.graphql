@@ -6,7 +6,7 @@ query ListPosts($skip: Int!, $take: Int!) {
   }
 }
 
-query GetPost($path: [String!]!) {
+query GetPost($path: [String!]!, $alias: String!) {
   entry(path: $path) {
     ... on Post {
       id
@@ -21,6 +21,15 @@ query GetPost($path: [String!]!) {
         url(process: { height: 600, width: 1200, fit: COVER, position: CENTRE })
         height
         width
+      }
+    }
+  }
+  entries {
+    allPost(filter: { legacyAlias: { equalTo: $alias } }) {
+      nodes {
+        pokko {
+          path
+        }
       }
     }
   }

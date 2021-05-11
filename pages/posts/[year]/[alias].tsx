@@ -52,10 +52,21 @@ export const getStaticProps: GetStaticProps<GetPostQuery> = async ({
         params.year as string,
         params.alias as string,
       ],
+      alias: params.alias,
     },
   });
 
   if (!res.data.entry) {
+    if (res.data.entries.allPost.nodes.length > 0) {
+      const path = res.data.entries.allPost.nodes[0].pokko.path!;
+
+      return {
+        redirect: {
+          destination: ["", ...path.slice(2)].join("/"),
+          permanent: false,
+        },
+      };
+    }
     return { notFound: true, revalidate };
   }
 
@@ -74,6 +85,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
       take: 5,
     },
   });
+
+  if (!res.data) {
+  }
 
   return {
     paths: res.data.entries.allPost.nodes.map((ent) => ({

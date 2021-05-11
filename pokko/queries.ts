@@ -157,6 +157,7 @@ export type IPost = {
   category?: Maybe<Scalars['String']>;
   summary?: Maybe<Scalars['String']>;
   alias?: Maybe<Scalars['String']>;
+  legacyAlias?: Maybe<Scalars['String']>;
   tags?: Maybe<Scalars['String']>;
   image?: Maybe<PokMedia>;
 };
@@ -287,8 +288,9 @@ export type Post = PokEntry & PokValue & IPost & ISeo & IBody & ITitle & {
   date?: Maybe<Scalars['String']>;
   category?: Maybe<Scalars['String']>;
   summary?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
   alias?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  legacyAlias?: Maybe<Scalars['String']>;
   tags?: Maybe<Scalars['String']>;
   image?: Maybe<PokMedia>;
   body?: Maybe<Scalars['String']>;
@@ -305,13 +307,17 @@ export type PostCondition = {
   date?: Maybe<Scalars['String']>;
   category?: Maybe<Scalars['String']>;
   summary?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
   alias?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  legacyAlias?: Maybe<Scalars['String']>;
   tags?: Maybe<Scalars['String']>;
   body?: Maybe<Scalars['String']>;
 };
 
 export type PostFilter = {
+  alias?: Maybe<ScalarStringFilter>;
+  title?: Maybe<ScalarStringFilter>;
+  legacyAlias?: Maybe<ScalarStringFilter>;
   body?: Maybe<ScalarStringFilter>;
   id?: Maybe<ScalarIdFilter>;
   and?: Maybe<Array<PostFilter>>;
@@ -342,6 +348,8 @@ export enum PostOrderBy {
   CreatedDesc = 'CREATED_DESC',
   DateAsc = 'DATE_ASC',
   DateDesc = 'DATE_DESC',
+  LegacyAliasAsc = 'LEGACY_ALIAS_ASC',
+  LegacyAliasDesc = 'LEGACY_ALIAS_DESC',
   ModifiedAsc = 'MODIFIED_ASC',
   ModifiedDesc = 'MODIFIED_DESC',
   SummaryAsc = 'SUMMARY_ASC',
@@ -450,6 +458,7 @@ export type TitleCondition = {
 };
 
 export type TitleFilter = {
+  title?: Maybe<ScalarStringFilter>;
   id?: Maybe<ScalarIdFilter>;
   and?: Maybe<Array<TitleFilter>>;
   or?: Maybe<Array<TitleFilter>>;
@@ -483,6 +492,7 @@ export type ListPostsQuery = (
 
 export type GetPostQueryVariables = Exact<{
   path: Array<Scalars['String']> | Scalars['String'];
+  alias: Scalars['String'];
 }>;
 
 
@@ -495,7 +505,19 @@ export type GetPostQuery = (
       { __typename?: 'PokMedia' }
       & Pick<PokMedia, 'url' | 'height' | 'width'>
     )> }
-  ) | { __typename?: 'PostList' } | { __typename?: 'Seo' } | { __typename?: 'Title' }> }
+  ) | { __typename?: 'PostList' } | { __typename?: 'Seo' } | { __typename?: 'Title' }>, entries?: Maybe<(
+    { __typename?: 'Entries' }
+    & { allPost?: Maybe<(
+      { __typename?: 'PostCollection' }
+      & { nodes: Array<Maybe<(
+        { __typename?: 'Post' }
+        & { pokko: (
+          { __typename?: 'Pokko' }
+          & Pick<Pokko, 'path'>
+        ) }
+      )>> }
+    )> }
+  )> }
 );
 
 export type PostListingFragment = (
@@ -588,7 +610,7 @@ export type ListPostsQueryHookResult = ReturnType<typeof useListPostsQuery>;
 export type ListPostsLazyQueryHookResult = ReturnType<typeof useListPostsLazyQuery>;
 export type ListPostsQueryResult = Apollo.QueryResult<ListPostsQuery, ListPostsQueryVariables>;
 export const GetPostDocument = gql`
-    query GetPost($path: [String!]!) {
+    query GetPost($path: [String!]!, $alias: String!) {
   entry(path: $path) {
     ... on Post {
       id
@@ -603,6 +625,15 @@ export const GetPostDocument = gql`
         url(process: {height: 600, width: 1200, fit: COVER, position: CENTRE})
         height
         width
+      }
+    }
+  }
+  entries {
+    allPost(filter: {legacyAlias: {equalTo: $alias}}) {
+      nodes {
+        pokko {
+          path
+        }
       }
     }
   }
@@ -622,6 +653,7 @@ export const GetPostDocument = gql`
  * const { data, loading, error } = useGetPostQuery({
  *   variables: {
  *      path: // value for 'path'
+ *      alias: // value for 'alias'
  *   },
  * });
  */
