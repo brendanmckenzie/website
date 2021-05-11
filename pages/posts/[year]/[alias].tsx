@@ -52,7 +52,7 @@ export const getStaticProps: GetStaticProps<GetPostQuery> = async ({
         params.year as string,
         params.alias as string,
       ],
-      alias: params.alias,
+      alias: params.alias as string,
     },
   });
 
