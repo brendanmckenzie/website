@@ -10,7 +10,7 @@ import { HomePage } from "../components/pages/HomePage/HomePage";
 
 const Home: React.FC<ListPostsQuery> = ({ entries }) => (
   <HomePage
-    latestPosts={entries.allPost.nodes.map((ent) => ({
+    latestPosts={entries.allPostBase.nodes.map((ent) => ({
       alias: ent.alias!,
       title: ent.title!,
       category: ent.category!,

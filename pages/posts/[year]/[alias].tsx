@@ -13,7 +13,7 @@ import { client, clientPreview } from "../../../lib/pokko";
 import { BlogPostPage } from "../../../components/pages/BlogPostPage/BlogPostPage";
 
 const Post: React.FC<GetPostQuery> = ({ entry }) => {
-  if (entry.__typename === "Post") {
+  if (entry.__typename === "PostMarkdown") {
     return (
       <BlogPostPage
         post={{
@@ -57,8 +57,8 @@ export const getStaticProps: GetStaticProps<GetPostQuery> = async ({
   });
 
   if (!res.data.entry) {
-    if (res.data.entries.allPost.nodes.length > 0) {
-      const path = res.data.entries.allPost.nodes[0].pokko.path!;
+    if (res.data.entries.allPostBase.nodes.length > 0) {
+      const path = res.data.entries.allPostBase.nodes[0].pokko.path!;
 
       return {
         redirect: {
@@ -90,7 +90,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 
   return {
-    paths: res.data.entries.allPost.nodes.map((ent) => ({
+    paths: res.data.entries.allPostBase.nodes.map((ent) => ({
       params: { year: ent.date.substr(0, 4), alias: ent.alias },
     })),
     fallback: "blocking",

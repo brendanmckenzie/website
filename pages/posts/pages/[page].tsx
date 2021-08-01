@@ -21,7 +21,7 @@ const PostListingPage: React.FC<ListPostsQuery & { page: number }> = ({
     <PostListPage
       loading={router.isFallback}
       posts={
-        entries?.allPost.nodes.map((ent) => ({
+        entries?.allPostBase.nodes.map((ent) => ({
           alias: ent.alias!,
           title: ent.title!,
           category: ent.category!,
@@ -35,7 +35,7 @@ const PostListingPage: React.FC<ListPostsQuery & { page: number }> = ({
         })) ?? []
       }
       nextUrl={
-        entries?.allPost.pageInfo.hasNextPage
+        entries?.allPostBase.pageInfo.hasNextPage
           ? {
               pathname: "/posts/pages/[page]",
               query: { page: (page + 1).toString(10) },
@@ -65,7 +65,7 @@ export const getStaticProps: GetStaticProps<ListPostsQuery> = async ({
     }
   );
 
-  if (!res.data || res.data.entries.allPost.nodes.length === 0) {
+  if (!res.data || res.data.entries.allPostBase.nodes.length === 0) {
     return { notFound: true, revalidate };
   }
 

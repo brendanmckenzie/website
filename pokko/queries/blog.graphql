@@ -1,6 +1,7 @@
-query ListPosts($skip: Int!, $take: Int!) {
+query ListPosts($skip: Int! = 0, $take: Int! = 10) {
   entries {
-    allPost(orderBy: DATE_DESC, skip: $skip, take: $take) {
+    allPostBase(orderBy: DATE_DESC, skip: $skip, take: $take, inherit: true) {
+      totalCount
       ...PostListing
     }
   }
@@ -8,10 +9,9 @@ query ListPosts($skip: Int!, $take: Int!) {
 
 query GetPost($path: [String!]!, $alias: String!) {
   entry(path: $path) {
-    ... on Post {
+    ... on IPostBase {
       id
       title
-      body
       alias
       date
       tags
@@ -22,10 +22,13 @@ query GetPost($path: [String!]!, $alias: String!) {
         height
         width
       }
+      ... on PostMarkdown {
+        body
+      }
     }
   }
   entries {
-    allPost(filter: { legacyAlias: { equalTo: $alias } }) {
+    allPostBase(inherit: true, filter: { legacyAlias: { equalTo: $alias } }) {
       nodes {
         pokko {
           path
@@ -35,7 +38,7 @@ query GetPost($path: [String!]!, $alias: String!) {
   }
 }
 
-fragment PostListing on PostCollection {
+fragment PostListing on PostBaseCollection {
   nodes {
     ...PostSummary
   }
@@ -45,18 +48,21 @@ fragment PostListing on PostCollection {
   }
 }
 
-fragment PostSummary on Post {
+fragment PostSummary on IPostBase {
   id
   title
   date
   summary
   category
   alias
+  pokko {
+    path
+  }
 }
 
 query PostCount {
   entries {
-    allPost {
+    allPostBase(inherit: true) {
       totalCount
     }
   }
