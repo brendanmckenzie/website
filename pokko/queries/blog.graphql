@@ -22,9 +22,9 @@ query GetPost($path: [String!]!, $alias: String!) {
         height
         width
       }
-      ... on PostMarkdown {
-        body
-      }
+    }
+    ... on PostMarkdown {
+      body
     }
   }
   entries {

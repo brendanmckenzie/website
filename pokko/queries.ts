@@ -606,7 +606,7 @@ export type GetPostQuery = (
     )> }
   ) | (
     { __typename?: 'PostMarkdown' }
-    & Pick<PostMarkdown, 'id' | 'title' | 'alias' | 'date' | 'tags' | 'category' | 'summary'>
+    & Pick<PostMarkdown, 'id' | 'title' | 'alias' | 'date' | 'tags' | 'category' | 'summary' | 'body'>
     & { image?: Maybe<(
       { __typename?: 'PokMedia' }
       & Pick<PokMedia, 'url' | 'height' | 'width'>
@@ -759,9 +759,9 @@ export const GetPostDocument = gql`
         height
         width
       }
-      ... on PostMarkdown {
-        body
-      }
+    }
+    ... on PostMarkdown {
+      body
     }
   }
   entries {
