@@ -1,0 +1,46 @@
+@import "../../../style/mixins.scss";
+
+.container {
+  @include container;
+}
+
+.input {
+  display: grid;
+  width: 100%;
+
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 1rem;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.words {
+  list-style: none;
+
+  display: grid;
+  row-gap: 0.75rem;
+
+  button {
+    background-color: transparent;
+    font-size: inherit;
+    font-family: inherit;
+    border: none;
+    font-weight: inherit;
+    font-style: italic;
+    text-decoration: underline;
+  }
+}
+
+.definitions {
+  list-style-type: disc;
+
+  margin-top: 0.25rem;
+  margin-left: 2rem;
+
+  display: grid;
+  row-gap: 0.5rem;
+}
+
+.word {
+  font-size: 1.25rem;
+}
