@@ -48,7 +48,7 @@ export const BlogPostPage: React.FC<BlogPost> = ({ post }) => (
         </p>
       </div>
       {post.image?.url && post.image?.url.split("/")[4] !== "" ? (
-        <Image src={post.image.url} height={600} width={1200} />
+        <Image src={post.image.url} height={600} width={1200} alt="" />
       ) : null}
       <Markdown className={style.content} components={components}>
         {post.body ?? ""}
@@ -83,9 +83,10 @@ const components: { [nodeType: string]: React.ElementType } = {
         language={match[1]}
         style={dracula}
         showLineNumbers
-        children={children.map((str) => str?.trimEnd("\n"))}
         {...props}
-      />
+      >
+        {children.map((str) => str?.trimEnd("\n"))}
+      </SyntaxHighlighter>
     ) : (
       <code className={className} {...props}>
         {children}
