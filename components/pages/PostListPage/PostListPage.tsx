@@ -2,7 +2,7 @@ import * as React from "react";
 import Head from "next/head";
 import Link from "next/link";
 
-import style from "./PostListPage.module.scss";
+import * as style from "./PostListPage.css";
 import { PostList, PostSummary } from "../../elements/PostList";
 import { Footer } from "../../elements/Footer";
 
@@ -24,7 +24,7 @@ export const PostListPage: React.FC<PostListPageProps> = ({
     <div className={style.container}>
       <h1 className={style.heading}>
         <Link href="/">
-          <a>Brendan McKenzie</a>
+          <a className={style.headingLink}>Brendan McKenzie</a>
         </Link>
       </h1>
       {loading ? (
@@ -36,7 +36,7 @@ export const PostListPage: React.FC<PostListPageProps> = ({
           {nextUrl ? (
             <div className={style.footer}>
               <Link href={nextUrl}>
-                <a>More</a>
+                <a className={style.footerItem}>More</a>
               </Link>
             </div>
           ) : null}

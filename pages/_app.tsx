@@ -2,8 +2,6 @@ import * as React from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
 
-import "../style/style.scss";
-
 const App: React.FC<AppProps> = ({ Component, pageProps }) => (
   <>
     <Head>

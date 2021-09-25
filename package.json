@@ -10,29 +10,32 @@
     "model": "node -r dotenv/config node_modules/.bin/graphql-codegen"
   },
   "dependencies": {
-    "@apollo/client": "^3.4.10",
+    "@apollo/client": "^3.4.13",
+    "@vanilla-extract/babel-plugin": "^1.1.0",
+    "@vanilla-extract/css": "^1.6.0",
+    "@vanilla-extract/next-plugin": "^1.0.0",
     "classnames": "^2.3.1",
     "dotenv": "^10.0.0",
-    "graphql": "^15.5.1",
+    "graphql": "^15.6.0",
     "graphql-tag": "^2.12.5",
-    "next": "^11.1.0",
+    "next": "^11.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-markdown": "^7.0.1",
     "react-syntax-highlighter": "^15.4.4",
-    "sass": "^1.38.2"
+    "sass": "^1.42.1"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^2.1.1",
+    "@graphql-codegen/cli": "^2.2.0",
     "@graphql-codegen/fragment-matcher": "^3.1.0",
-    "@graphql-codegen/typescript": "^2.1.2",
-    "@graphql-codegen/typescript-apollo-client-helpers": "^2.1.2",
-    "@graphql-codegen/typescript-operations": "^2.1.2",
-    "@graphql-codegen/typescript-react-apollo": "^3.1.2",
-    "@types/react": "^17.0.19",
+    "@graphql-codegen/typescript": "^2.2.2",
+    "@graphql-codegen/typescript-apollo-client-helpers": "^2.1.4",
+    "@graphql-codegen/typescript-operations": "^2.1.4",
+    "@graphql-codegen/typescript-react-apollo": "^3.1.4",
+    "@types/react": "^17.0.24",
     "@types/react-syntax-highlighter": "^13.5.2",
     "eslint": "7.32.0",
-    "eslint-config-next": "11.1.0",
-    "typescript": "^4.4.2"
+    "eslint-config-next": "11.1.2",
+    "typescript": "^4.4.3"
   }
 }

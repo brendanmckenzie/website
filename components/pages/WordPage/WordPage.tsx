@@ -1,7 +1,7 @@
 import Head from "next/head";
 import * as React from "react";
 
-import style from "./WordPage.module.scss";
+import * as style from "./WordPage.css";
 
 const WordPage: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
@@ -43,6 +43,7 @@ const WordPage: React.FC = () => {
                   <li key={idx}>
                     Did you mean{" "}
                     <button
+                      className={style.suggestionButton}
                       onClick={() => {
                         inputRef.current.value = ent.word;
                         handleSubmit(null);

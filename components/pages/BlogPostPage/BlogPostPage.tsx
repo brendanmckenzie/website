@@ -10,7 +10,7 @@ import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { PokMedia } from "../../../pokko/queries";
 import { Footer } from "../../elements/Footer";
 
-import style from "./BlogPostPage.module.scss";
+import * as style from "./BlogPostPage.css";
 
 type BlogPost = {
   post: {
@@ -36,10 +36,10 @@ export const BlogPostPage: React.FC<BlogPost> = ({ post }) => (
     <div className={style.container}>
       <div className={style.actions}>
         <Link href="/">
-          <a>Brendan McKenzie</a>
+          <a className={style.actionLink}>Brendan McKenzie</a>
         </Link>
       </div>
-      <div className={style.header}>
+      <div>
         <h1 className={style.title}>{post.title}</h1>
         <p className={style.meta}>
           {new Date(post.date).toLocaleDateString("en-AU", {
