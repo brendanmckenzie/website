@@ -26,6 +26,11 @@ query GetPost($path: [String!]!, $alias: String!) {
     ... on PostMarkdown {
       body
     }
+    ... on PostRichtext {
+      bodyRich: body {
+        ...RichText
+      }
+    }
   }
   entries {
     allPostBase(inherit: true, filter: { legacyAlias: { equalTo: $alias } }) {
@@ -66,4 +71,9 @@ query PostCount {
       totalCount
     }
   }
+}
+
+
+fragment RichText on PokRichText {
+  body
 }

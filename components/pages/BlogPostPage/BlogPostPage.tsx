@@ -7,16 +7,18 @@ import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
-import { PokMedia } from "../../../pokko/queries";
+import { PokMedia, PokRichText } from "../../../pokko/queries";
 import { Footer } from "../../elements/Footer";
 
 import * as style from "./BlogPostPage.css";
+import { SlateReactPresentation } from "../../elements/RichText";
 
 type BlogPost = {
   post: {
     id: string;
     title: string;
-    body: string;
+    body?: string;
+    bodyRich?: PokRichText[];
     alias: string;
     date: string;
     tags: string;
@@ -50,9 +52,18 @@ export const BlogPostPage: React.FC<BlogPost> = ({ post }) => (
       {post.image?.url && post.image?.url.split("/")[4] !== "" ? (
         <Image src={post.image.url} height={600} width={1200} alt="" />
       ) : null}
-      <Markdown className={style.content} components={components}>
-        {post.body ?? ""}
-      </Markdown>
+      {post.bodyRich?.map((val) =>
+        val ? (
+          <div className={style.content}>
+            <SlateReactPresentation value={val.body} />
+          </div>
+        ) : null
+      )}
+      {post.body ? (
+        <Markdown className={style.content} components={components}>
+          {post.body ?? ""}
+        </Markdown>
+      ) : null}
       <Footer />
     </div>
   </>

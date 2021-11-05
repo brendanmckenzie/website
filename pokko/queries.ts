@@ -742,7 +742,7 @@ export type GetPostQueryVariables = Exact<{
 }>;
 
 
-export type GetPostQuery = { __typename?: 'Query', entry?: Maybe<{ __typename?: 'ModularPage' } | { __typename?: 'PostBase', id: string, title?: Maybe<string>, alias?: Maybe<string>, date?: Maybe<string>, tags?: Maybe<string>, category?: Maybe<string>, summary?: Maybe<string>, image?: Maybe<{ __typename?: 'PokMedia', url: string, height?: Maybe<number>, width?: Maybe<number> }> } | { __typename?: 'PostMarkdown', id: string, title?: Maybe<string>, alias?: Maybe<string>, date?: Maybe<string>, tags?: Maybe<string>, category?: Maybe<string>, summary?: Maybe<string>, body?: Maybe<string>, image?: Maybe<{ __typename?: 'PokMedia', url: string, height?: Maybe<number>, width?: Maybe<number> }> } | { __typename?: 'PostRichtext', id: string, title?: Maybe<string>, alias?: Maybe<string>, date?: Maybe<string>, tags?: Maybe<string>, category?: Maybe<string>, summary?: Maybe<string>, image?: Maybe<{ __typename?: 'PokMedia', url: string, height?: Maybe<number>, width?: Maybe<number> }> }>, entries?: Maybe<{ __typename?: 'Entries', allPostBase?: Maybe<{ __typename?: 'PostBaseCollection', nodes: Array<Maybe<{ __typename?: 'PostBase', pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } } | { __typename?: 'PostMarkdown', pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } } | { __typename?: 'PostRichtext', pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } }>> }> }> };
+export type GetPostQuery = { __typename?: 'Query', entry?: Maybe<{ __typename?: 'ModularPage' } | { __typename?: 'PostBase', id: string, title?: Maybe<string>, alias?: Maybe<string>, date?: Maybe<string>, tags?: Maybe<string>, category?: Maybe<string>, summary?: Maybe<string>, image?: Maybe<{ __typename?: 'PokMedia', url: string, height?: Maybe<number>, width?: Maybe<number> }> } | { __typename?: 'PostMarkdown', id: string, title?: Maybe<string>, alias?: Maybe<string>, date?: Maybe<string>, tags?: Maybe<string>, category?: Maybe<string>, summary?: Maybe<string>, body?: Maybe<string>, image?: Maybe<{ __typename?: 'PokMedia', url: string, height?: Maybe<number>, width?: Maybe<number> }> } | { __typename?: 'PostRichtext', id: string, title?: Maybe<string>, alias?: Maybe<string>, date?: Maybe<string>, tags?: Maybe<string>, category?: Maybe<string>, summary?: Maybe<string>, image?: Maybe<{ __typename?: 'PokMedia', url: string, height?: Maybe<number>, width?: Maybe<number> }>, bodyRich?: Maybe<Array<Maybe<{ __typename?: 'PokRichText', body?: Maybe<any> }>>> }>, entries?: Maybe<{ __typename?: 'Entries', allPostBase?: Maybe<{ __typename?: 'PostBaseCollection', nodes: Array<Maybe<{ __typename?: 'PostBase', pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } } | { __typename?: 'PostMarkdown', pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } } | { __typename?: 'PostRichtext', pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } }>> }> }> };
 
 export type PostListingFragment = { __typename?: 'PostBaseCollection', nodes: Array<Maybe<{ __typename?: 'PostBase', id: string, title?: Maybe<string>, date?: Maybe<string>, summary?: Maybe<string>, category?: Maybe<string>, alias?: Maybe<string>, pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } } | { __typename?: 'PostMarkdown', id: string, title?: Maybe<string>, date?: Maybe<string>, summary?: Maybe<string>, category?: Maybe<string>, alias?: Maybe<string>, pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } } | { __typename?: 'PostRichtext', id: string, title?: Maybe<string>, date?: Maybe<string>, summary?: Maybe<string>, category?: Maybe<string>, alias?: Maybe<string>, pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } }>>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPrevPage: boolean } };
 
@@ -758,6 +758,8 @@ export type PostCountQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type PostCountQuery = { __typename?: 'Query', entries?: Maybe<{ __typename?: 'Entries', allPostBase?: Maybe<{ __typename?: 'PostBaseCollection', totalCount: number }> }> };
+
+export type RichTextFragment = { __typename?: 'PokRichText', body?: Maybe<any> };
 
 export const PostSummaryFragmentDoc = gql`
     fragment PostSummary on IPostBase {
@@ -783,6 +785,11 @@ export const PostListingFragmentDoc = gql`
   }
 }
     ${PostSummaryFragmentDoc}`;
+export const RichTextFragmentDoc = gql`
+    fragment RichText on PokRichText {
+  body
+}
+    `;
 export const ListPostsDocument = gql`
     query ListPosts($skip: Int! = 0, $take: Int! = 10) {
   entries {
@@ -842,6 +849,11 @@ export const GetPostDocument = gql`
     ... on PostMarkdown {
       body
     }
+    ... on PostRichtext {
+      bodyRich: body {
+        ...RichText
+      }
+    }
   }
   entries {
     allPostBase(inherit: true, filter: {legacyAlias: {equalTo: $alias}}) {
@@ -853,7 +865,7 @@ export const GetPostDocument = gql`
     }
   }
 }
-    `;
+    ${RichTextFragmentDoc}`;
 
 /**
  * __useGetPostQuery__

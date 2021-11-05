@@ -13,22 +13,39 @@ import { client, clientPreview } from "../../../lib/pokko";
 import { BlogPostPage } from "../../../components/pages/BlogPostPage/BlogPostPage";
 
 const Post: React.FC<GetPostQuery> = ({ entry }) => {
-  if (entry.__typename === "PostMarkdown") {
-    return (
-      <BlogPostPage
-        post={{
-          alias: entry.alias!,
-          title: entry.title!,
-          category: entry.category!,
-          date: entry.date!,
-          summary: entry.summary!,
-          id: entry.id!,
-          body: entry.body!,
-          tags: entry.tags!,
-          image: entry.image as PokMedia,
-        }}
-      />
-    );
+  switch (entry.__typename) {
+    case "PostMarkdown":
+      return (
+        <BlogPostPage
+          post={{
+            alias: entry.alias!,
+            title: entry.title!,
+            category: entry.category!,
+            date: entry.date!,
+            summary: entry.summary!,
+            id: entry.id!,
+            body: entry.body!,
+            tags: entry.tags!,
+            image: entry.image as PokMedia,
+          }}
+        />
+      );
+    case "PostRichtext":
+      return (
+        <BlogPostPage
+          post={{
+            alias: entry.alias!,
+            title: entry.title!,
+            category: entry.category!,
+            date: entry.date!,
+            summary: entry.summary!,
+            id: entry.id!,
+            bodyRich: entry.bodyRich!,
+            tags: entry.tags!,
+            image: entry.image as PokMedia,
+          }}
+        />
+      );
   }
 
   return null;
