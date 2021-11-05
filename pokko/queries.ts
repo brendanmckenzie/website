@@ -16,10 +16,10 @@ export type Scalars = {
   JSON: any;
 };
 
-export type Body = PokValue & IBody & {
+export type Body = IBody & PokValue & {
   __typename?: 'Body';
-  id: Scalars['String'];
   body?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
 };
 
 export type BodyCollection = {
@@ -34,9 +34,9 @@ export type BodyCondition = {
 };
 
 export type BodyFilter = {
+  and?: Maybe<Array<BodyFilter>>;
   body?: Maybe<ScalarStringFilter>;
   id?: Maybe<ScalarIdFilter>;
-  and?: Maybe<Array<BodyFilter>>;
   or?: Maybe<Array<BodyFilter>>;
 };
 
@@ -49,31 +49,142 @@ export enum BodyOrderBy {
   ModifiedDesc = 'MODIFIED_DESC'
 }
 
+export type BodyRichtext = IBodyRichtext & PokValue & {
+  __typename?: 'BodyRichtext';
+  body?: Maybe<PokRichText>;
+  id: Scalars['String'];
+};
+
+export type BodyRichtextCollection = {
+  __typename?: 'BodyRichtextCollection';
+  nodes: Array<Maybe<IBodyRichtext>>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int'];
+};
+
+export type BodyRichtextCondition = {
+  body?: Maybe<Scalars['String']>;
+};
+
+export type BodyRichtextFilter = {
+  and?: Maybe<Array<BodyRichtextFilter>>;
+  id?: Maybe<ScalarIdFilter>;
+  or?: Maybe<Array<BodyRichtextFilter>>;
+};
+
+export enum BodyRichtextOrderBy {
+  BodyAsc = 'BODY_ASC',
+  BodyDesc = 'BODY_DESC',
+  CreatedAsc = 'CREATED_ASC',
+  CreatedDesc = 'CREATED_DESC',
+  ModifiedAsc = 'MODIFIED_ASC',
+  ModifiedDesc = 'MODIFIED_DESC'
+}
+
 export type Entries = {
   __typename?: 'Entries';
-  postMarkdown?: Maybe<PostMarkdown>;
-  postList?: Maybe<PostList>;
-  modularPage?: Maybe<ModularPage>;
-  seo?: Maybe<Seo>;
-  body?: Maybe<Body>;
-  postBase?: Maybe<PostBase>;
-  title?: Maybe<Title>;
-  allPostMarkdown?: Maybe<PostMarkdownCollection>;
-  allPostList?: Maybe<PostListCollection>;
-  allModularPage?: Maybe<ModularPageCollection>;
-  allSeo?: Maybe<SeoCollection>;
   allBody?: Maybe<BodyCollection>;
+  allBodyRichtext?: Maybe<BodyRichtextCollection>;
+  allModularPage?: Maybe<ModularPageCollection>;
   allPostBase?: Maybe<PostBaseCollection>;
+  allPostList?: Maybe<PostListCollection>;
+  allPostMarkdown?: Maybe<PostMarkdownCollection>;
+  allPostRichtext?: Maybe<PostRichtextCollection>;
+  allSeo?: Maybe<SeoCollection>;
   allTitle?: Maybe<TitleCollection>;
+  body?: Maybe<Body>;
+  bodyRichtext?: Maybe<BodyRichtext>;
+  modularPage?: Maybe<ModularPage>;
+  postBase?: Maybe<PostBase>;
+  postList?: Maybe<PostList>;
+  postMarkdown?: Maybe<PostMarkdown>;
+  postRichtext?: Maybe<PostRichtext>;
+  seo?: Maybe<Seo>;
+  title?: Maybe<Title>;
 };
 
 
-export type EntriesPostMarkdownArgs = {
+export type EntriesAllBodyArgs = {
+  filter?: Maybe<BodyFilter>;
+  inherit?: Scalars['Boolean'];
+  orderBy?: Maybe<Array<Maybe<BodyOrderBy>>>;
+  skip?: Scalars['Int'];
+  take?: Scalars['Int'];
+};
+
+
+export type EntriesAllBodyRichtextArgs = {
+  filter?: Maybe<BodyRichtextFilter>;
+  inherit?: Scalars['Boolean'];
+  orderBy?: Maybe<Array<Maybe<BodyRichtextOrderBy>>>;
+  skip?: Scalars['Int'];
+  take?: Scalars['Int'];
+};
+
+
+export type EntriesAllModularPageArgs = {
+  inherit?: Scalars['Boolean'];
+  skip?: Scalars['Int'];
+  take?: Scalars['Int'];
+};
+
+
+export type EntriesAllPostBaseArgs = {
+  filter?: Maybe<PostBaseFilter>;
+  inherit?: Scalars['Boolean'];
+  orderBy?: Maybe<Array<Maybe<PostBaseOrderBy>>>;
+  skip?: Scalars['Int'];
+  take?: Scalars['Int'];
+};
+
+
+export type EntriesAllPostListArgs = {
+  inherit?: Scalars['Boolean'];
+  skip?: Scalars['Int'];
+  take?: Scalars['Int'];
+};
+
+
+export type EntriesAllPostMarkdownArgs = {
+  filter?: Maybe<PostMarkdownFilter>;
+  inherit?: Scalars['Boolean'];
+  orderBy?: Maybe<Array<Maybe<PostMarkdownOrderBy>>>;
+  skip?: Scalars['Int'];
+  take?: Scalars['Int'];
+};
+
+
+export type EntriesAllPostRichtextArgs = {
+  filter?: Maybe<PostRichtextFilter>;
+  inherit?: Scalars['Boolean'];
+  orderBy?: Maybe<Array<Maybe<PostRichtextOrderBy>>>;
+  skip?: Scalars['Int'];
+  take?: Scalars['Int'];
+};
+
+
+export type EntriesAllSeoArgs = {
+  inherit?: Scalars['Boolean'];
+  skip?: Scalars['Int'];
+  take?: Scalars['Int'];
+};
+
+
+export type EntriesAllTitleArgs = {
+  filter?: Maybe<TitleFilter>;
+  inherit?: Scalars['Boolean'];
+  orderBy?: Maybe<Array<Maybe<TitleOrderBy>>>;
+  skip?: Scalars['Int'];
+  take?: Scalars['Int'];
+};
+
+
+export type EntriesBodyArgs = {
   id: Scalars['String'];
 };
 
 
-export type EntriesPostListArgs = {
+export type EntriesBodyRichtextArgs = {
   id: Scalars['String'];
 };
 
@@ -83,17 +194,27 @@ export type EntriesModularPageArgs = {
 };
 
 
-export type EntriesSeoArgs = {
-  id: Scalars['String'];
-};
-
-
-export type EntriesBodyArgs = {
-  id: Scalars['String'];
-};
-
-
 export type EntriesPostBaseArgs = {
+  id: Scalars['String'];
+};
+
+
+export type EntriesPostListArgs = {
+  id: Scalars['String'];
+};
+
+
+export type EntriesPostMarkdownArgs = {
+  id: Scalars['String'];
+};
+
+
+export type EntriesPostRichtextArgs = {
+  id: Scalars['String'];
+};
+
+
+export type EntriesSeoArgs = {
   id: Scalars['String'];
 };
 
@@ -102,85 +223,33 @@ export type EntriesTitleArgs = {
   id: Scalars['String'];
 };
 
-
-export type EntriesAllPostMarkdownArgs = {
-  filter?: Maybe<PostMarkdownFilter>;
-  orderBy?: Maybe<Array<Maybe<PostMarkdownOrderBy>>>;
-  skip?: Scalars['Int'];
-  take?: Scalars['Int'];
-  inherit?: Scalars['Boolean'];
-};
-
-
-export type EntriesAllPostListArgs = {
-  skip?: Scalars['Int'];
-  take?: Scalars['Int'];
-  inherit?: Scalars['Boolean'];
-};
-
-
-export type EntriesAllModularPageArgs = {
-  skip?: Scalars['Int'];
-  take?: Scalars['Int'];
-  inherit?: Scalars['Boolean'];
-};
-
-
-export type EntriesAllSeoArgs = {
-  skip?: Scalars['Int'];
-  take?: Scalars['Int'];
-  inherit?: Scalars['Boolean'];
-};
-
-
-export type EntriesAllBodyArgs = {
-  filter?: Maybe<BodyFilter>;
-  orderBy?: Maybe<Array<Maybe<BodyOrderBy>>>;
-  skip?: Scalars['Int'];
-  take?: Scalars['Int'];
-  inherit?: Scalars['Boolean'];
-};
-
-
-export type EntriesAllPostBaseArgs = {
-  filter?: Maybe<PostBaseFilter>;
-  orderBy?: Maybe<Array<Maybe<PostBaseOrderBy>>>;
-  skip?: Scalars['Int'];
-  take?: Scalars['Int'];
-  inherit?: Scalars['Boolean'];
-};
-
-
-export type EntriesAllTitleArgs = {
-  filter?: Maybe<TitleFilter>;
-  orderBy?: Maybe<Array<Maybe<TitleOrderBy>>>;
-  skip?: Scalars['Int'];
-  take?: Scalars['Int'];
-  inherit?: Scalars['Boolean'];
-};
-
 export type IBody = {
-  id: Scalars['String'];
   body?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
+};
+
+export type IBodyRichtext = {
+  body?: Maybe<PokRichText>;
+  id: Scalars['String'];
 };
 
 export type IModularPage = {
+  components?: Maybe<PostList>;
   id: Scalars['String'];
   pokko: Pokko;
-  components?: Maybe<PostList>;
 };
 
 export type IPostBase = {
-  id: Scalars['String'];
-  pokko: Pokko;
-  date?: Maybe<Scalars['String']>;
-  category?: Maybe<Scalars['String']>;
-  summary?: Maybe<Scalars['String']>;
   alias?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  legacyAlias?: Maybe<Scalars['String']>;
-  tags?: Maybe<Scalars['String']>;
+  category?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
   image?: Maybe<PokMedia>;
+  legacyAlias?: Maybe<Scalars['String']>;
+  pokko: Pokko;
+  summary?: Maybe<Scalars['String']>;
+  tags?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
 };
 
 export type IPostList = {
@@ -188,17 +257,31 @@ export type IPostList = {
 };
 
 export type IPostMarkdown = {
-  id: Scalars['String'];
-  pokko: Pokko;
-  date?: Maybe<Scalars['String']>;
-  category?: Maybe<Scalars['String']>;
-  summary?: Maybe<Scalars['String']>;
   alias?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  legacyAlias?: Maybe<Scalars['String']>;
-  tags?: Maybe<Scalars['String']>;
-  image?: Maybe<PokMedia>;
   body?: Maybe<Scalars['String']>;
+  category?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
+  image?: Maybe<PokMedia>;
+  legacyAlias?: Maybe<Scalars['String']>;
+  pokko: Pokko;
+  summary?: Maybe<Scalars['String']>;
+  tags?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type IPostRichtext = {
+  alias?: Maybe<Scalars['String']>;
+  body?: Maybe<Array<Maybe<PokRichText>>>;
+  category?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
+  image?: Maybe<PokMedia>;
+  legacyAlias?: Maybe<Scalars['String']>;
+  pokko: Pokko;
+  summary?: Maybe<Scalars['String']>;
+  tags?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
 };
 
 export type ISeo = {
@@ -210,12 +293,11 @@ export type ITitle = {
   title?: Maybe<Scalars['String']>;
 };
 
-
-export type ModularPage = PokEntry & IModularPage & {
+export type ModularPage = IModularPage & PokEntry & {
   __typename?: 'ModularPage';
+  components?: Maybe<PostList>;
   id: Scalars['String'];
   pokko: Pokko;
-  components?: Maybe<PostList>;
 };
 
 export type ModularPageCollection = {
@@ -227,11 +309,11 @@ export type ModularPageCollection = {
 
 export type Page = {
   __typename?: 'Page';
+  entry?: Maybe<PokEntry>;
+  entryId?: Maybe<Scalars['String']>;
   fullPath?: Maybe<Array<Maybe<Scalars['String']>>>;
   path?: Maybe<Array<Maybe<Scalars['String']>>>;
-  entry?: Maybe<PokEntry>;
   type?: Maybe<Scalars['String']>;
-  entryId?: Maybe<Scalars['String']>;
 };
 
 export type PageCollection = {
@@ -259,12 +341,12 @@ export type PokEntry = {
 
 export type PokMedia = {
   __typename?: 'PokMedia';
-  id: Scalars['String'];
   contentType: Scalars['String'];
   height?: Maybe<Scalars['Int']>;
-  width?: Maybe<Scalars['Int']>;
+  id: Scalars['String'];
   size: Scalars['Int'];
   url: Scalars['String'];
+  width?: Maybe<Scalars['Int']>;
 };
 
 
@@ -281,22 +363,28 @@ export enum PokMediaFit {
 }
 
 export enum PokMediaPosition {
+  Bottom = 'BOTTOM',
   Centre = 'CENTRE',
-  Top = 'TOP',
-  RightTop = 'RIGHT_TOP',
+  Left = 'LEFT',
+  LeftBottom = 'LEFT_BOTTOM',
+  LeftTop = 'LEFT_TOP',
   Right = 'RIGHT',
   RightBottom = 'RIGHT_BOTTOM',
-  Bottom = 'BOTTOM',
-  LeftBottom = 'LEFT_BOTTOM',
-  Left = 'LEFT',
-  LeftTop = 'LEFT_TOP'
+  RightTop = 'RIGHT_TOP',
+  Top = 'TOP'
 }
 
 export type PokMediaProcess = {
-  height?: Maybe<Scalars['Int']>;
-  width?: Maybe<Scalars['Int']>;
   fit?: Maybe<PokMediaFit>;
+  height?: Maybe<Scalars['Int']>;
   position?: Maybe<PokMediaPosition>;
+  width?: Maybe<Scalars['Int']>;
+};
+
+export type PokRichText = {
+  __typename?: 'PokRichText';
+  body?: Maybe<Scalars['JSON']>;
+  embeds?: Maybe<Array<Maybe<PokValue>>>;
 };
 
 export type PokValue = {
@@ -305,26 +393,26 @@ export type PokValue = {
 
 export type Pokko = {
   __typename?: 'Pokko';
+  created: Scalars['String'];
   id: Scalars['String'];
   model: Scalars['String'];
-  name: Scalars['String'];
-  created: Scalars['String'];
   modified: Scalars['String'];
+  name: Scalars['String'];
   path?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
-export type PostBase = PokEntry & IPostBase & ITitle & {
+export type PostBase = IPostBase & ITitle & PokEntry & {
   __typename?: 'PostBase';
-  id: Scalars['String'];
-  pokko: Pokko;
-  date?: Maybe<Scalars['String']>;
-  category?: Maybe<Scalars['String']>;
-  summary?: Maybe<Scalars['String']>;
   alias?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  legacyAlias?: Maybe<Scalars['String']>;
-  tags?: Maybe<Scalars['String']>;
+  category?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
   image?: Maybe<PokMedia>;
+  legacyAlias?: Maybe<Scalars['String']>;
+  pokko: Pokko;
+  summary?: Maybe<Scalars['String']>;
+  tags?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
 };
 
 export type PostBaseCollection = {
@@ -335,26 +423,26 @@ export type PostBaseCollection = {
 };
 
 export type PostBaseCondition = {
-  date?: Maybe<Scalars['String']>;
-  category?: Maybe<Scalars['String']>;
-  summary?: Maybe<Scalars['String']>;
   alias?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
+  category?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['String']>;
   legacyAlias?: Maybe<Scalars['String']>;
+  summary?: Maybe<Scalars['String']>;
   tags?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
 };
 
 export type PostBaseFilter = {
-  date?: Maybe<ScalarStringFilter>;
-  category?: Maybe<ScalarStringFilter>;
-  summary?: Maybe<ScalarStringFilter>;
   alias?: Maybe<ScalarStringFilter>;
-  title?: Maybe<ScalarStringFilter>;
-  legacyAlias?: Maybe<ScalarStringFilter>;
-  tags?: Maybe<ScalarStringFilter>;
-  id?: Maybe<ScalarIdFilter>;
   and?: Maybe<Array<PostBaseFilter>>;
+  category?: Maybe<ScalarStringFilter>;
+  date?: Maybe<ScalarStringFilter>;
+  id?: Maybe<ScalarIdFilter>;
+  legacyAlias?: Maybe<ScalarStringFilter>;
   or?: Maybe<Array<PostBaseFilter>>;
+  summary?: Maybe<ScalarStringFilter>;
+  tags?: Maybe<ScalarStringFilter>;
+  title?: Maybe<ScalarStringFilter>;
 };
 
 export enum PostBaseOrderBy {
@@ -378,7 +466,7 @@ export enum PostBaseOrderBy {
   TitleDesc = 'TITLE_DESC'
 }
 
-export type PostList = PokValue & IPostList & {
+export type PostList = IPostList & PokValue & {
   __typename?: 'PostList';
   id: Scalars['String'];
 };
@@ -390,19 +478,19 @@ export type PostListCollection = {
   totalCount: Scalars['Int'];
 };
 
-export type PostMarkdown = PokEntry & IPostMarkdown & ISeo & IBody & IPostBase & ITitle & {
+export type PostMarkdown = IBody & IPostBase & IPostMarkdown & ISeo & ITitle & PokEntry & {
   __typename?: 'PostMarkdown';
-  id: Scalars['String'];
-  pokko: Pokko;
-  date?: Maybe<Scalars['String']>;
-  category?: Maybe<Scalars['String']>;
-  summary?: Maybe<Scalars['String']>;
   alias?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  legacyAlias?: Maybe<Scalars['String']>;
-  tags?: Maybe<Scalars['String']>;
-  image?: Maybe<PokMedia>;
   body?: Maybe<Scalars['String']>;
+  category?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
+  image?: Maybe<PokMedia>;
+  legacyAlias?: Maybe<Scalars['String']>;
+  pokko: Pokko;
+  summary?: Maybe<Scalars['String']>;
+  tags?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
 };
 
 export type PostMarkdownCollection = {
@@ -413,31 +501,100 @@ export type PostMarkdownCollection = {
 };
 
 export type PostMarkdownCondition = {
-  date?: Maybe<Scalars['String']>;
-  category?: Maybe<Scalars['String']>;
-  summary?: Maybe<Scalars['String']>;
   alias?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  legacyAlias?: Maybe<Scalars['String']>;
-  tags?: Maybe<Scalars['String']>;
   body?: Maybe<Scalars['String']>;
+  category?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['String']>;
+  legacyAlias?: Maybe<Scalars['String']>;
+  summary?: Maybe<Scalars['String']>;
+  tags?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
 };
 
 export type PostMarkdownFilter = {
-  date?: Maybe<ScalarStringFilter>;
-  category?: Maybe<ScalarStringFilter>;
-  summary?: Maybe<ScalarStringFilter>;
   alias?: Maybe<ScalarStringFilter>;
-  title?: Maybe<ScalarStringFilter>;
-  legacyAlias?: Maybe<ScalarStringFilter>;
-  tags?: Maybe<ScalarStringFilter>;
-  body?: Maybe<ScalarStringFilter>;
-  id?: Maybe<ScalarIdFilter>;
   and?: Maybe<Array<PostMarkdownFilter>>;
+  body?: Maybe<ScalarStringFilter>;
+  category?: Maybe<ScalarStringFilter>;
+  date?: Maybe<ScalarStringFilter>;
+  id?: Maybe<ScalarIdFilter>;
+  legacyAlias?: Maybe<ScalarStringFilter>;
   or?: Maybe<Array<PostMarkdownFilter>>;
+  summary?: Maybe<ScalarStringFilter>;
+  tags?: Maybe<ScalarStringFilter>;
+  title?: Maybe<ScalarStringFilter>;
 };
 
 export enum PostMarkdownOrderBy {
+  AliasAsc = 'ALIAS_ASC',
+  AliasDesc = 'ALIAS_DESC',
+  BodyAsc = 'BODY_ASC',
+  BodyDesc = 'BODY_DESC',
+  CategoryAsc = 'CATEGORY_ASC',
+  CategoryDesc = 'CATEGORY_DESC',
+  CreatedAsc = 'CREATED_ASC',
+  CreatedDesc = 'CREATED_DESC',
+  DateAsc = 'DATE_ASC',
+  DateDesc = 'DATE_DESC',
+  LegacyAliasAsc = 'LEGACY_ALIAS_ASC',
+  LegacyAliasDesc = 'LEGACY_ALIAS_DESC',
+  ModifiedAsc = 'MODIFIED_ASC',
+  ModifiedDesc = 'MODIFIED_DESC',
+  SummaryAsc = 'SUMMARY_ASC',
+  SummaryDesc = 'SUMMARY_DESC',
+  TagsAsc = 'TAGS_ASC',
+  TagsDesc = 'TAGS_DESC',
+  TitleAsc = 'TITLE_ASC',
+  TitleDesc = 'TITLE_DESC'
+}
+
+export type PostRichtext = IPostBase & IPostRichtext & ISeo & ITitle & PokEntry & {
+  __typename?: 'PostRichtext';
+  alias?: Maybe<Scalars['String']>;
+  body?: Maybe<Array<Maybe<PokRichText>>>;
+  category?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
+  image?: Maybe<PokMedia>;
+  legacyAlias?: Maybe<Scalars['String']>;
+  pokko: Pokko;
+  summary?: Maybe<Scalars['String']>;
+  tags?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type PostRichtextCollection = {
+  __typename?: 'PostRichtextCollection';
+  nodes: Array<Maybe<IPostRichtext>>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int'];
+};
+
+export type PostRichtextCondition = {
+  alias?: Maybe<Scalars['String']>;
+  body?: Maybe<Scalars['String']>;
+  category?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['String']>;
+  legacyAlias?: Maybe<Scalars['String']>;
+  summary?: Maybe<Scalars['String']>;
+  tags?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type PostRichtextFilter = {
+  alias?: Maybe<ScalarStringFilter>;
+  and?: Maybe<Array<PostRichtextFilter>>;
+  category?: Maybe<ScalarStringFilter>;
+  date?: Maybe<ScalarStringFilter>;
+  id?: Maybe<ScalarIdFilter>;
+  legacyAlias?: Maybe<ScalarStringFilter>;
+  or?: Maybe<Array<PostRichtextFilter>>;
+  summary?: Maybe<ScalarStringFilter>;
+  tags?: Maybe<ScalarStringFilter>;
+  title?: Maybe<ScalarStringFilter>;
+};
+
+export enum PostRichtextOrderBy {
   AliasAsc = 'ALIAS_ASC',
   AliasDesc = 'ALIAS_DESC',
   BodyAsc = 'BODY_ASC',
@@ -470,41 +627,41 @@ export type Query = {
 
 
 export type QueryEntryArgs = {
-  path?: Maybe<Array<Maybe<Scalars['String']>>>;
   id?: Maybe<Scalars['String']>;
+  path?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
 export type QuerySyncArgs = {
+  filter?: Maybe<SyncCondition>;
   skip?: Scalars['Int'];
   take?: Scalars['Int'];
-  filter?: Maybe<SyncCondition>;
 };
 
 
 export type QueryTaxonomyArgs = {
+  filter?: Maybe<PagesCondition>;
   skip?: Scalars['Int'];
   take?: Scalars['Int'];
-  filter?: Maybe<PagesCondition>;
 };
 
 export type ScalarIdFilter = {
-  isNull?: Maybe<Scalars['Boolean']>;
   equalTo?: Maybe<Scalars['String']>;
-  notEqualTo?: Maybe<Scalars['String']>;
   in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  isNull?: Maybe<Scalars['Boolean']>;
+  notEqualTo?: Maybe<Scalars['String']>;
   notIn?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 export type ScalarStringFilter = {
-  isNull?: Maybe<Scalars['Boolean']>;
   equalTo?: Maybe<Scalars['String']>;
-  notEqualTo?: Maybe<Scalars['String']>;
   in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  isNull?: Maybe<Scalars['Boolean']>;
+  notEqualTo?: Maybe<Scalars['String']>;
   notIn?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
-export type Seo = PokValue & ISeo & {
+export type Seo = ISeo & PokValue & {
   __typename?: 'Seo';
   id: Scalars['String'];
 };
@@ -518,13 +675,13 @@ export type SeoCollection = {
 
 export type Sync = {
   __typename?: 'Sync';
-  id?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['String']>;
-  modifiedAt?: Maybe<Scalars['String']>;
-  deletedAt?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
   action?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['String']>;
+  deletedAt?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  modifiedAt?: Maybe<Scalars['String']>;
   payload?: Maybe<Scalars['JSON']>;
+  type?: Maybe<Scalars['String']>;
 };
 
 export type SyncCollection = {
@@ -538,7 +695,7 @@ export type SyncCondition = {
   after?: Maybe<Scalars['String']>;
 };
 
-export type Title = PokValue & ITitle & {
+export type Title = ITitle & PokValue & {
   __typename?: 'Title';
   id: Scalars['String'];
   title?: Maybe<Scalars['String']>;
@@ -556,10 +713,10 @@ export type TitleCondition = {
 };
 
 export type TitleFilter = {
-  title?: Maybe<ScalarStringFilter>;
-  id?: Maybe<ScalarIdFilter>;
   and?: Maybe<Array<TitleFilter>>;
+  id?: Maybe<ScalarIdFilter>;
   or?: Maybe<Array<TitleFilter>>;
+  title?: Maybe<ScalarStringFilter>;
 };
 
 export enum TitleOrderBy {
@@ -577,17 +734,7 @@ export type ListPostsQueryVariables = Exact<{
 }>;
 
 
-export type ListPostsQuery = (
-  { __typename?: 'Query' }
-  & { entries?: Maybe<(
-    { __typename?: 'Entries' }
-    & { allPostBase?: Maybe<(
-      { __typename?: 'PostBaseCollection' }
-      & Pick<PostBaseCollection, 'totalCount'>
-      & PostListingFragment
-    )> }
-  )> }
-);
+export type ListPostsQuery = { __typename?: 'Query', entries?: Maybe<{ __typename?: 'Entries', allPostBase?: Maybe<{ __typename?: 'PostBaseCollection', totalCount: number, nodes: Array<Maybe<{ __typename?: 'PostBase', id: string, title?: Maybe<string>, date?: Maybe<string>, summary?: Maybe<string>, category?: Maybe<string>, alias?: Maybe<string>, pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } } | { __typename?: 'PostMarkdown', id: string, title?: Maybe<string>, date?: Maybe<string>, summary?: Maybe<string>, category?: Maybe<string>, alias?: Maybe<string>, pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } } | { __typename?: 'PostRichtext', id: string, title?: Maybe<string>, date?: Maybe<string>, summary?: Maybe<string>, category?: Maybe<string>, alias?: Maybe<string>, pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } }>>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPrevPage: boolean } }> }> };
 
 export type GetPostQueryVariables = Exact<{
   path: Array<Scalars['String']> | Scalars['String'];
@@ -595,90 +742,22 @@ export type GetPostQueryVariables = Exact<{
 }>;
 
 
-export type GetPostQuery = (
-  { __typename?: 'Query' }
-  & { entry?: Maybe<{ __typename?: 'ModularPage' } | (
-    { __typename?: 'PostBase' }
-    & Pick<PostBase, 'id' | 'title' | 'alias' | 'date' | 'tags' | 'category' | 'summary'>
-    & { image?: Maybe<(
-      { __typename?: 'PokMedia' }
-      & Pick<PokMedia, 'url' | 'height' | 'width'>
-    )> }
-  ) | (
-    { __typename?: 'PostMarkdown' }
-    & Pick<PostMarkdown, 'id' | 'title' | 'alias' | 'date' | 'tags' | 'category' | 'summary' | 'body'>
-    & { image?: Maybe<(
-      { __typename?: 'PokMedia' }
-      & Pick<PokMedia, 'url' | 'height' | 'width'>
-    )> }
-  )>, entries?: Maybe<(
-    { __typename?: 'Entries' }
-    & { allPostBase?: Maybe<(
-      { __typename?: 'PostBaseCollection' }
-      & { nodes: Array<Maybe<(
-        { __typename?: 'PostBase' }
-        & { pokko: (
-          { __typename?: 'Pokko' }
-          & Pick<Pokko, 'path'>
-        ) }
-      ) | (
-        { __typename?: 'PostMarkdown' }
-        & { pokko: (
-          { __typename?: 'Pokko' }
-          & Pick<Pokko, 'path'>
-        ) }
-      )>> }
-    )> }
-  )> }
-);
+export type GetPostQuery = { __typename?: 'Query', entry?: Maybe<{ __typename?: 'ModularPage' } | { __typename?: 'PostBase', id: string, title?: Maybe<string>, alias?: Maybe<string>, date?: Maybe<string>, tags?: Maybe<string>, category?: Maybe<string>, summary?: Maybe<string>, image?: Maybe<{ __typename?: 'PokMedia', url: string, height?: Maybe<number>, width?: Maybe<number> }> } | { __typename?: 'PostMarkdown', id: string, title?: Maybe<string>, alias?: Maybe<string>, date?: Maybe<string>, tags?: Maybe<string>, category?: Maybe<string>, summary?: Maybe<string>, body?: Maybe<string>, image?: Maybe<{ __typename?: 'PokMedia', url: string, height?: Maybe<number>, width?: Maybe<number> }> } | { __typename?: 'PostRichtext', id: string, title?: Maybe<string>, alias?: Maybe<string>, date?: Maybe<string>, tags?: Maybe<string>, category?: Maybe<string>, summary?: Maybe<string>, image?: Maybe<{ __typename?: 'PokMedia', url: string, height?: Maybe<number>, width?: Maybe<number> }> }>, entries?: Maybe<{ __typename?: 'Entries', allPostBase?: Maybe<{ __typename?: 'PostBaseCollection', nodes: Array<Maybe<{ __typename?: 'PostBase', pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } } | { __typename?: 'PostMarkdown', pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } } | { __typename?: 'PostRichtext', pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } }>> }> }> };
 
-export type PostListingFragment = (
-  { __typename?: 'PostBaseCollection' }
-  & { nodes: Array<Maybe<(
-    { __typename?: 'PostBase' }
-    & PostSummary_PostBase_Fragment
-  ) | (
-    { __typename?: 'PostMarkdown' }
-    & PostSummary_PostMarkdown_Fragment
-  )>>, pageInfo: (
-    { __typename?: 'PageInfo' }
-    & Pick<PageInfo, 'hasNextPage' | 'hasPrevPage'>
-  ) }
-);
+export type PostListingFragment = { __typename?: 'PostBaseCollection', nodes: Array<Maybe<{ __typename?: 'PostBase', id: string, title?: Maybe<string>, date?: Maybe<string>, summary?: Maybe<string>, category?: Maybe<string>, alias?: Maybe<string>, pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } } | { __typename?: 'PostMarkdown', id: string, title?: Maybe<string>, date?: Maybe<string>, summary?: Maybe<string>, category?: Maybe<string>, alias?: Maybe<string>, pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } } | { __typename?: 'PostRichtext', id: string, title?: Maybe<string>, date?: Maybe<string>, summary?: Maybe<string>, category?: Maybe<string>, alias?: Maybe<string>, pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } }>>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPrevPage: boolean } };
 
-type PostSummary_PostBase_Fragment = (
-  { __typename?: 'PostBase' }
-  & Pick<PostBase, 'id' | 'title' | 'date' | 'summary' | 'category' | 'alias'>
-  & { pokko: (
-    { __typename?: 'Pokko' }
-    & Pick<Pokko, 'path'>
-  ) }
-);
+type PostSummary_PostBase_Fragment = { __typename?: 'PostBase', id: string, title?: Maybe<string>, date?: Maybe<string>, summary?: Maybe<string>, category?: Maybe<string>, alias?: Maybe<string>, pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } };
 
-type PostSummary_PostMarkdown_Fragment = (
-  { __typename?: 'PostMarkdown' }
-  & Pick<PostMarkdown, 'id' | 'title' | 'date' | 'summary' | 'category' | 'alias'>
-  & { pokko: (
-    { __typename?: 'Pokko' }
-    & Pick<Pokko, 'path'>
-  ) }
-);
+type PostSummary_PostMarkdown_Fragment = { __typename?: 'PostMarkdown', id: string, title?: Maybe<string>, date?: Maybe<string>, summary?: Maybe<string>, category?: Maybe<string>, alias?: Maybe<string>, pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } };
 
-export type PostSummaryFragment = PostSummary_PostBase_Fragment | PostSummary_PostMarkdown_Fragment;
+type PostSummary_PostRichtext_Fragment = { __typename?: 'PostRichtext', id: string, title?: Maybe<string>, date?: Maybe<string>, summary?: Maybe<string>, category?: Maybe<string>, alias?: Maybe<string>, pokko: { __typename?: 'Pokko', path?: Maybe<Array<Maybe<string>>> } };
+
+export type PostSummaryFragment = PostSummary_PostBase_Fragment | PostSummary_PostMarkdown_Fragment | PostSummary_PostRichtext_Fragment;
 
 export type PostCountQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PostCountQuery = (
-  { __typename?: 'Query' }
-  & { entries?: Maybe<(
-    { __typename?: 'Entries' }
-    & { allPostBase?: Maybe<(
-      { __typename?: 'PostBaseCollection' }
-      & Pick<PostBaseCollection, 'totalCount'>
-    )> }
-  )> }
-);
+export type PostCountQuery = { __typename?: 'Query', entries?: Maybe<{ __typename?: 'Entries', allPostBase?: Maybe<{ __typename?: 'PostBaseCollection', totalCount: number }> }> };
 
 export const PostSummaryFragmentDoc = gql`
     fragment PostSummary on IPostBase {
@@ -852,12 +931,16 @@ export type PostCountQueryResult = Apollo.QueryResult<PostCountQuery, PostCountQ
       "Body",
       "PostMarkdown"
     ],
+    "IBodyRichtext": [
+      "BodyRichtext"
+    ],
     "IModularPage": [
       "ModularPage"
     ],
     "IPostBase": [
       "PostBase",
-      "PostMarkdown"
+      "PostMarkdown",
+      "PostRichtext"
     ],
     "IPostList": [
       "PostList"
@@ -865,22 +948,29 @@ export type PostCountQueryResult = Apollo.QueryResult<PostCountQuery, PostCountQ
     "IPostMarkdown": [
       "PostMarkdown"
     ],
+    "IPostRichtext": [
+      "PostRichtext"
+    ],
     "ISeo": [
       "PostMarkdown",
+      "PostRichtext",
       "Seo"
     ],
     "ITitle": [
       "PostBase",
       "PostMarkdown",
+      "PostRichtext",
       "Title"
     ],
     "PokEntry": [
       "ModularPage",
       "PostBase",
-      "PostMarkdown"
+      "PostMarkdown",
+      "PostRichtext"
     ],
     "PokValue": [
       "Body",
+      "BodyRichtext",
       "PostList",
       "Seo",
       "Title"
