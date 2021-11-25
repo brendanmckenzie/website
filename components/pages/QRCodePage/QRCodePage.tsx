@@ -22,6 +22,7 @@ const QRCodePage: React.FC = () => {
           placeholder="QR Content"
           value={value}
           onChange={(ev) => setValue(ev.currentTarget.value)}
+          autoFocus
         />
 
         {svg ? (
