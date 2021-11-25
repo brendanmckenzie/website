@@ -6,8 +6,14 @@ import * as styles from "./QRCodePage.css";
 const QRCodePage: React.FC = () => {
   const [value, setValue] = React.useState("");
 
-  const svg = React.useMemo(() => {
-    return value ? new QRCode({ content: value }).svg() : "";
+  const [svg, url] = React.useMemo(() => {
+    if (value) {
+      const val = new QRCode({ content: value }).svg();
+      const urlVal = Buffer.from(val).toString("base64");
+
+      return [val, urlVal];
+    }
+    return ["", ""];
   }, [value]);
 
   return (
@@ -26,14 +32,22 @@ const QRCodePage: React.FC = () => {
         />
 
         {svg ? (
-          <div
-            className={styles.svg}
-            dangerouslySetInnerHTML={{ __html: svg }}
-          />
-        ) : null}
+          <>
+            <div
+              className={styles.svg}
+              dangerouslySetInnerHTML={{ __html: svg }}
+            />
 
-        {svg ? (
-          <textarea className={styles.input} value={svg} rows={20} />
+            <a
+              className={styles.download}
+              href={`data:text/svg;base64,${url}`}
+              download="qrcode.svg"
+            >
+              download svg
+            </a>
+
+            <textarea className={styles.input} value={svg} rows={20} />
+          </>
         ) : null}
       </div>
     </>
