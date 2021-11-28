@@ -50,7 +50,7 @@ export const HomePage: React.FC<HomePageProps> = ({ latestPosts }) => (
           <Github />
         </a>
         <a
-          href="https://www.linkedin.com/in/brendanmckenzie/"
+          href="https://www.instagram.com/brendanjmckenzie/"
           className={style.instagram}
           target="_blank"
           rel="noreferrer noopener"
