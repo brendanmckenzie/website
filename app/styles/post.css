@@ -1,0 +1,69 @@
+.post__header,
+.post__image {
+  margin-bottom: 1rem;
+}
+
+.post article {
+  line-height: 1.8;
+  overflow: auto;
+}
+.post article p:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.post article li + li {
+  margin-top: 0.25em;
+}
+
+.post article p:not(:last-child),
+.post article dl:not(:last-child),
+.post article ol:not(:last-child),
+.post article ul:not(:last-child),
+.post article blockquote:not(:last-child),
+.post article pre:not(:last-child),
+.post article table:not(:last-child) {
+  margin-bottom: 1em;
+}
+
+.post article ol,
+.post article ul {
+  margin-top: 1em;
+  padding: 1em 2em;
+}
+
+.post article ul {
+  list-style: disc outside;
+}
+.post article ol {
+  list-style-position: outside;
+}
+
+.post article pre {
+  overflow-x: auto;
+  white-space: pre;
+  word-wrap: normal;
+  line-height: 1.2;
+  font-family: "IBM Plex Mono", monospace;
+  font-smooth: auto;
+}
+
+.post article code {
+  background-color: whitesmoke;
+  color: #da1039;
+  font-weight: normal;
+  padding: 0.25em 0.5em 0.25em;
+}
+.post article pre code {
+  padding: 0;
+}
+
+.post article a {
+  background-color: #084887;
+  color: white;
+  padding: 2px 4px;
+}
+
+@media only screen and (max-width: 600px) {
+  .post {
+    margin: 1rem;
+  }
+}

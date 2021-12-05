@@ -1,0 +1,101 @@
+:root {
+  --vars-colour-accent: rgb(242, 81, 27);
+  --vars-colour-muted: #999;
+  --vars-size-base: 16px;
+  --vars-size-content: 1rem;
+  --vars-size-heading: 1.25rem;
+  --vars-size-small: 0.75rem;
+  --vars-size-subtitle: 1.25rem;
+  --vars-size-title: 2.25rem;
+}
+
+.cv__container {
+  max-width: 72ch;
+  margin: 2rem auto;
+  row-gap: 2rem;
+  display: grid;
+  font-size: var(--vars-size-base);
+  line-height: 1.4;
+  row-gap: 1rem;
+}
+.cv__section_container {
+  display: grid;
+  grid-template-columns: 22ch auto;
+  column-gap: 1rem;
+}
+.cv__intro_name {
+  font-size: var(--vars-size-title);
+  font-weight: bold;
+  line-height: 1;
+}
+.cv__intro_title {
+  font-size: var(--vars-size-subtitle);
+  font-weight: bold;
+  color: var(--vars-colour-accent);
+}
+.cv__intro_body_list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.cv__intro_body_name {
+  font-weight: bold;
+  font-size: var(--vars-size-heading);
+}
+.cv__intro_body_location {
+  font-size: var(--vars-size-content);
+  margin-bottom: 0.5rem;
+}
+.cv__intro_body_phone {
+  font-size: var(--vars-size-content);
+  color: var(--vars-colour-accent);
+}
+.cv__intro_body_email {
+  font-size: var(--vars-size-content);
+  color: var(--vars-colour-accent);
+}
+.cv__section_body {
+  border-top: 3px solid var(--vars-colour-muted);
+  padding-top: 0.75rem;
+  display: grid;
+  row-gap: 1rem;
+}
+.cv__section_overview {
+  border-top: 3px solid var(--vars-colour-muted);
+  padding-top: 0.75rem;
+  display: grid;
+  row-gap: 0.75rem;
+  font-size: var(--vars-size-content);
+  align-content: flex-start;
+}
+.cv__section_heading {
+  font-weight: bold;
+  font-size: var(--vars-size-heading);
+}
+.cv__position_container {
+  display: grid;
+  row-gap: 0.5rem;
+}
+.cv__position_header {
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: 1rem;
+  justify-content: flex-start;
+}
+.cv__position_meta {
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: 1rem;
+  justify-content: flex-start;
+  list-style-type: none;
+  font-size: var(--vars-size-small);
+  color: var(--vars-colour-muted);
+  padding: 0;
+  margin: 0;
+}
+
+.cv__position_tech {
+  font-size: var(--vars-size-small);
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}

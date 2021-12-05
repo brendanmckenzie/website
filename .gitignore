@@ -1,6 +1,11 @@
-.cache/
-node_modules/
+node_modules
+
+.cache
+.vercel
+.output
+
+public/build
+api/build
+
 .env
-yarn-error.log
-.next/
-.DS_Store
+.env*

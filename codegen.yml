@@ -3,16 +3,12 @@ schema:
       headers:
         X-Token: ${POK_TOKEN}
 documents:
-  - pokko/queries/*.graphql
+  - app/pokko/queries/*.graphql
 generates:
-  ./pokko/queries.ts:
+  ./app/pokko/queries.ts:
     plugins:
       - typescript
       - typescript-operations
       - typescript-react-apollo
       - fragment-matcher
-    # config:
-    #   withHooks: true
-    #   withHOC: false
-    #   apolloClientVersion: 3
-    #   useExplicitTyping: true
+    

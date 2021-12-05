@@ -1,0 +1,84 @@
+query ListPosts($skip: Int! = 0, $take: Int! = 10, $filter: PostBaseFilter) {
+  entries {
+    allPostBase(
+      orderBy: DATE_DESC
+      skip: $skip
+      take: $take
+      inherit: true
+      filter: $filter
+    ) {
+      totalCount
+      ...PostListing
+    }
+  }
+}
+
+query GetPost($path: [String!]!, $alias: String!) {
+  entry(path: $path) {
+    ... on IPostBase {
+      id
+      title
+      alias
+      date
+      tags
+      category
+      summary
+      image {
+        url(process: { height: 600, width: 1200, fit: COVER, position: CENTRE })
+        height
+        width
+      }
+    }
+    ... on PostMarkdown {
+      body
+    }
+    ... on PostRichtext {
+      bodyRich: body {
+        ...RichText
+      }
+    }
+  }
+  entries {
+    allPostBase(inherit: true, filter: { legacyAlias: { equalTo: $alias } }) {
+      nodes {
+        pokko {
+          path
+        }
+      }
+    }
+  }
+}
+
+fragment PostListing on PostBaseCollection {
+  nodes {
+    ...PostSummary
+  }
+  pageInfo {
+    hasNextPage
+    hasPrevPage
+  }
+}
+
+fragment PostSummary on IPostBase {
+  id
+  title
+  date
+  summary
+  category
+  alias
+  image {
+    url(process: { height: 200, width: 400, position: CENTRE, fit: COVER })
+  }
+}
+
+query PostCount {
+  entries {
+    allPostBase(inherit: true) {
+      totalCount
+    }
+  }
+}
+
+fragment RichText on PokRichText {
+  body
+}

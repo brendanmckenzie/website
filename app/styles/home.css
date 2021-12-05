@@ -1,0 +1,73 @@
+.socials {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  column-gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.socials li a {
+  height: 2.75rem;
+  width: 2.75rem;
+  border-radius: 40px;
+  display: block;
+  padding: 1.25rem;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+
+  transition: opacity 50ms linear;
+}
+
+.socials li a:hover {
+  opacity: 0.7;
+}
+
+.socials li a svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.social__twitter {
+  background-color: #1da1f2;
+  color: white;
+}
+.social__github {
+  background-color: #181717;
+  color: white;
+}
+.social__instagram {
+  background-color: #e4405f;
+  color: white;
+}
+.social__linkedin {
+  background-color: #0a66c2;
+  color: white;
+}
+.social__email {
+  background-color: white;
+  color: #222222;
+  border: 1px solid #ddd;
+}
+
+.social__email:hover {
+  color: #222222;
+}
+
+@media only screen and (max-width: 600px) {
+  .socials li a {
+    height: 1.5rem;
+    width: 1.5rem;
+    padding: 1rem;
+  }
+  .socials li a svg {
+    height: 1rem;
+    width: 1rem;
+  }
+}
