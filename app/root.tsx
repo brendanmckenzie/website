@@ -118,6 +118,7 @@ function Document({
         {title ? <title>{title}</title> : null}
         <Meta />
         <Links />
+        <link rel="icon" type="image/jpeg" href="/images/photo.jpg" />
         <script
           defer
           data-domain="brendanmckenzie.com"
