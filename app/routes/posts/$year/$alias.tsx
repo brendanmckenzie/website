@@ -56,7 +56,7 @@ export const links: LinksFunction = () => {
 
 export const headers: HeadersFunction = ({ loaderHeaders, parentHeaders }) => {
   return {
-    "Cache-Control": "max-age=300, s-maxage=3600",
+    "Cache-Control": "s-maxage=300, stale-while-revalidate=60",
   };
 };
 
