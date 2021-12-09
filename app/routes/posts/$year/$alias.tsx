@@ -2,7 +2,7 @@ import { LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
 import Markdown, { MarkdownToJSX } from "markdown-to-jsx";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import { LinksFunction, useLoaderData } from "remix";
+import { HeadersFunction, LinksFunction, useLoaderData } from "remix";
 import { SlateReactPresentation } from "~/components/RichText";
 import { client } from "~/pokko";
 import {
@@ -52,6 +52,12 @@ export const meta: MetaFunction = ({ data }) => {
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: style }];
+};
+
+export const headers: HeadersFunction = ({ loaderHeaders, parentHeaders }) => {
+  return {
+    "Cache-Control": "max-age=300, s-maxage=3600",
+  };
 };
 
 export default function Index() {

@@ -1,4 +1,10 @@
-import { MetaFunction, LoaderFunction, Link, LinksFunction } from "remix";
+import {
+  MetaFunction,
+  LoaderFunction,
+  Link,
+  LinksFunction,
+  HeadersFunction,
+} from "remix";
 import { useLoaderData, json } from "remix";
 import Markdown from "markdown-to-jsx";
 import { client } from "~/pokko";
@@ -48,6 +54,13 @@ export const links: LinksFunction = () => {
     { rel: "stylesheet", href: style },
     { rel: "stylesheet", href: styleList },
   ];
+};
+
+export const headers: HeadersFunction = ({ loaderHeaders, parentHeaders }) => {
+  return {
+    "X-Stretchy-Pants": "its for fun",
+    "Cache-Control": "max-age=300, s-maxage=3600",
+  };
 };
 
 export default function Index() {

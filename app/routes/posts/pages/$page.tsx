@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import {
+  HeadersFunction,
   json,
   LinksFunction,
   LoaderFunction,
@@ -85,6 +86,12 @@ export const links: LinksFunction = () => {
     { rel: "stylesheet", href: style },
     { rel: "stylesheet", href: styleList },
   ];
+};
+
+export const headers: HeadersFunction = ({ loaderHeaders, parentHeaders }) => {
+  return {
+    "Cache-Control": "max-age=300, s-maxage=3600",
+  };
 };
 
 export default function Index() {
