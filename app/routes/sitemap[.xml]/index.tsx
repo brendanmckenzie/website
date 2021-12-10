@@ -1,4 +1,4 @@
-import { LoaderFunction } from "remix";
+import { HeadersFunction, LoaderFunction } from "remix";
 import { SitemapStream, streamToPromise } from "sitemap";
 import { client } from "~/pokko";
 import {
@@ -37,4 +37,10 @@ export const loader: LoaderFunction = async () => {
   return new Response(sm.toString("utf-8"), {
     headers: { "Content-type": "application/xml" },
   });
+};
+
+export const headers: HeadersFunction = () => {
+  return {
+    "Cache-Control": "s-maxage=3600, stale-while-revalidate=60",
+  };
 };
