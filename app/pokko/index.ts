@@ -18,7 +18,7 @@ const optionsBase: ApolloClientOptions<NormalizedCacheObject> = {
     possibleTypes: intro.possibleTypes,
   }),
 
-  uri: `https://au-syd1.pokko.io/${config.project}/${config.environment}/graphql`,
+  uri: `https://brendanmckenzie.graphcdn.app`,
 };
 
 const options = {
