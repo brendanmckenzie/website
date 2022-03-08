@@ -1,0 +1,12 @@
+p:not(:last-of-type) {
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+
+main {
+  margin-top: 2rem;
+}
+
+a {
+  color: blue;
+}

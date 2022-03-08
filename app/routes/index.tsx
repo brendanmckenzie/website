@@ -6,7 +6,6 @@ import {
   HeadersFunction,
 } from "remix";
 import { useLoaderData, json } from "remix";
-import Markdown from "markdown-to-jsx";
 import { client } from "~/pokko";
 import {
   ListPostsDocument,
