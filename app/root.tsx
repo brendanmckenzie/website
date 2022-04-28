@@ -1,16 +1,15 @@
 import {
-  Link,
-  Links,
-  LiveReload,
-  Meta,
   Outlet,
-  Scripts,
-  ScrollRestoration,
   useCatch,
   useMatches,
-} from "remix";
-import type { LinksFunction } from "remix";
-
+  Meta,
+  Links,
+  ScrollRestoration,
+  Scripts,
+  LiveReload,
+  Link,
+} from "@remix-run/react";
+import { LinksFunction } from "@remix-run/node";
 import globalStylesUrl from "~/styles/app.css";
 import mobileStyles from "~/styles/mobile.css";
 
@@ -53,11 +52,6 @@ export function ErrorBoundary({ error }: { error: Error }) {
         <div>
           <h1>There was an error</h1>
           <p>{error.message}</p>
-          <hr />
-          <p>
-            Hey, developer, you should replace this with what you want your
-            users to see.
-          </p>
         </div>
       </Layout>
     </Document>

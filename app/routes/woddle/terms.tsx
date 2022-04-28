@@ -1,4 +1,4 @@
-import { LinksFunction } from "remix";
+import type { LinksFunction } from "@remix-run/node";
 import styles from "../../styles/woddle.css";
 
 export const handle = { layout: false };

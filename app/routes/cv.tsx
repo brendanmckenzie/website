@@ -1,5 +1,5 @@
 import * as React from "react";
-import { LinksFunction, MetaFunction } from "remix";
+import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import { positions } from "../data/cv";
 
 import style from "../styles/cv.css";

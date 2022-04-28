@@ -1,12 +1,12 @@
 import {
   HeadersFunction,
-  json,
-  Link,
-  LinksFunction,
   LoaderFunction,
+  LinksFunction,
   MetaFunction,
-  useLoaderData,
-} from "remix";
+  json,
+} from "@remix-run/node";
+import { Link, useLoaderData } from "@remix-run/react";
+
 import { PostList, PostListProps } from "~/components/PostList";
 import { client } from "~/pokko";
 import {

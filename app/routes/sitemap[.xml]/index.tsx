@@ -1,4 +1,4 @@
-import { HeadersFunction, LoaderFunction } from "remix";
+import type { HeadersFunction, LoaderFunction } from "@remix-run/node";
 import { SitemapStream, streamToPromise } from "sitemap";
 import { client } from "~/pokko";
 import {

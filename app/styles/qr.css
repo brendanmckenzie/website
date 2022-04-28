@@ -1,0 +1,11 @@
+.qr {
+  display: grid;
+  grid-auto-flow: row;
+  row-gap: 1rem;
+  margin: 1rem;
+}
+
+.qr textarea {
+  white-space: nowrap;
+  font-family: monospace;
+}

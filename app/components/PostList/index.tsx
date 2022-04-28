@@ -1,5 +1,5 @@
+import { Link } from "@remix-run/react";
 import Markdown from "markdown-to-jsx";
-import { Link } from "remix";
 
 export type PostListProps = {
   posts: {
@@ -17,9 +17,9 @@ export const PostList: React.FC<PostListProps> = ({ posts }) => {
     <ul className="post__list">
       {posts.map((ent) => (
         <li key={ent.id}>
-          <img src={ent.image} alt="" />
-          <Link to={`/posts/${ent.date.substr(0, 4)}/${ent.alias}`}>
-            {ent.title}
+          <Link to={`/posts/${ent.date.substring(0, 4)}/${ent.alias}`}>
+            <img src={ent.image} alt="" />
+            <p>{ent.title}</p>
           </Link>
           <Markdown options={{ forceBlock: true }}>{ent.summary}</Markdown>
           <time>

@@ -1,11 +1,12 @@
-import {
-  MetaFunction,
+import { json } from "@remix-run/node";
+import { Link, useLoaderData } from "@remix-run/react";
+import type {
   LoaderFunction,
-  Link,
-  LinksFunction,
   HeadersFunction,
-} from "remix";
-import { useLoaderData, json } from "remix";
+  LinksFunction,
+  MetaFunction,
+} from "@remix-run/node";
+
 import { client } from "~/pokko";
 import {
   ListPostsDocument,
@@ -126,7 +127,7 @@ export default function Index() {
       <PostList posts={data.posts} />
       <ul className="pagination">
         <li>
-          <Link to="/posts/pages/1">See more</Link>
+          <Link to="/posts/pages/2">See more</Link>
         </li>
       </ul>
     </main>

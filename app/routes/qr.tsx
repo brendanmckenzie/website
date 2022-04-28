@@ -1,6 +1,6 @@
 import * as React from "react";
 import QRCode from "qrcode-svg";
-import { MetaFunction } from "remix";
+import { LinksFunction, MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
   return {
@@ -9,7 +9,13 @@ export const meta: MetaFunction = () => {
   };
 };
 
-export const handle = { hydrate: true };
+import style from "../styles/qr.css";
+
+export const links: LinksFunction = () => {
+  return [{ rel: "stylesheet", href: style }];
+};
+
+export const handle = { hydrate: true, layout: false };
 
 const QRCodePage: React.FC = () => {
   const [value, setValue] = React.useState("");
@@ -26,7 +32,7 @@ const QRCodePage: React.FC = () => {
 
   return (
     <>
-      <div>
+      <div className="qr">
         <input
           type="text"
           placeholder="QR Content"
