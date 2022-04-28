@@ -7,6 +7,11 @@
   line-height: 1.8;
   overflow: auto;
 }
+
+.post article h2 {
+  font-size: 1.25rem;
+}
+
 .post article p:not(:last-child) {
   margin-bottom: 1rem;
 }
