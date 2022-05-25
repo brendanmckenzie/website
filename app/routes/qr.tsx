@@ -1,5 +1,6 @@
 import * as React from "react";
-import QRCode from "qrcode-svg";
+import * as ReactDOM from "react-dom/server";
+import QRCode from "react-qr-code";
 import { LinksFunction, MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
@@ -22,7 +23,9 @@ const QRCodePage: React.FC = () => {
 
   const [svg, url] = React.useMemo(() => {
     if (value) {
-      const val = new QRCode({ content: value }).svg();
+      const val = ReactDOM.renderToStaticMarkup(
+        React.createElement(QRCode, { value })
+      );
       const urlVal = btoa(val);
 
       return [val, urlVal];
@@ -41,15 +44,21 @@ const QRCodePage: React.FC = () => {
           autoFocus
         />
 
-        {svg ? (
+        {value ? (
           <>
-            <div dangerouslySetInnerHTML={{ __html: svg }} />
+            <QRCode value={value} />
 
             <a href={`data:text/svg;base64,${url}`} download="qrcode.svg">
               download svg
             </a>
 
-            <textarea value={svg} rows={20} />
+            <textarea
+              value={svg
+                .replace(/<path /g, "\n  <path ")
+                .replace(/<\/svg/, "\n<svg")
+                .replace(/><\/path>/g, " />")}
+              rows={20}
+            />
           </>
         ) : null}
       </div>
