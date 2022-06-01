@@ -88,9 +88,11 @@ export const CurriculumVitaePage: React.FC = () => (
             </ul>
 
             <p className="cv__position_summary">{ent.summary}</p>
-            <p className="cv__position_tech">
-              Technologies – {ent.technologies.join(", ")}
-            </p>
+            {ent.technologies ? (
+              <p className="cv__position_tech">
+                Technologies – {ent.technologies.join(", ")}
+              </p>
+            ) : null}
           </div>
         ))}
       </div>

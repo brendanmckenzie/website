@@ -4,10 +4,18 @@ export type Position = {
   summary: string;
   dates: [string, string];
   location: string;
-  technologies: string[];
+  technologies?: string[];
 };
 
 export const positions: Position[] = [
+  {
+    company: "Appscore",
+    position: "Technical Director",
+    dates: ["September 2021", "Present"],
+    location: "Melbourne, Australia",
+    summary:
+      "Technical director at digital consulting agency Appscore with responsibilities ranging from solution design, architecture and prototyping to team management.  Enabling developers across a range of technologies and industries to help meet clients goals.  Working with the sales team to provide high level technical guidance on potential opportunities.  Interfacing with various technical stakeholders to ensure alignment and seamless service delivery.",
+  },
   {
     company: "Pokko",
     position: "Founder",
