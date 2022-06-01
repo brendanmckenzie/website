@@ -1,10 +1,5 @@
-.post__header,
-.post__image {
-  margin-bottom: 1rem;
-}
-
-.post__image {
-  border-radius: 1rem;
+.post__header {
+  margin: 1rem 0;
 }
 
 .post article {
@@ -12,7 +7,6 @@
   overflow: auto;
   padding: 1rem;
   background-color: white;
-  border-radius: 1rem;
   border: 1px solid rgb(237, 230, 230);
   box-shadow: 0.5rem 0.5rem 0.25rem #eeeded;
 }

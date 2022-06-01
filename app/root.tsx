@@ -132,6 +132,7 @@ function Document({
 function Layout({ children }: { children: React.ReactNode }) {
   const matches = useMatches();
   const excludeLayout = matches.some((match) => match.handle?.layout === false);
+  const excludeHeader = matches.some((match) => match.handle?.header === false);
 
   if (excludeLayout) {
     return <>{children}</>;
@@ -139,15 +140,17 @@ function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <header>
-        <Link to="/" title="Brendan McKenzie">
-          <h1>Brendan McKenzie</h1>
-        </Link>
-        <p>
-          Software and technology enthusiast, focussed on pushing the envelope
-          with emerging technologies.
-        </p>
-      </header>
+      {excludeHeader ? null : (
+        <header>
+          <Link to="/" title="Brendan McKenzie">
+            <h1>Brendan McKenzie</h1>
+          </Link>
+          <p>
+            Software and technology enthusiast, focussed on pushing the envelope
+            with emerging technologies.
+          </p>
+        </header>
+      )}
 
       {children}
 

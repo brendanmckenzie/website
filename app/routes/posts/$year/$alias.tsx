@@ -61,6 +61,8 @@ export const headers: HeadersFunction = ({ loaderHeaders, parentHeaders }) => {
   };
 };
 
+export const handle = { header: false };
+
 export default function Index() {
   const post = useLoaderData();
 
