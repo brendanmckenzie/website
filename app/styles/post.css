@@ -7,8 +7,6 @@
   overflow: auto;
   padding: 1rem;
   background-color: white;
-  border: 1px solid rgb(237, 230, 230);
-  box-shadow: 0.5rem 0.5rem 0.25rem #eeeded;
 }
 
 .post article h2 {
