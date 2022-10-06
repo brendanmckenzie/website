@@ -9,12 +9,12 @@ export type Position = {
 
 export const positions: Position[] = [
   {
-    company: "Appscore",
-    position: "Technical Director",
-    dates: ["September 2021", "Present"],
+    company: "Howatson+Co",
+    position: "Engineering Director",
+    dates: ["October 2022", "Present"],
     location: "Melbourne, Australia",
     summary:
-      "Technical director at digital consulting agency Appscore with responsibilities ranging from solution design, architecture and prototyping to team management.  Enabling developers across a range of technologies and industries to help meet clients goals.  Working with the sales team to provide high level technical guidance on potential opportunities.  Interfacing with various technical stakeholders to ensure alignment and seamless service delivery.",
+      "TBD.",
   },
   {
     company: "Pokko",
@@ -24,6 +24,14 @@ export const positions: Position[] = [
     summary:
       "Contrived, planned, developed and deployed a new Australia-first SaaS platform for managing content and media.  Compiled a team of passionate people from various backgrounds and disciplines to deliver the final product while planning and executing customer engagement strategies.",
     technologies: ["PostgreSQL", "Kubernetes", "Typescript", "React", "Redis"],
+  },
+  {
+    company: "Appscore",
+    position: "Technical Director",
+    dates: ["September 2021", "September 2022"],
+    location: "Melbourne, Australia",
+    summary:
+      "Technical director at digital consulting agency Appscore with responsibilities ranging from solution design, architecture and prototyping to team management.  Enabling developers across a range of technologies and industries to help meet clients goals.  Working with the sales team to provide high level technical guidance on potential opportunities.  Interfacing with various technical stakeholders to ensure alignment and seamless service delivery.",
   },
   {
     company: "VERSA",

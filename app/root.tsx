@@ -156,8 +156,20 @@ function Layout({ children }: { children: React.ReactNode }) {
 
       <footer>
         <ul>
-          <li>
+        <li>
             &copy; <Link to="/">Brendan McKenzie</Link>
+          </li>
+          <li>
+            <Link to="/cv">CV</Link>
+          </li>
+          <li>
+            <a
+              href="https://plausible.io/brendanmckenzie.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Stats
+            </a>
           </li>
           <li>
             Powered by{" "}

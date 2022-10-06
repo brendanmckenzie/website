@@ -11,7 +11,7 @@ import {
   GetPostDocument,
 } from "~/pokko/queries";
 import style from "../../../styles/post.css";
-import { useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 
 export const loader: LoaderFunction = async ({ params }) => {
   const res = await client.query<GetPostQuery, GetPostQueryVariables>({
@@ -69,6 +69,7 @@ export default function Index() {
   return (
     <main className="post">
       <div className="post__header">
+        <Link to="/">Brendan McKenzie</Link>
         <h2>{post.title}</h2>
         <p>
           {new Date(post.date).toLocaleDateString("en-AU", {
