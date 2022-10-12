@@ -18,7 +18,7 @@ export const loader: LoaderFunction = async () => {
   });
 
   const smStream = new SitemapStream({
-    hostname: "https://www.brendanmckenzie.com/",
+    hostname: "https://www.bmck.au/",
   });
 
   smStream.write({ url: "/", changefreq: "weekly", priority: 0.8 });
