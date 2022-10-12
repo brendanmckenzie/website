@@ -115,7 +115,7 @@ function Document({
         <link rel="icon" type="image/jpeg" href="/images/photo.jpg" />
         <script
           defer
-          data-domain="brendanmckenzie.com"
+          data-domain="bmck.au"
           src="https://plausible.io/js/plausible.js"
         ></script>
       </head>
@@ -156,7 +156,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 
       <footer>
         <ul>
-        <li>
+          <li>
             &copy; <Link to="/">Brendan McKenzie</Link>
           </li>
           <li>
@@ -164,7 +164,7 @@ function Layout({ children }: { children: React.ReactNode }) {
           </li>
           <li>
             <a
-              href="https://plausible.io/brendanmckenzie.com/"
+              href="https://plausible.io/bmck.au/"
               target="_blank"
               rel="noopener noreferrer"
             >
