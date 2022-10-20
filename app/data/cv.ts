@@ -14,7 +14,7 @@ export const positions: Position[] = [
     dates: ["October 2022", "Present"],
     location: "Melbourne, Australia",
     summary:
-      "TBD.",
+      "Work in progress.",
   },
   {
     company: "Pokko",
