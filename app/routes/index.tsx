@@ -69,7 +69,7 @@ export default function Index() {
   return (
     <main>
       <ul className="socials">
-        <li>
+        {/* <li>
           <a
             href="https://www.twitter.com/officialbmck"
             target="_blank"
@@ -79,7 +79,7 @@ export default function Index() {
           >
             <Twitter />
           </a>
-        </li>
+        </li> */}
         <li>
           <a
             href="https://github.com/brendanmckenzie"
