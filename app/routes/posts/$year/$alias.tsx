@@ -121,6 +121,7 @@ const overrides: MarkdownToJSX.Overrides = {
         language={match[1]}
         style={dracula}
         showLineNumbers
+        customStyle={{ borderRadius: 0 }}
         {...props}
       >
         {children.trim()}

@@ -6,6 +6,7 @@
   "scripts": {
     "build": "remix build",
     "dev": "node -r dotenv/config node_modules/.bin/remix dev",
+    "start": "node -r dotenv/config node_modules/.bin/remix-serve build",
     "postinstall": "remix setup node",
     "model": "node -r dotenv/config node_modules/.bin/graphql-codegen",
     "typecheck": "tsc -b"

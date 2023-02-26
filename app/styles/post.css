@@ -1,5 +1,10 @@
 .post__header {
-  margin: 1rem 0;
+  margin: 4rem 0;
+
+  text-align: center;
+  display: flex;
+  gap: 1.25rem;
+  flex-direction: column;
 }
 
 .post__header a {
@@ -8,11 +13,15 @@
   text-transform: uppercase;
 }
 
+.post__image {
+  margin-bottom: 2rem;
+}
+
 .post article {
   line-height: 1.8;
   overflow: auto;
-  padding: 1rem;
   background-color: white;
+  text-align: justify;
 }
 
 .post article h2 {
