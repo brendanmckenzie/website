@@ -31,6 +31,12 @@ export const links: LinksFunction = () => {
       href: mobileStyles,
       media: "only screen and (max-width: 600px)",
     },
+    {
+      rel: "alternate",
+      type: "application/rss+xml",
+      title: "RSS Feed for www.bmck.au",
+      href: "/rss.xml",
+    },
   ];
 };
 
