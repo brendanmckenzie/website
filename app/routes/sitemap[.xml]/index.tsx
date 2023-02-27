@@ -25,8 +25,9 @@ export const loader: LoaderFunction = async () => {
 
   res.data.entries?.allPostBase?.nodes.forEach((post) => {
     smStream.write({
-      url: ["", "posts", post?.date?.substr(0, 4), post?.alias].join("/"),
+      url: ["", "posts", post?.date?.substring(0, 4), post?.alias].join("/"),
       changefreq: "weekly",
+      lastmod: post?.pokko.modified,
       priority: 1,
     });
   });

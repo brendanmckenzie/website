@@ -5,7 +5,7 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-const defaultOptions =  {}
+const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -13,7 +13,6 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: any;
 };
 
@@ -736,7 +735,7 @@ export type ListPostsQueryVariables = Exact<{
 }>;
 
 
-export type ListPostsQuery = { __typename?: 'Query', entries?: { __typename?: 'Entries', allPostBase?: { __typename?: 'PostBaseCollection', totalCount: number, nodes: Array<{ __typename?: 'PostBase', id: string, title?: string | null | undefined, date?: string | null | undefined, summary?: string | null | undefined, category?: string | null | undefined, alias?: string | null | undefined, image?: { __typename?: 'PokMedia', url: string } | null | undefined } | { __typename?: 'PostMarkdown', id: string, title?: string | null | undefined, date?: string | null | undefined, summary?: string | null | undefined, category?: string | null | undefined, alias?: string | null | undefined, image?: { __typename?: 'PokMedia', url: string } | null | undefined } | { __typename?: 'PostRichtext', id: string, title?: string | null | undefined, date?: string | null | undefined, summary?: string | null | undefined, category?: string | null | undefined, alias?: string | null | undefined, image?: { __typename?: 'PokMedia', url: string } | null | undefined } | null | undefined>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPrevPage: boolean } } | null | undefined } | null | undefined };
+export type ListPostsQuery = { __typename?: 'Query', entries?: { __typename?: 'Entries', allPostBase?: { __typename?: 'PostBaseCollection', totalCount: number, nodes: Array<{ __typename?: 'PostBase', id: string, title?: string | null, date?: string | null, summary?: string | null, category?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, image?: { __typename?: 'PokMedia', url: string } | null } | { __typename?: 'PostMarkdown', id: string, title?: string | null, date?: string | null, summary?: string | null, category?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, image?: { __typename?: 'PokMedia', url: string } | null } | { __typename?: 'PostRichtext', id: string, title?: string | null, date?: string | null, summary?: string | null, category?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, image?: { __typename?: 'PokMedia', url: string } | null } | null>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPrevPage: boolean } } | null } | null };
 
 export type GetPostQueryVariables = Exact<{
   path: Array<Scalars['String']> | Scalars['String'];
@@ -744,27 +743,30 @@ export type GetPostQueryVariables = Exact<{
 }>;
 
 
-export type GetPostQuery = { __typename?: 'Query', entry?: { __typename?: 'ModularPage' } | { __typename?: 'PostBase', id: string, title?: string | null | undefined, alias?: string | null | undefined, date?: string | null | undefined, tags?: string | null | undefined, category?: string | null | undefined, summary?: string | null | undefined, image?: { __typename?: 'PokMedia', url: string, height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | { __typename?: 'PostMarkdown', id: string, title?: string | null | undefined, alias?: string | null | undefined, date?: string | null | undefined, tags?: string | null | undefined, category?: string | null | undefined, summary?: string | null | undefined, body?: string | null | undefined, image?: { __typename?: 'PokMedia', url: string, height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | { __typename?: 'PostRichtext', id: string, title?: string | null | undefined, alias?: string | null | undefined, date?: string | null | undefined, tags?: string | null | undefined, category?: string | null | undefined, summary?: string | null | undefined, image?: { __typename?: 'PokMedia', url: string, height?: number | null | undefined, width?: number | null | undefined } | null | undefined, bodyRich?: Array<{ __typename?: 'PokRichText', body?: any | null | undefined } | null | undefined> | null | undefined } | null | undefined, entries?: { __typename?: 'Entries', allPostBase?: { __typename?: 'PostBaseCollection', nodes: Array<{ __typename?: 'PostBase', pokko: { __typename?: 'Pokko', path?: Array<string | null | undefined> | null | undefined } } | { __typename?: 'PostMarkdown', pokko: { __typename?: 'Pokko', path?: Array<string | null | undefined> | null | undefined } } | { __typename?: 'PostRichtext', pokko: { __typename?: 'Pokko', path?: Array<string | null | undefined> | null | undefined } } | null | undefined> } | null | undefined } | null | undefined };
+export type GetPostQuery = { __typename?: 'Query', entry?: { __typename?: 'ModularPage' } | { __typename?: 'PostBase', id: string, title?: string | null, alias?: string | null, date?: string | null, tags?: string | null, category?: string | null, summary?: string | null, image?: { __typename?: 'PokMedia', url: string, height?: number | null, width?: number | null } | null } | { __typename?: 'PostMarkdown', id: string, title?: string | null, alias?: string | null, date?: string | null, tags?: string | null, category?: string | null, summary?: string | null, body?: string | null, image?: { __typename?: 'PokMedia', url: string, height?: number | null, width?: number | null } | null } | { __typename?: 'PostRichtext', id: string, title?: string | null, alias?: string | null, date?: string | null, tags?: string | null, category?: string | null, summary?: string | null, image?: { __typename?: 'PokMedia', url: string, height?: number | null, width?: number | null } | null, bodyRich?: Array<{ __typename?: 'PokRichText', body?: any | null } | null> | null } | null, entries?: { __typename?: 'Entries', allPostBase?: { __typename?: 'PostBaseCollection', nodes: Array<{ __typename?: 'PostBase', pokko: { __typename?: 'Pokko', path?: Array<string | null> | null } } | { __typename?: 'PostMarkdown', pokko: { __typename?: 'Pokko', path?: Array<string | null> | null } } | { __typename?: 'PostRichtext', pokko: { __typename?: 'Pokko', path?: Array<string | null> | null } } | null> } | null } | null };
 
-export type PostListingFragment = { __typename?: 'PostBaseCollection', nodes: Array<{ __typename?: 'PostBase', id: string, title?: string | null | undefined, date?: string | null | undefined, summary?: string | null | undefined, category?: string | null | undefined, alias?: string | null | undefined, image?: { __typename?: 'PokMedia', url: string } | null | undefined } | { __typename?: 'PostMarkdown', id: string, title?: string | null | undefined, date?: string | null | undefined, summary?: string | null | undefined, category?: string | null | undefined, alias?: string | null | undefined, image?: { __typename?: 'PokMedia', url: string } | null | undefined } | { __typename?: 'PostRichtext', id: string, title?: string | null | undefined, date?: string | null | undefined, summary?: string | null | undefined, category?: string | null | undefined, alias?: string | null | undefined, image?: { __typename?: 'PokMedia', url: string } | null | undefined } | null | undefined>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPrevPage: boolean } };
+export type PostListingFragment = { __typename?: 'PostBaseCollection', nodes: Array<{ __typename?: 'PostBase', id: string, title?: string | null, date?: string | null, summary?: string | null, category?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, image?: { __typename?: 'PokMedia', url: string } | null } | { __typename?: 'PostMarkdown', id: string, title?: string | null, date?: string | null, summary?: string | null, category?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, image?: { __typename?: 'PokMedia', url: string } | null } | { __typename?: 'PostRichtext', id: string, title?: string | null, date?: string | null, summary?: string | null, category?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, image?: { __typename?: 'PokMedia', url: string } | null } | null>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPrevPage: boolean } };
 
-type PostSummary_PostBase_Fragment = { __typename?: 'PostBase', id: string, title?: string | null | undefined, date?: string | null | undefined, summary?: string | null | undefined, category?: string | null | undefined, alias?: string | null | undefined, image?: { __typename?: 'PokMedia', url: string } | null | undefined };
+type PostSummary_PostBase_Fragment = { __typename?: 'PostBase', id: string, title?: string | null, date?: string | null, summary?: string | null, category?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, image?: { __typename?: 'PokMedia', url: string } | null };
 
-type PostSummary_PostMarkdown_Fragment = { __typename?: 'PostMarkdown', id: string, title?: string | null | undefined, date?: string | null | undefined, summary?: string | null | undefined, category?: string | null | undefined, alias?: string | null | undefined, image?: { __typename?: 'PokMedia', url: string } | null | undefined };
+type PostSummary_PostMarkdown_Fragment = { __typename?: 'PostMarkdown', id: string, title?: string | null, date?: string | null, summary?: string | null, category?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, image?: { __typename?: 'PokMedia', url: string } | null };
 
-type PostSummary_PostRichtext_Fragment = { __typename?: 'PostRichtext', id: string, title?: string | null | undefined, date?: string | null | undefined, summary?: string | null | undefined, category?: string | null | undefined, alias?: string | null | undefined, image?: { __typename?: 'PokMedia', url: string } | null | undefined };
+type PostSummary_PostRichtext_Fragment = { __typename?: 'PostRichtext', id: string, title?: string | null, date?: string | null, summary?: string | null, category?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, image?: { __typename?: 'PokMedia', url: string } | null };
 
 export type PostSummaryFragment = PostSummary_PostBase_Fragment | PostSummary_PostMarkdown_Fragment | PostSummary_PostRichtext_Fragment;
 
 export type PostCountQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PostCountQuery = { __typename?: 'Query', entries?: { __typename?: 'Entries', allPostBase?: { __typename?: 'PostBaseCollection', totalCount: number } | null | undefined } | null | undefined };
+export type PostCountQuery = { __typename?: 'Query', entries?: { __typename?: 'Entries', allPostBase?: { __typename?: 'PostBaseCollection', totalCount: number } | null } | null };
 
-export type RichTextFragment = { __typename?: 'PokRichText', body?: any | null | undefined };
+export type RichTextFragment = { __typename?: 'PokRichText', body?: any | null };
 
 export const PostSummaryFragmentDoc = gql`
     fragment PostSummary on IPostBase {
+  pokko {
+    modified
+  }
   id
   title
   date

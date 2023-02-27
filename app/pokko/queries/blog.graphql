@@ -60,6 +60,9 @@ fragment PostListing on PostBaseCollection {
 }
 
 fragment PostSummary on IPostBase {
+  pokko {
+    modified
+  }
   id
   title
   date
