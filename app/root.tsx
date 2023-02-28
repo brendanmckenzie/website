@@ -116,8 +116,8 @@ function Document({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta
-          http-equiv="content-security-policy"
-          content="script-src 'self' 'unsafe-inline' plausible.io; style-src 'self' fonts.googleapis.com fonts.gstatic.com unpkg.com; img-src 'self' cdn.pokko.io; font-src fonts.gstatic.com"
+          httpEquiv="content-security-policy"
+          content="script-src 'self' 'unsafe-inline' plausible.io; style-src 'self' 'unsafe-inline' fonts.googleapis.com fonts.gstatic.com unpkg.com; img-src 'self' cdn.pokko.io; font-src fonts.gstatic.com"
         />
         {title ? <title>{title}</title> : null}
         <Meta />
