@@ -81,10 +81,24 @@ export enum BodyRichtextOrderBy {
   ModifiedDesc = 'MODIFIED_DESC'
 }
 
+export type Category = ICategory & PokEntry & {
+  __typename?: 'Category';
+  id: Scalars['String'];
+  pokko: Pokko;
+};
+
+export type CategoryCollection = {
+  __typename?: 'CategoryCollection';
+  nodes: Array<Maybe<ICategory>>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int'];
+};
+
 export type Entries = {
   __typename?: 'Entries';
   allBody?: Maybe<BodyCollection>;
   allBodyRichtext?: Maybe<BodyRichtextCollection>;
+  allCategory?: Maybe<CategoryCollection>;
   allModularPage?: Maybe<ModularPageCollection>;
   allPostBase?: Maybe<PostBaseCollection>;
   allPostList?: Maybe<PostListCollection>;
@@ -94,6 +108,7 @@ export type Entries = {
   allTitle?: Maybe<TitleCollection>;
   body?: Maybe<Body>;
   bodyRichtext?: Maybe<BodyRichtext>;
+  category?: Maybe<Category>;
   modularPage?: Maybe<ModularPage>;
   postBase?: Maybe<PostBase>;
   postList?: Maybe<PostList>;
@@ -117,6 +132,13 @@ export type EntriesAllBodyRichtextArgs = {
   filter?: InputMaybe<BodyRichtextFilter>;
   inherit?: Scalars['Boolean'];
   orderBy?: InputMaybe<Array<InputMaybe<BodyRichtextOrderBy>>>;
+  skip?: Scalars['Int'];
+  take?: Scalars['Int'];
+};
+
+
+export type EntriesAllCategoryArgs = {
+  inherit?: Scalars['Boolean'];
   skip?: Scalars['Int'];
   take?: Scalars['Int'];
 };
@@ -189,6 +211,11 @@ export type EntriesBodyRichtextArgs = {
 };
 
 
+export type EntriesCategoryArgs = {
+  id: Scalars['String'];
+};
+
+
 export type EntriesModularPageArgs = {
   id: Scalars['String'];
 };
@@ -233,6 +260,11 @@ export type IBodyRichtext = {
   id: Scalars['String'];
 };
 
+export type ICategory = {
+  id: Scalars['String'];
+  pokko: Pokko;
+};
+
 export type IModularPage = {
   components?: Maybe<PostList>;
   id: Scalars['String'];
@@ -241,11 +273,12 @@ export type IModularPage = {
 
 export type IPostBase = {
   alias?: Maybe<Scalars['String']>;
-  category?: Maybe<Scalars['String']>;
+  category?: Maybe<Category>;
   date?: Maybe<Scalars['String']>;
   id: Scalars['String'];
   image?: Maybe<PokMedia>;
   legacyAlias?: Maybe<Scalars['String']>;
+  legacyCategory?: Maybe<Scalars['String']>;
   pokko: Pokko;
   summary?: Maybe<Scalars['String']>;
   tags?: Maybe<Scalars['String']>;
@@ -259,11 +292,12 @@ export type IPostList = {
 export type IPostMarkdown = {
   alias?: Maybe<Scalars['String']>;
   body?: Maybe<Scalars['String']>;
-  category?: Maybe<Scalars['String']>;
+  category?: Maybe<Category>;
   date?: Maybe<Scalars['String']>;
   id: Scalars['String'];
   image?: Maybe<PokMedia>;
   legacyAlias?: Maybe<Scalars['String']>;
+  legacyCategory?: Maybe<Scalars['String']>;
   pokko: Pokko;
   summary?: Maybe<Scalars['String']>;
   tags?: Maybe<Scalars['String']>;
@@ -273,11 +307,12 @@ export type IPostMarkdown = {
 export type IPostRichtext = {
   alias?: Maybe<Scalars['String']>;
   body?: Maybe<Array<Maybe<PokRichText>>>;
-  category?: Maybe<Scalars['String']>;
+  category?: Maybe<Category>;
   date?: Maybe<Scalars['String']>;
   id: Scalars['String'];
   image?: Maybe<PokMedia>;
   legacyAlias?: Maybe<Scalars['String']>;
+  legacyCategory?: Maybe<Scalars['String']>;
   pokko: Pokko;
   summary?: Maybe<Scalars['String']>;
   tags?: Maybe<Scalars['String']>;
@@ -404,11 +439,12 @@ export type Pokko = {
 export type PostBase = IPostBase & ITitle & PokEntry & {
   __typename?: 'PostBase';
   alias?: Maybe<Scalars['String']>;
-  category?: Maybe<Scalars['String']>;
+  category?: Maybe<Category>;
   date?: Maybe<Scalars['String']>;
   id: Scalars['String'];
   image?: Maybe<PokMedia>;
   legacyAlias?: Maybe<Scalars['String']>;
+  legacyCategory?: Maybe<Scalars['String']>;
   pokko: Pokko;
   summary?: Maybe<Scalars['String']>;
   tags?: Maybe<Scalars['String']>;
@@ -427,6 +463,7 @@ export type PostBaseCondition = {
   category?: InputMaybe<Scalars['String']>;
   date?: InputMaybe<Scalars['String']>;
   legacyAlias?: InputMaybe<Scalars['String']>;
+  legacyCategory?: InputMaybe<Scalars['String']>;
   summary?: InputMaybe<Scalars['String']>;
   tags?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
@@ -435,10 +472,11 @@ export type PostBaseCondition = {
 export type PostBaseFilter = {
   alias?: InputMaybe<ScalarStringFilter>;
   and?: InputMaybe<Array<PostBaseFilter>>;
-  category?: InputMaybe<ScalarStringFilter>;
+  category?: InputMaybe<ScalarIdFilter>;
   date?: InputMaybe<ScalarStringFilter>;
   id?: InputMaybe<ScalarIdFilter>;
   legacyAlias?: InputMaybe<ScalarStringFilter>;
+  legacyCategory?: InputMaybe<ScalarStringFilter>;
   or?: InputMaybe<Array<PostBaseFilter>>;
   summary?: InputMaybe<ScalarStringFilter>;
   tags?: InputMaybe<ScalarStringFilter>;
@@ -448,14 +486,14 @@ export type PostBaseFilter = {
 export enum PostBaseOrderBy {
   AliasAsc = 'ALIAS_ASC',
   AliasDesc = 'ALIAS_DESC',
-  CategoryAsc = 'CATEGORY_ASC',
-  CategoryDesc = 'CATEGORY_DESC',
   CreatedAsc = 'CREATED_ASC',
   CreatedDesc = 'CREATED_DESC',
   DateAsc = 'DATE_ASC',
   DateDesc = 'DATE_DESC',
   LegacyAliasAsc = 'LEGACY_ALIAS_ASC',
   LegacyAliasDesc = 'LEGACY_ALIAS_DESC',
+  LegacyCategoryAsc = 'LEGACY_CATEGORY_ASC',
+  LegacyCategoryDesc = 'LEGACY_CATEGORY_DESC',
   ModifiedAsc = 'MODIFIED_ASC',
   ModifiedDesc = 'MODIFIED_DESC',
   SummaryAsc = 'SUMMARY_ASC',
@@ -482,11 +520,12 @@ export type PostMarkdown = IBody & IPostBase & IPostMarkdown & ISeo & ITitle & P
   __typename?: 'PostMarkdown';
   alias?: Maybe<Scalars['String']>;
   body?: Maybe<Scalars['String']>;
-  category?: Maybe<Scalars['String']>;
+  category?: Maybe<Category>;
   date?: Maybe<Scalars['String']>;
   id: Scalars['String'];
   image?: Maybe<PokMedia>;
   legacyAlias?: Maybe<Scalars['String']>;
+  legacyCategory?: Maybe<Scalars['String']>;
   pokko: Pokko;
   summary?: Maybe<Scalars['String']>;
   tags?: Maybe<Scalars['String']>;
@@ -506,6 +545,7 @@ export type PostMarkdownCondition = {
   category?: InputMaybe<Scalars['String']>;
   date?: InputMaybe<Scalars['String']>;
   legacyAlias?: InputMaybe<Scalars['String']>;
+  legacyCategory?: InputMaybe<Scalars['String']>;
   summary?: InputMaybe<Scalars['String']>;
   tags?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
@@ -515,10 +555,11 @@ export type PostMarkdownFilter = {
   alias?: InputMaybe<ScalarStringFilter>;
   and?: InputMaybe<Array<PostMarkdownFilter>>;
   body?: InputMaybe<ScalarStringFilter>;
-  category?: InputMaybe<ScalarStringFilter>;
+  category?: InputMaybe<ScalarIdFilter>;
   date?: InputMaybe<ScalarStringFilter>;
   id?: InputMaybe<ScalarIdFilter>;
   legacyAlias?: InputMaybe<ScalarStringFilter>;
+  legacyCategory?: InputMaybe<ScalarStringFilter>;
   or?: InputMaybe<Array<PostMarkdownFilter>>;
   summary?: InputMaybe<ScalarStringFilter>;
   tags?: InputMaybe<ScalarStringFilter>;
@@ -530,14 +571,14 @@ export enum PostMarkdownOrderBy {
   AliasDesc = 'ALIAS_DESC',
   BodyAsc = 'BODY_ASC',
   BodyDesc = 'BODY_DESC',
-  CategoryAsc = 'CATEGORY_ASC',
-  CategoryDesc = 'CATEGORY_DESC',
   CreatedAsc = 'CREATED_ASC',
   CreatedDesc = 'CREATED_DESC',
   DateAsc = 'DATE_ASC',
   DateDesc = 'DATE_DESC',
   LegacyAliasAsc = 'LEGACY_ALIAS_ASC',
   LegacyAliasDesc = 'LEGACY_ALIAS_DESC',
+  LegacyCategoryAsc = 'LEGACY_CATEGORY_ASC',
+  LegacyCategoryDesc = 'LEGACY_CATEGORY_DESC',
   ModifiedAsc = 'MODIFIED_ASC',
   ModifiedDesc = 'MODIFIED_DESC',
   SummaryAsc = 'SUMMARY_ASC',
@@ -552,11 +593,12 @@ export type PostRichtext = IPostBase & IPostRichtext & ISeo & ITitle & PokEntry 
   __typename?: 'PostRichtext';
   alias?: Maybe<Scalars['String']>;
   body?: Maybe<Array<Maybe<PokRichText>>>;
-  category?: Maybe<Scalars['String']>;
+  category?: Maybe<Category>;
   date?: Maybe<Scalars['String']>;
   id: Scalars['String'];
   image?: Maybe<PokMedia>;
   legacyAlias?: Maybe<Scalars['String']>;
+  legacyCategory?: Maybe<Scalars['String']>;
   pokko: Pokko;
   summary?: Maybe<Scalars['String']>;
   tags?: Maybe<Scalars['String']>;
@@ -576,6 +618,7 @@ export type PostRichtextCondition = {
   category?: InputMaybe<Scalars['String']>;
   date?: InputMaybe<Scalars['String']>;
   legacyAlias?: InputMaybe<Scalars['String']>;
+  legacyCategory?: InputMaybe<Scalars['String']>;
   summary?: InputMaybe<Scalars['String']>;
   tags?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
@@ -584,10 +627,11 @@ export type PostRichtextCondition = {
 export type PostRichtextFilter = {
   alias?: InputMaybe<ScalarStringFilter>;
   and?: InputMaybe<Array<PostRichtextFilter>>;
-  category?: InputMaybe<ScalarStringFilter>;
+  category?: InputMaybe<ScalarIdFilter>;
   date?: InputMaybe<ScalarStringFilter>;
   id?: InputMaybe<ScalarIdFilter>;
   legacyAlias?: InputMaybe<ScalarStringFilter>;
+  legacyCategory?: InputMaybe<ScalarStringFilter>;
   or?: InputMaybe<Array<PostRichtextFilter>>;
   summary?: InputMaybe<ScalarStringFilter>;
   tags?: InputMaybe<ScalarStringFilter>;
@@ -599,14 +643,14 @@ export enum PostRichtextOrderBy {
   AliasDesc = 'ALIAS_DESC',
   BodyAsc = 'BODY_ASC',
   BodyDesc = 'BODY_DESC',
-  CategoryAsc = 'CATEGORY_ASC',
-  CategoryDesc = 'CATEGORY_DESC',
   CreatedAsc = 'CREATED_ASC',
   CreatedDesc = 'CREATED_DESC',
   DateAsc = 'DATE_ASC',
   DateDesc = 'DATE_DESC',
   LegacyAliasAsc = 'LEGACY_ALIAS_ASC',
   LegacyAliasDesc = 'LEGACY_ALIAS_DESC',
+  LegacyCategoryAsc = 'LEGACY_CATEGORY_ASC',
+  LegacyCategoryDesc = 'LEGACY_CATEGORY_DESC',
   ModifiedAsc = 'MODIFIED_ASC',
   ModifiedDesc = 'MODIFIED_DESC',
   SummaryAsc = 'SUMMARY_ASC',
@@ -735,7 +779,7 @@ export type ListPostsQueryVariables = Exact<{
 }>;
 
 
-export type ListPostsQuery = { __typename?: 'Query', entries?: { __typename?: 'Entries', allPostBase?: { __typename?: 'PostBaseCollection', totalCount: number, nodes: Array<{ __typename?: 'PostBase', id: string, title?: string | null, date?: string | null, summary?: string | null, category?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, image?: { __typename?: 'PokMedia', url: string } | null } | { __typename?: 'PostMarkdown', id: string, title?: string | null, date?: string | null, summary?: string | null, category?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, image?: { __typename?: 'PokMedia', url: string } | null } | { __typename?: 'PostRichtext', id: string, title?: string | null, date?: string | null, summary?: string | null, category?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, image?: { __typename?: 'PokMedia', url: string } | null } | null>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPrevPage: boolean } } | null } | null };
+export type ListPostsQuery = { __typename?: 'Query', entries?: { __typename?: 'Entries', allPostBase?: { __typename?: 'PostBaseCollection', totalCount: number, nodes: Array<{ __typename?: 'PostBase', id: string, title?: string | null, date?: string | null, summary?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, category?: { __typename?: 'Category', pokko: { __typename?: 'Pokko', name: string } } | null, image?: { __typename?: 'PokMedia', url: string } | null } | { __typename?: 'PostMarkdown', id: string, title?: string | null, date?: string | null, summary?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, category?: { __typename?: 'Category', pokko: { __typename?: 'Pokko', name: string } } | null, image?: { __typename?: 'PokMedia', url: string } | null } | { __typename?: 'PostRichtext', id: string, title?: string | null, date?: string | null, summary?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, category?: { __typename?: 'Category', pokko: { __typename?: 'Pokko', name: string } } | null, image?: { __typename?: 'PokMedia', url: string } | null } | null>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPrevPage: boolean } } | null } | null };
 
 export type GetPostQueryVariables = Exact<{
   path: Array<Scalars['String']> | Scalars['String'];
@@ -743,15 +787,15 @@ export type GetPostQueryVariables = Exact<{
 }>;
 
 
-export type GetPostQuery = { __typename?: 'Query', entry?: { __typename?: 'ModularPage' } | { __typename?: 'PostBase', id: string, title?: string | null, alias?: string | null, date?: string | null, tags?: string | null, category?: string | null, summary?: string | null, image?: { __typename?: 'PokMedia', url: string, height?: number | null, width?: number | null } | null } | { __typename?: 'PostMarkdown', id: string, title?: string | null, alias?: string | null, date?: string | null, tags?: string | null, category?: string | null, summary?: string | null, body?: string | null, image?: { __typename?: 'PokMedia', url: string, height?: number | null, width?: number | null } | null } | { __typename?: 'PostRichtext', id: string, title?: string | null, alias?: string | null, date?: string | null, tags?: string | null, category?: string | null, summary?: string | null, image?: { __typename?: 'PokMedia', url: string, height?: number | null, width?: number | null } | null, bodyRich?: Array<{ __typename?: 'PokRichText', body?: any | null } | null> | null } | null, entries?: { __typename?: 'Entries', allPostBase?: { __typename?: 'PostBaseCollection', nodes: Array<{ __typename?: 'PostBase', pokko: { __typename?: 'Pokko', path?: Array<string | null> | null } } | { __typename?: 'PostMarkdown', pokko: { __typename?: 'Pokko', path?: Array<string | null> | null } } | { __typename?: 'PostRichtext', pokko: { __typename?: 'Pokko', path?: Array<string | null> | null } } | null> } | null } | null };
+export type GetPostQuery = { __typename?: 'Query', entry?: { __typename?: 'Category' } | { __typename?: 'ModularPage' } | { __typename?: 'PostBase', id: string, title?: string | null, alias?: string | null, date?: string | null, tags?: string | null, summary?: string | null, category?: { __typename?: 'Category', pokko: { __typename?: 'Pokko', name: string } } | null, image?: { __typename?: 'PokMedia', url: string, height?: number | null, width?: number | null } | null } | { __typename?: 'PostMarkdown', id: string, title?: string | null, alias?: string | null, date?: string | null, tags?: string | null, summary?: string | null, body?: string | null, category?: { __typename?: 'Category', pokko: { __typename?: 'Pokko', name: string } } | null, image?: { __typename?: 'PokMedia', url: string, height?: number | null, width?: number | null } | null } | { __typename?: 'PostRichtext', id: string, title?: string | null, alias?: string | null, date?: string | null, tags?: string | null, summary?: string | null, category?: { __typename?: 'Category', pokko: { __typename?: 'Pokko', name: string } } | null, image?: { __typename?: 'PokMedia', url: string, height?: number | null, width?: number | null } | null, bodyRich?: Array<{ __typename?: 'PokRichText', body?: any | null } | null> | null } | null, entries?: { __typename?: 'Entries', allPostBase?: { __typename?: 'PostBaseCollection', nodes: Array<{ __typename?: 'PostBase', pokko: { __typename?: 'Pokko', path?: Array<string | null> | null } } | { __typename?: 'PostMarkdown', pokko: { __typename?: 'Pokko', path?: Array<string | null> | null } } | { __typename?: 'PostRichtext', pokko: { __typename?: 'Pokko', path?: Array<string | null> | null } } | null> } | null } | null };
 
-export type PostListingFragment = { __typename?: 'PostBaseCollection', nodes: Array<{ __typename?: 'PostBase', id: string, title?: string | null, date?: string | null, summary?: string | null, category?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, image?: { __typename?: 'PokMedia', url: string } | null } | { __typename?: 'PostMarkdown', id: string, title?: string | null, date?: string | null, summary?: string | null, category?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, image?: { __typename?: 'PokMedia', url: string } | null } | { __typename?: 'PostRichtext', id: string, title?: string | null, date?: string | null, summary?: string | null, category?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, image?: { __typename?: 'PokMedia', url: string } | null } | null>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPrevPage: boolean } };
+export type PostListingFragment = { __typename?: 'PostBaseCollection', nodes: Array<{ __typename?: 'PostBase', id: string, title?: string | null, date?: string | null, summary?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, category?: { __typename?: 'Category', pokko: { __typename?: 'Pokko', name: string } } | null, image?: { __typename?: 'PokMedia', url: string } | null } | { __typename?: 'PostMarkdown', id: string, title?: string | null, date?: string | null, summary?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, category?: { __typename?: 'Category', pokko: { __typename?: 'Pokko', name: string } } | null, image?: { __typename?: 'PokMedia', url: string } | null } | { __typename?: 'PostRichtext', id: string, title?: string | null, date?: string | null, summary?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, category?: { __typename?: 'Category', pokko: { __typename?: 'Pokko', name: string } } | null, image?: { __typename?: 'PokMedia', url: string } | null } | null>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPrevPage: boolean } };
 
-type PostSummary_PostBase_Fragment = { __typename?: 'PostBase', id: string, title?: string | null, date?: string | null, summary?: string | null, category?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, image?: { __typename?: 'PokMedia', url: string } | null };
+type PostSummary_PostBase_Fragment = { __typename?: 'PostBase', id: string, title?: string | null, date?: string | null, summary?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, category?: { __typename?: 'Category', pokko: { __typename?: 'Pokko', name: string } } | null, image?: { __typename?: 'PokMedia', url: string } | null };
 
-type PostSummary_PostMarkdown_Fragment = { __typename?: 'PostMarkdown', id: string, title?: string | null, date?: string | null, summary?: string | null, category?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, image?: { __typename?: 'PokMedia', url: string } | null };
+type PostSummary_PostMarkdown_Fragment = { __typename?: 'PostMarkdown', id: string, title?: string | null, date?: string | null, summary?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, category?: { __typename?: 'Category', pokko: { __typename?: 'Pokko', name: string } } | null, image?: { __typename?: 'PokMedia', url: string } | null };
 
-type PostSummary_PostRichtext_Fragment = { __typename?: 'PostRichtext', id: string, title?: string | null, date?: string | null, summary?: string | null, category?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, image?: { __typename?: 'PokMedia', url: string } | null };
+type PostSummary_PostRichtext_Fragment = { __typename?: 'PostRichtext', id: string, title?: string | null, date?: string | null, summary?: string | null, alias?: string | null, pokko: { __typename?: 'Pokko', modified: string }, category?: { __typename?: 'Category', pokko: { __typename?: 'Pokko', name: string } } | null, image?: { __typename?: 'PokMedia', url: string } | null };
 
 export type PostSummaryFragment = PostSummary_PostBase_Fragment | PostSummary_PostMarkdown_Fragment | PostSummary_PostRichtext_Fragment;
 
@@ -771,7 +815,11 @@ export const PostSummaryFragmentDoc = gql`
   title
   date
   summary
-  category
+  category {
+    pokko {
+      name
+    }
+  }
   alias
   image {
     url(process: {height: 200, width: 400, position: CENTRE, fit: COVER})
@@ -849,7 +897,11 @@ export const GetPostDocument = gql`
       alias
       date
       tags
-      category
+      category {
+        pokko {
+          name
+        }
+      }
       summary
       image {
         url(process: {height: 600, width: 1200, fit: COVER, position: CENTRE})
@@ -957,6 +1009,9 @@ export type PostCountQueryResult = Apollo.QueryResult<PostCountQuery, PostCountQ
     "IBodyRichtext": [
       "BodyRichtext"
     ],
+    "ICategory": [
+      "Category"
+    ],
     "IModularPage": [
       "ModularPage"
     ],
@@ -986,6 +1041,7 @@ export type PostCountQueryResult = Apollo.QueryResult<PostCountQuery, PostCountQ
       "Title"
     ],
     "PokEntry": [
+      "Category",
       "ModularPage",
       "PostBase",
       "PostMarkdown",

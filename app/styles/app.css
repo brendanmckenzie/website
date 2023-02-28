@@ -10,8 +10,8 @@ body {
 
 header,
 main {
-  width: 70ch;
   margin: 0 auto;
+  width: 70ch;
 }
 
 header,
@@ -68,6 +68,7 @@ a:hover {
   }
 
   header {
+    margin-top: 1rem;
     padding: 1rem;
   }
 

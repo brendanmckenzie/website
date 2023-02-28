@@ -58,6 +58,7 @@ export const loader: LoaderFunction = async ({ params }) => {
         date: ent!.date!,
         alias: ent!.alias!,
         image: ent!.image?.url,
+        category: ent!.category?.pokko.name,
       })) ?? [],
     pagination: {
       page,

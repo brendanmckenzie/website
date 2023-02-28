@@ -35,6 +35,7 @@ export const loader: LoaderFunction = async () => {
         date: ent!.date!,
         alias: ent!.alias!,
         image: ent!.image?.url,
+        category: ent!.category?.pokko.name,
       })) ?? [],
   };
 

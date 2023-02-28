@@ -21,7 +21,11 @@ query GetPost($path: [String!]!, $alias: String!) {
       alias
       date
       tags
-      category
+      category {
+        pokko {
+          name
+        }
+      }
       summary
       image {
         url(process: { height: 600, width: 1200, fit: COVER, position: CENTRE })
@@ -67,7 +71,11 @@ fragment PostSummary on IPostBase {
   title
   date
   summary
-  category
+  category {
+    pokko {
+      name
+    }
+  }
   alias
   image {
     url(process: { height: 200, width: 400, position: CENTRE, fit: COVER })
