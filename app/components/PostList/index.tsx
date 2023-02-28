@@ -22,7 +22,7 @@ export const PostList: React.FC<PostListProps> = ({ posts }) => {
             to={`/posts/${ent.date.substring(0, 4)}/${ent.alias}`}
             className="post__list--item--banner"
           >
-            <img src={ent.image} alt="" />
+            {ent.image ? <img src={ent.image} alt="" /> : null}
             <p>{ent.title}</p>
           </Link>
           <div className="post__list--item--summary">

@@ -48,10 +48,13 @@ export const CurriculumVitaePage: React.FC = () => (
       </div>
       <div className="cv__section_body">
         <p>
-          Established software architect with experience in a number of global
-          markets. Exposure to software development targeting mobile, web,
-          desktop and cloud environments. Strong passion for designing and
-          implementing integrated systems utilising modern technology.
+          Seasoned software developer with a knack for tackling complex
+          technical challenges. Over the past two decades, I've enjoyed working
+          across various industries, helping digital agencies deliver innovative
+          solutions that meet their clients' needs. When I'm not heads-down
+          coding, you can usually find me indulging in two of my other passions:
+          exploring the world through travel and creating culinary delights in
+          the kitchen.
         </p>
       </div>
     </div>

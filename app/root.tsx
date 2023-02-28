@@ -156,8 +156,10 @@ function Layout({ children }: { children: React.ReactNode }) {
             <h1>Brendan McKenzie</h1>
           </Link>
           <p>
-            Software and technology enthusiast, focussed on pushing the envelope
-            with emerging technologies.
+            Seasoned software developer with a knack for tackling complex
+            technical challenges. When I'm not heads-down coding, you can
+            usually find me indulging in two of my other passions: exploring the
+            world through travel and creating culinary delights in the kitchen.
           </p>
         </header>
       )}
