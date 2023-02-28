@@ -37,6 +37,7 @@ footer {
   justify-content: center;
   background-color: #313131;
   color: white;
+  border-top: 0.5rem dotted rgb(242, 81, 27);
 }
 
 footer ul {
