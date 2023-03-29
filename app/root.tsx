@@ -8,6 +8,7 @@ import {
   Scripts,
   LiveReload,
   Link,
+  useLocation,
 } from "@remix-run/react";
 import { LinksFunction } from "@remix-run/node";
 import globalStylesUrl from "~/styles/app.css";
@@ -107,6 +108,7 @@ function Document({
   title?: string;
 }) {
   const matches = useMatches();
+  const loc = useLocation();
 
   const includeScripts = matches.some((match) => match.handle?.hydrate);
 
@@ -123,6 +125,7 @@ function Document({
         <Meta />
         <Links />
         <link rel="icon" type="image/jpeg" href="/images/photo.jpg" />
+        <link rel="canonical" href={`https://www.bmck.au${loc.pathname}`} />
         <script
           defer
           data-domain="bmck.au"
