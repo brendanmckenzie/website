@@ -822,7 +822,7 @@ export const PostSummaryFragmentDoc = gql`
   }
   alias
   image {
-    url(process: {height: 200, width: 400, position: CENTRE, fit: COVER})
+    url(process: {height: 400, width: 680, position: CENTRE, fit: COVER})
   }
 }
     `;

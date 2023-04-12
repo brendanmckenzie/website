@@ -55,7 +55,7 @@ export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: style }];
 };
 
-export const headers: HeadersFunction = ({ loaderHeaders, parentHeaders }) => {
+export const headers: HeadersFunction = ({}) => {
   return {
     "Cache-Control": "s-maxage=300, stale-while-revalidate=60",
   };
