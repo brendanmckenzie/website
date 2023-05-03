@@ -1,0 +1,17 @@
+.cv__container {
+  margin: 0rem;
+  padding: 1rem;
+  row-gap: 2rem;
+}
+
+.cv__section_container {
+  grid-template-columns: auto;
+}
+
+.cv__intro_body_name {
+  display: none;
+}
+
+.cv__section_experience .cv__section_body {
+  row-gap: 2rem;
+}

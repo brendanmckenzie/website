@@ -13,8 +13,16 @@ export const positions: Position[] = [
     position: "Engineering Director",
     dates: ["October 2022", "Present"],
     location: "Melbourne, Australia",
+    summary: "Work in progress.",
+  },
+  {
+    company: "Take Off Go",
+    position: "Director",
+    dates: ["May 2012", "Present"],
+    location: "Melbourne, Australia",
     summary:
-      "Work in progress.",
+      "Manage business finances and day to day operations for a small boutique travel agency.  Built and maintained backend systems for distributing travel itineraries to clients, including managing methods of taking payment for upcoming travel plans.",
+    technologies: ["PostgreSQL", "Typescript", "React"],
   },
   {
     company: "Pokko",
@@ -56,15 +64,6 @@ export const positions: Position[] = [
       "Octopus Deploy",
       "Bitbucket Pipelines",
     ],
-  },
-  {
-    company: "Take Off Go",
-    position: "Director",
-    dates: ["May 2012", "Present"],
-    location: "Melbourne, Australia",
-    summary:
-      "Manage business finances and day to day operations for a small boutique travel agency.  Built and maintained backend systems for distributing travel itineraries to clients, including managing methods of taking payment for upcoming travel plans.",
-    technologies: ["PostgreSQL", "Typescript", "React"],
   },
   {
     company: "The Marketing Store",

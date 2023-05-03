@@ -14,7 +14,6 @@
   max-width: 80ch;
   margin: 2rem auto;
   padding: 2rem;
-  row-gap: 2rem;
   display: grid;
   font-size: var(--vars-size-base);
   line-height: 1.4;
@@ -64,7 +63,7 @@
 }
 .cv__section_overview {
   border-top: 3px solid var(--vars-colour-muted);
-  padding-top: 0.75rem;
+  padding: 0.75rem 0;
   display: grid;
   row-gap: 0.75rem;
   font-size: var(--vars-size-content);
@@ -100,4 +99,8 @@
   font-size: var(--vars-size-small);
   text-transform: uppercase;
   margin-top: 0.5rem;
+}
+
+.cv__container a {
+  color: var(--vars-colour-accent);
 }

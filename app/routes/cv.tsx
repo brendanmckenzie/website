@@ -3,11 +3,15 @@ import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import { positions } from "../data/cv";
 
 import style from "../styles/cv.css";
+import styleMobile from "../styles/cv.mobile.css";
 
 export const handle = { layout: false };
 
 export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: style }];
+  return [
+    { rel: "stylesheet", href: style },
+    { rel: "stylesheet", href: styleMobile, media: "(max-width: 781px)" },
+  ];
 };
 
 export const meta: MetaFunction = () => {
@@ -42,7 +46,7 @@ export const CurriculumVitaePage: React.FC = () => (
         </ul>
       </div>
     </div>
-    <div className="cv__section_container">
+    <div className="cv__section_container cv__section_summary">
       <div className="cv__section_overview">
         <h3 className="cv__section_heading">Summary</h3>
       </div>
@@ -58,7 +62,7 @@ export const CurriculumVitaePage: React.FC = () => (
         </p>
       </div>
     </div>
-    <div className="cv__section_container">
+    <div className="cv__section_container cv__section_experience">
       <div className="cv__section_overview">
         <h3 className="cv__section_heading">Experience</h3>
         <p>
