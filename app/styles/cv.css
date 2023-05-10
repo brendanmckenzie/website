@@ -104,3 +104,10 @@
 .cv__container a {
   color: var(--vars-colour-accent);
 }
+
+.cv__quote {
+  font-size: 0.9rem;
+}
+.cv__citation {
+  font-size: 0.8rem;
+}

@@ -49,6 +49,10 @@ export const CurriculumVitaePage: React.FC = () => (
     <div className="cv__section_container cv__section_summary">
       <div className="cv__section_overview">
         <h3 className="cv__section_heading">Summary</h3>
+        <blockquote className="cv__quote">
+          First do it, then do it right, then do it better
+          <cite className="cv__citation">&mdash; Addy Osmani</cite>
+        </blockquote>
       </div>
       <div className="cv__section_body">
         <p>
