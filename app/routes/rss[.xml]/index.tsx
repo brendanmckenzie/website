@@ -26,6 +26,7 @@ export const loader: LoaderFunction = async () => {
     pubDate: new Date(),
     generator: "Monkeys",
     copyright: `All rights reserved ${new Date().getFullYear()}, Brendan McKenzie`,
+    managingEditor: "Brendan McKenzie <hello@brendanmckenzie.com>",
   });
 
   res.data.entries?.allPostBase?.nodes.forEach((post) => {
@@ -39,10 +40,17 @@ export const loader: LoaderFunction = async () => {
     });
   });
 
-  const xml = feed.xml({ indent: true });
+  let xml = feed.xml({ indent: true });
+  xml = xml.replace(
+    "?><rss",
+    `?><?xml-stylesheet href="/rss.xsl" type="text/xsl"?><rss`
+  );
 
   return new Response(xml, {
-    headers: { "Content-type": "application/xml" },
+    headers: {
+      "Content-type": "application/xml; charset=utf-8",
+      "x-content-type-options": "nosniff",
+    },
   });
 };
 

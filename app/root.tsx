@@ -27,6 +27,7 @@ export const links: LinksFunction = () => {
       href: "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap",
     },
     { rel: "stylesheet", href: globalStylesUrl },
+    { rel: "icon", href: "/images/photo.jpg", type: "image/jpeg" },
     {
       rel: "stylesheet",
       href: mobileStyles,
