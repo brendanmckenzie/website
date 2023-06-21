@@ -62,7 +62,7 @@
               Visit Website &#x2192;
             </a>
 
-            <h2>Items ordered in a descending order based on their date posted</h2>
+            <h2>Items ordered in a descendingly based on their date posted</h2>
             <xsl:for-each select="/rss/channel/item">
               <div class="pb-7">
                 <div class="text-4 font-bold">
