@@ -43,11 +43,16 @@ export const loader: LoaderFunction = async () => {
 };
 
 export const meta: MetaFunction = () => {
-  return {
-    title: "Brendan McKenzie",
-    description:
-      "Software and technology enthusiast, focussed on pushing the envelope with emerging technologies.",
-  };
+  return [
+    {
+      title: "Brendan McKenzie",
+    },
+    {
+      name: "description",
+      content:
+        "Software and technology enthusiast, focussed on pushing the envelope with emerging technologies.",
+    },
+  ];
 };
 
 export const links: LinksFunction = () => {

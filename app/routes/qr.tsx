@@ -4,10 +4,11 @@ import QRCode from "react-qr-code";
 import { LinksFunction, MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
-  return {
-    title: `QR Code Generator - Brendan McKenzie`,
-    description: "",
-  };
+  return [
+    {
+      title: `QR Code Generator - Brendan McKenzie`,
+    },
+  ];
 };
 
 import style from "../styles/qr.css";

@@ -9,6 +9,8 @@ import {
   LiveReload,
   Link,
   useLocation,
+  useRouteError,
+  isRouteErrorResponse,
 } from "@remix-run/react";
 import { LinksFunction } from "@remix-run/node";
 import globalStylesUrl from "~/styles/app.css";
@@ -52,52 +54,33 @@ export default function App() {
   );
 }
 
-export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error);
-  return (
-    <Document title="Error!">
-      <Layout>
-        <div>
-          <h1>There was an error</h1>
-          <p>{error.message}</p>
-        </div>
-      </Layout>
-    </Document>
-  );
-}
+export function ErrorBoundary() {
+  const error = useRouteError();
 
-export function CatchBoundary() {
-  let caught = useCatch();
+  // when true, this is what used to go to `CatchBoundary`
+  if (isRouteErrorResponse(error)) {
+    return (
+      <div>
+        <h1>Oops</h1>
+        <p>Status: {error.status}</p>
+        <p>{error.data.message}</p>
+      </div>
+    );
+  }
 
-  let message;
-  switch (caught.status) {
-    case 401:
-      message = (
-        <p>
-          Oops! Looks like you tried to visit a page that you do not have access
-          to.
-        </p>
-      );
-      break;
-    case 404:
-      message = (
-        <p>Oops! Looks like you tried to visit a page that does not exist.</p>
-      );
-      break;
-
-    default:
-      throw new Error(caught.data || caught.statusText);
+  // Don't forget to typecheck with your own logic.
+  // Any value can be thrown, not just errors!
+  let errorMessage = "Unknown error";
+  if (error instanceof Error) {
+    errorMessage = error.message;
   }
 
   return (
-    <Document title={`${caught.status} ${caught.statusText}`}>
-      <Layout>
-        <h1>
-          {caught.status}: {caught.statusText}
-        </h1>
-        {message}
-      </Layout>
-    </Document>
+    <div>
+      <h1>Uh oh ...</h1>
+      <p>Something went wrong.</p>
+      <pre>{errorMessage}</pre>
+    </div>
   );
 }
 

@@ -45,10 +45,12 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 export const meta: MetaFunction = ({ data }) => {
-  return {
-    title: `${data.title} - Brendan McKenzie`,
-    description: data.summary,
-  };
+  return [
+    {
+      title: `${data.title} - Brendan McKenzie`,
+    },
+    { name: "description", content: data.summary },
+  ];
 };
 
 export const links: LinksFunction = () => {

@@ -15,11 +15,16 @@ export const links: LinksFunction = () => {
 };
 
 export const meta: MetaFunction = () => {
-  return {
-    title: "Curriculum Vitae of Brendan McKenzie",
-    description:
-      "Software and technology enthusiast, focussed on pushing the envelope with emerging technologies.",
-  };
+  return [
+    {
+      title: "Curriculum Vitae of Brendan McKenzie",
+    },
+    {
+      name: "description",
+      content:
+        "Software and technology enthusiast, focussed on pushing the envelope with emerging technologies.",
+    },
+  ];
 };
 
 export const CurriculumVitaePage: React.FC = () => (
