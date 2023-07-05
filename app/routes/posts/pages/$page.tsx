@@ -77,9 +77,11 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 export const meta: MetaFunction = () => {
-  return {
-    title: `Blog - Brendan McKenzie`,
-  };
+  return [
+    {
+      title: `Blog - Brendan McKenzie`,
+    },
+  ];
 };
 
 export const links: LinksFunction = () => {
