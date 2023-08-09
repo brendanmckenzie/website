@@ -34,6 +34,13 @@ const QRCodePage: React.FC = () => {
     return ["", ""];
   }, [value]);
 
+  React.useEffect(() => {
+    const qs = new URLSearchParams(window.location.search);
+    if (qs.has("content")) {
+      setValue(qs.get("content")!);
+    }
+  }, []);
+
   return (
     <>
       <div className="qr">
