@@ -24,10 +24,6 @@ export const links: LinksFunction = () => {
       rel: "stylesheet",
       href: "https://unpkg.com/modern-css-reset@1.4.0/dist/reset.min.css",
     },
-    {
-      rel: "stylesheet",
-      href: "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap",
-    },
     { rel: "stylesheet", href: globalStylesUrl },
     { rel: "icon", href: "/images/photo.jpg", type: "image/jpeg" },
     {
