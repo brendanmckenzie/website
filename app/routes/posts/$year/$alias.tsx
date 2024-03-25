@@ -82,9 +82,9 @@ export default function Index() {
       {post.image?.url && post.image?.url.split("/")[4] !== "" ? (
         <img src={post.image.url} alt="" className="post__image" />
       ) : null}
-      {post.bodyRich?.map((val: any) =>
+      {post.bodyRich?.map((val: any, idx: number) =>
         val ? (
-          <article>
+          <article key={idx}>
             <SlateReactPresentation value={val.body} />
           </article>
         ) : null
