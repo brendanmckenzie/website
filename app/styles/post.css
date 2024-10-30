@@ -59,6 +59,10 @@
   list-style-position: outside;
 }
 
+.post article ul > li > ul:first-of-type {
+  margin-top: 0;
+}
+
 .post article pre {
   overflow-x: auto;
   white-space: pre;
