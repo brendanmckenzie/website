@@ -52,6 +52,11 @@
   text-align: left;
 }
 
+.post article li ul,
+.post article li ol {
+  margin-top: 0;
+}
+
 .post article ul {
   list-style: disc outside;
 }
