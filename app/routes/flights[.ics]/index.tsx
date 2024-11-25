@@ -14,7 +14,7 @@ export const loader: LoaderFunction = async () => {
         .split("\r\n")
         .map((ln) => ln.split(":"))
         .map(([key, ...rest]) => [key, rest.join(":")])
-        .filter(([key]) => key === key.toUpperCase())
+        .filter(([key]) => key.startsWith("DT") || key === key.toUpperCase())
     );
 
     const {
@@ -37,7 +37,7 @@ export const loader: LoaderFunction = async () => {
       Object.entries(values)
         .map(([key, value]) => `${key}:${value}`)
         .join("\n") +
-      "\nEND:VEVENT\n"
+      "\nEND:VEVENT"
     );
   });
 
