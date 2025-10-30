@@ -1,10 +1,12 @@
 name = "brendanmckenzie-website"
+main = "public/_worker.js"
 compatibility_date = "2024-11-01"
 compatibility_flags = ["nodejs_compat"]
 
-# For GitHub deployment: The Worker code is at public/_worker.js
-# Static assets are served from public/ directory
-# Environment variables are configured in the Cloudflare dashboard
+# For Cloudflare Pages deployment via GitHub:
+# - Build command: npm run build
+# - Build output directory: public
+# - Environment variables configured in dashboard
 
 # Required environment variables in Cloudflare dashboard:
 # - POK_ENVIRONMENT
