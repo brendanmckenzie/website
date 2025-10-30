@@ -1,4 +1,4 @@
-import type { HeadersFunction, LoaderFunction } from "@remix-run/node";
+import type { HeadersFunction, LoaderFunction } from "@remix-run/cloudflare";
 
 export const loader: LoaderFunction = async () => {
   const fetchRes = await fetch(

@@ -1,17 +1,15 @@
 /**
- * @type {import('@remix-run/dev/config').AppConfig}
+ * @type {import('@remix-run/dev').AppConfig}
  */
 module.exports = {
-  // appDirectory: "app",
-
-  // browserBuildDirectory: "public/build",
-  // publicPath: "/build/",
-  // serverBuildDirectory: "api/build"
-  serverModuleFormat: "cjs",
-  future: {
-    v2_meta: true,
-    v2_errorBoundary: true,
-    v2_normalizeFormMethod: true,
-    // v2_routeConvention: true,
-  },
+  serverModuleFormat: "esm",
+  server: "./server.ts",
+  serverBuildPath: "functions/[[path]].js",
+  assetsBuildDirectory: "public/build",
+  publicPath: "/build/",
+  serverConditions: ["worker"],
+  serverDependenciesToBundle: "all",
+  serverMainFields: ["browser", "module", "main"],
+  serverMinify: true,
+  serverPlatform: "neutral",
 };

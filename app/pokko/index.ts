@@ -6,36 +6,60 @@ import {
 } from "@apollo/client";
 import intro from "../pokko/queries";
 
-const config = {
-  environment: process.env.POK_ENVIRONMENT!,
-  project: process.env.POK_PROJECT!,
-  token: process.env.POK_TOKEN!,
-  tokenPreview: process.env.POK_TOKEN_PREVIEW!,
+// For Cloudflare Workers compatibility, we'll use environment variables
+// from the context passed to loaders, not process.env
+const getConfig = () => {
+  // Fallback to process.env for development with wrangler
+  // In production, these should come from the Cloudflare environment
+  if (typeof process !== 'undefined' && process.env) {
+    return {
+      environment: process.env.POK_ENVIRONMENT!,
+      project: process.env.POK_PROJECT!,
+      token: process.env.POK_TOKEN!,
+      tokenPreview: process.env.POK_TOKEN_PREVIEW!,
+    };
+  }
+
+  // This will be overridden by createClient function
+  return {
+    environment: '',
+    project: '',
+    token: '',
+    tokenPreview: '',
+  };
 };
 
-const optionsBase: ApolloClientOptions<NormalizedCacheObject> = {
-  cache: new InMemoryCache({
-    possibleTypes: intro.possibleTypes,
-  }),
+export const createClient = (env?: any) => {
+  const config = env || getConfig();
 
-  uri: `https://au-syd1.pokko.io/72074862-21c3-43ee-a1bb-3742c6fa857c/e1d5cdf5-70d2-4f53-8374-8e1a40a6170a/graphql`,
+  const optionsBase: ApolloClientOptions<NormalizedCacheObject> = {
+    cache: new InMemoryCache({
+      possibleTypes: intro.possibleTypes,
+    }),
+    uri: `https://au-syd1.pokko.io/${config.project || config.POK_PROJECT}/${config.environment || config.POK_ENVIRONMENT}/graphql`,
+  };
+
+  const options = {
+    ...optionsBase,
+    headers: {
+      "X-Token": config.token || config.POK_TOKEN,
+    },
+  };
+
+  const optionsPreview = {
+    ...optionsBase,
+    headers: {
+      "X-Token": config.tokenPreview || config.POK_TOKEN_PREVIEW,
+    },
+  };
+
+  return {
+    client: new ApolloClient(options),
+    clientPreview: new ApolloClient(optionsPreview),
+  };
 };
 
-const options = {
-  ...optionsBase,
-
-  headers: {
-    "X-Token": config.token,
-  },
-};
-
-const optionsPreview = {
-  ...optionsBase,
-
-  headers: {
-    "X-Token": config.tokenPreview,
-  },
-};
-
-export const client = new ApolloClient(options);
-export const clientPreview = new ApolloClient(optionsPreview);
+// Export default clients for backward compatibility during development
+const defaultClients = createClient();
+export const client = defaultClients.client;
+export const clientPreview = defaultClients.clientPreview;

@@ -4,7 +4,7 @@ import {
   LinksFunction,
   MetaFunction,
   json,
-} from "@remix-run/node";
+} from "@remix-run/cloudflare";
 import { Link, useLoaderData } from "@remix-run/react";
 
 import { PostList, PostListProps } from "~/components/PostList";

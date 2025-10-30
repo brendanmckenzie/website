@@ -1,4 +1,4 @@
-import type { LinksFunction } from "@remix-run/node";
+import type { LinksFunction } from "@remix-run/cloudflare";
 import styles from "../../styles/woddle.css";
 
 export const handle = { layout: false };

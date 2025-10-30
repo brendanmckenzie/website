@@ -1,11 +1,19 @@
-import type { HeadersFunction, LoaderFunction } from "@remix-run/node";
-import RSS from "rss";
+import type { HeadersFunction, LoaderFunction } from "@remix-run/cloudflare";
 import { client } from "~/pokko";
 import {
   ListPostsQuery,
   ListPostsQueryVariables,
   ListPostsDocument,
 } from "~/pokko/queries";
+
+function escapeXml(unsafe: string): string {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
 
 export const loader: LoaderFunction = async () => {
   const res = await client.query<ListPostsQuery, ListPostsQueryVariables>({
@@ -17,34 +25,39 @@ export const loader: LoaderFunction = async () => {
     },
   });
 
-  const feed = new RSS({
-    title: "Thoughts of Brendan McKenzie",
-    description:
-      "Posts by Brendan McKenzie, a software developer and traveller from Melbourne, Australia.",
-    site_url: "https://www.bmck.au",
-    feed_url: `https://www.bmck.au/rss.xml`,
-    pubDate: new Date(),
-    generator: "Monkeys",
-    copyright: `All rights reserved ${new Date().getFullYear()}, Brendan McKenzie`,
-    managingEditor: "Brendan McKenzie <hello@brendanmckenzie.com>",
-  });
+  const pubDate = new Date().toUTCString();
+  const currentYear = new Date().getFullYear();
 
-  res.data.entries?.allPostBase?.nodes.forEach((post) => {
-    feed.item({
-      title: post?.title!,
-      description: post?.summary!,
-      date: post?.date!,
-      url:
-        "https://www.bmck.au" +
-        ["", "posts", post?.date?.substring(0, 4), post?.alias].join("/"),
-    });
-  });
+  const items = res.data.entries?.allPostBase?.nodes.map((post) => {
+    const url = `https://www.bmck.au/posts/${post?.date?.substring(0, 4)}/${post?.alias}`;
+    const postDate = new Date(post?.date!).toUTCString();
 
-  let xml = feed.xml({ indent: true });
-  xml = xml.replace(
-    "?><rss",
-    `?><?xml-stylesheet href="/rss.xsl" type="text/xsl"?><rss`
-  );
+    return `    <item>
+      <title>${escapeXml(post?.title!)}</title>
+      <description>${escapeXml(post?.summary!)}</description>
+      <link>${escapeXml(url)}</link>
+      <guid>${escapeXml(url)}</guid>
+      <pubDate>${postDate}</pubDate>
+    </item>`;
+  }).join('\n') || '';
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/rss.xsl" type="text/xsl"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Thoughts of Brendan McKenzie</title>
+    <description>Posts by Brendan McKenzie, a software developer and traveller from Melbourne, Australia.</description>
+    <link>https://www.bmck.au</link>
+    <atom:link href="https://www.bmck.au/rss.xml" rel="self" type="application/rss+xml"/>
+    <language>en-us</language>
+    <pubDate>${pubDate}</pubDate>
+    <lastBuildDate>${pubDate}</lastBuildDate>
+    <generator>Monkeys</generator>
+    <copyright>All rights reserved ${currentYear}, Brendan McKenzie</copyright>
+    <managingEditor>hello@brendanmckenzie.com (Brendan McKenzie)</managingEditor>
+${items}
+  </channel>
+</rss>`;
 
   return new Response(xml, {
     headers: {

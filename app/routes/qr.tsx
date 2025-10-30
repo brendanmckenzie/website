@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/server";
 import QRCode from "react-qr-code";
-import { LinksFunction, MetaFunction } from "@remix-run/node";
+import { LinksFunction, MetaFunction } from "@remix-run/cloudflare";
 
 export const meta: MetaFunction = () => {
   return [

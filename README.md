@@ -1,34 +1,93 @@
-# Welcome to Remix!
+# Brendan McKenzie's Website
+
+A personal website built with Remix and deployed on Cloudflare Workers.
 
 - [Remix Docs](https://remix.run/docs)
-
-## Deployment
-
-After having run the `create-remix` command and selected "Vercel" as a deployment target, you only need to [import your Git repository](https://vercel.com/new) into Vercel, and it will be deployed.
-
-If you'd like to avoid using a Git repository, you can also deploy the directory by running [Vercel CLI](https://vercel.com/cli):
-
-```sh
-npm i -g vercel
-vercel
-```
-
-It is generally recommended to use a Git repository, because future commits will then automatically be deployed by Vercel, through its [Git Integration](https://vercel.com/docs/concepts/git).
+- [Cloudflare Pages](https://pages.cloudflare.com/)
 
 ## Development
 
-To run your Remix app locally, make sure your project's local dependencies are installed:
+Install dependencies:
 
 ```sh
 npm install
 ```
 
-Afterwards, start the Remix development server like so:
+Start the Remix development server with Wrangler:
 
 ```sh
 npm run dev
 ```
 
-Open up [http://localhost:3000](http://localhost:3000) and you should be ready to go!
+This will start the development server with hot module reloading.
 
-If you're used to using the `vercel dev` command provided by [Vercel CLI](https://vercel.com/cli) instead, you can also use that, but it's not needed.
+### Environment Variables
+
+For local development, environment variables are loaded from [.dev.vars](.dev.vars). This file should contain:
+
+```
+POK_ENVIRONMENT=your-environment-id
+POK_PROJECT=your-project-id
+POK_TOKEN=your-token
+POK_TOKEN_PREVIEW=your-preview-token
+```
+
+## Build
+
+Build the application for production:
+
+```sh
+npm run build
+```
+
+This will create optimized production builds in:
+- `public/build/` - Client-side assets
+- `functions/` - Cloudflare Workers function
+
+## Deployment
+
+### Cloudflare Pages
+
+Deploy to Cloudflare Pages:
+
+```sh
+npm run deploy
+```
+
+Or connect your Git repository to Cloudflare Pages for automatic deployments.
+
+### Environment Variables (Production)
+
+Set production environment variables using Wrangler secrets:
+
+```sh
+wrangler secret put POK_ENVIRONMENT
+wrangler secret put POK_PROJECT
+wrangler secret put POK_TOKEN
+wrangler secret put POK_TOKEN_PREVIEW
+```
+
+Alternatively, set them in the Cloudflare Dashboard:
+1. Go to your Cloudflare Pages project
+2. Navigate to Settings > Environment Variables
+3. Add the required variables for your production environment
+
+## Project Structure
+
+- `app/` - Remix application code
+  - `routes/` - File-based routing
+  - `pokko/` - GraphQL client for Pokko CMS
+  - `components/` - React components
+  - `styles/` - CSS stylesheets
+- `public/` - Static assets
+- `functions/` - Cloudflare Workers function (generated)
+- `wrangler.toml` - Cloudflare Workers configuration
+- `.dev.vars` - Local development environment variables
+
+## GraphQL Code Generation
+
+Generate TypeScript types from GraphQL schema:
+
+```sh
+npm run model
+```

@@ -1,11 +1,11 @@
-import { json } from "@remix-run/node";
+import { json } from "@remix-run/cloudflare";
 import { Link, useLoaderData } from "@remix-run/react";
 import type {
   LoaderFunction,
   HeadersFunction,
   LinksFunction,
   MetaFunction,
-} from "@remix-run/node";
+} from "@remix-run/cloudflare";
 
 import { client } from "~/pokko";
 import {

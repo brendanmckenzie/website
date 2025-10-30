@@ -12,7 +12,7 @@ import {
   useRouteError,
   isRouteErrorResponse,
 } from "@remix-run/react";
-import { LinksFunction } from "@remix-run/node";
+import { LinksFunction } from "@remix-run/cloudflare";
 import globalStylesUrl from "~/styles/app.css";
 import mobileStyles from "~/styles/mobile.css";
 
