@@ -3,7 +3,7 @@
  */
 module.exports = {
   serverModuleFormat: "esm",
-  serverBuildPath: "functions/[[path]].js",
+  serverBuildPath: "build/index.js",
   assetsBuildDirectory: "public/build",
   publicPath: "/build/",
   serverConditions: ["worker"],
