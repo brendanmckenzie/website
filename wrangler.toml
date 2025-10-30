@@ -1,15 +1,12 @@
 name = "brendanmckenzie-website"
-main = "build/index.js"
-compatibility_date = "2024-01-01"
+compatibility_date = "2024-11-01"
 compatibility_flags = ["nodejs_compat"]
 
-# Static assets configuration
-[assets]
-directory = "./public"
-binding = "ASSETS"
+# For GitHub deployment: The Worker code is at public/_worker.js
+# Static assets are served from public/ directory
+# Environment variables are configured in the Cloudflare dashboard
 
-# Environment variables should be set via: wrangler secret put <KEY>
-# Required variables:
+# Required environment variables in Cloudflare dashboard:
 # - POK_ENVIRONMENT
 # - POK_PROJECT
 # - POK_TOKEN
