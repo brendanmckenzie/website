@@ -6,8 +6,8 @@
   "scripts": {
     "build": "remix build",
     "dev": "remix dev",
-    "start": "wrangler pages dev ./public",
-    "deploy": "npm run build && wrangler pages deploy ./public",
+    "start": "wrangler dev",
+    "deploy": "npm run build && wrangler deploy",
     "model": "graphql-codegen",
     "typecheck": "tsc -b",
     "cf-typegen": "wrangler types"

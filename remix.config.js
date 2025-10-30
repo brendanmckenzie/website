@@ -3,7 +3,7 @@
  */
 module.exports = {
   serverModuleFormat: "esm",
-  serverBuildPath: "public/server/index.js",
+  serverBuildPath: "build/index.js",
   assetsBuildDirectory: "public/build",
   publicPath: "/build/",
   serverConditions: ["worker"],
@@ -11,4 +11,5 @@ module.exports = {
   serverMainFields: ["browser", "module", "main"],
   serverMinify: true,
   serverPlatform: "neutral",
+  server: "./server.ts",
 };

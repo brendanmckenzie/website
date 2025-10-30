@@ -5,7 +5,6 @@ node_modules
 .output
 
 public/build
-public/server
 api/build
 
 .env
