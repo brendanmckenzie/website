@@ -3,7 +3,6 @@
  */
 module.exports = {
   serverModuleFormat: "esm",
-  server: "./server.ts",
   serverBuildPath: "functions/[[path]].js",
   assetsBuildDirectory: "public/build",
   publicPath: "/build/",
