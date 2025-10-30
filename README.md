@@ -46,31 +46,44 @@ This will create optimized production builds in:
 
 ## Deployment
 
-### Cloudflare Pages
+### Cloudflare Pages (via Dashboard) - Recommended
 
-Deploy to Cloudflare Pages:
+1. Connect your Git repository to [Cloudflare Pages](https://dash.cloudflare.com/)
+2. Configure build settings:
+   - **Build command:** `npm run build`
+   - **Build output directory:** `public`
+3. Set environment variables in the Cloudflare Pages project settings:
+   - `POK_ENVIRONMENT`
+   - `POK_PROJECT`
+   - `POK_TOKEN`
+   - `POK_TOKEN_PREVIEW`
+4. Every push to your main branch will automatically deploy
+
+See [CLOUDFLARE_PAGES_SETUP.md](CLOUDFLARE_PAGES_SETUP.md) for detailed setup instructions.
+
+### Manual Deployment via CLI
+
+Deploy to Cloudflare Pages manually:
 
 ```sh
 npm run deploy
 ```
 
-Or connect your Git repository to Cloudflare Pages for automatic deployments.
-
-### Environment Variables (Production)
-
-Set production environment variables using Wrangler secrets:
+Or:
 
 ```sh
-wrangler secret put POK_ENVIRONMENT
-wrangler secret put POK_PROJECT
-wrangler secret put POK_TOKEN
-wrangler secret put POK_TOKEN_PREVIEW
+npm run build
+wrangler pages deploy ./public --project-name=your-project-name
 ```
 
-Alternatively, set them in the Cloudflare Dashboard:
-1. Go to your Cloudflare Pages project
-2. Navigate to Settings > Environment Variables
-3. Add the required variables for your production environment
+Set environment variables using `wrangler pages secret`:
+
+```sh
+wrangler pages secret put POK_ENVIRONMENT --project-name=your-project-name
+wrangler pages secret put POK_PROJECT --project-name=your-project-name
+wrangler pages secret put POK_TOKEN --project-name=your-project-name
+wrangler pages secret put POK_TOKEN_PREVIEW --project-name=your-project-name
+```
 
 ## Project Structure
 

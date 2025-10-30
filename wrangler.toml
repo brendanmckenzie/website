@@ -2,15 +2,10 @@ name = "brendanmckenzie-website"
 compatibility_date = "2024-01-01"
 pages_build_output_dir = "./public"
 
-[env.production]
-name = "brendanmckenzie-website"
-routes = [
-  { pattern = "brendan.mckenzie.io", custom_domain = true }
-]
-
-[env.production.vars]
-# Environment will be set via wrangler secret put command:
-# wrangler secret put POK_ENVIRONMENT
-# wrangler secret put POK_PROJECT
-# wrangler secret put POK_TOKEN
-# wrangler secret put POK_TOKEN_PREVIEW
+# Environment variables should be set in Cloudflare Pages dashboard
+# or via: wrangler pages secret put <KEY> --project-name=brendanmckenzie-website
+# Required variables:
+# - POK_ENVIRONMENT
+# - POK_PROJECT
+# - POK_TOKEN
+# - POK_TOKEN_PREVIEW
