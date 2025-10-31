@@ -1,5 +1,5 @@
 import Script from "next/script";
-import "~/styles/cv.css";
+import "@/styles/cv.css";
 
 export const metadata = {
 	title: "Curriculum Vitae of Brendan McKenzie",

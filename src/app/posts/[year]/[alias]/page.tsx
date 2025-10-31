@@ -3,14 +3,14 @@ import { redirect, notFound } from "next/navigation";
 import Markdown, { MarkdownToJSX } from "markdown-to-jsx";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import { SlateReactPresentation } from "~/components/RichText";
-import { client } from "~/pokko";
+import { SlateReactPresentation } from "@/components/RichText";
+import { client } from "@/pokko";
 import {
 	GetPostQuery,
 	GetPostQueryVariables,
 	GetPostDocument,
-} from "~/pokko/queries";
-import "~/styles/post.css";
+} from "@/pokko/queries";
+import "@/styles/post.css";
 
 export const dynamic = 'force-dynamic'; // Skip pre-rendering, generate on-demand
 export const revalidate = 300; // Cache for 5 minutes in CDN

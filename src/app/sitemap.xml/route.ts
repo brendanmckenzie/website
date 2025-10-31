@@ -1,9 +1,9 @@
-import { client } from "~/pokko";
+import { client } from "@/pokko";
 import {
 	ListPostsQuery,
 	ListPostsQueryVariables,
 	ListPostsDocument,
-} from "~/pokko/queries";
+} from "@/pokko/queries";
 
 export async function GET() {
 	const res = await client.query<ListPostsQuery, ListPostsQueryVariables>({

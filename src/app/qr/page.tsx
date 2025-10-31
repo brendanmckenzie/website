@@ -3,7 +3,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/server";
 import QRCode from "react-qr-code";
-import "~/styles/qr.css";
+import "@/styles/qr.css";
 
 export default function QRCodePage() {
 	const [value, setValue] = React.useState("");

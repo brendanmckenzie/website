@@ -1,10 +1,10 @@
 import { redirect, notFound } from "next/navigation";
-import { client } from "~/pokko";
+import { client } from "@/pokko";
 import {
 	GetPostDocument,
 	GetPostQuery,
 	GetPostQueryVariables,
-} from "~/pokko/queries";
+} from "@/pokko/queries";
 
 type RouteParams = {
 	params: Promise<{

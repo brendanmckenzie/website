@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { client } from "~/pokko";
+import { client } from "@/pokko";
 import {
 	ListPostsDocument,
 	ListPostsQuery,
 	ListPostsQueryVariables,
-} from "~/pokko/queries";
-import { PostList } from "~/components/PostList";
+} from "@/pokko/queries";
+import { PostList } from "@/components/PostList";
 import "../styles/home.css";
 import "../styles/post-list.css";
 

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { positions } from "~/data/cv";
+import { positions } from "@/data/cv";
 
 export default function CurriculumVitaePage() {
   return (

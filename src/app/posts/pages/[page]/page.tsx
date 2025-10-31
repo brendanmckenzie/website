@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PostList } from "~/components/PostList";
-import { client } from "~/pokko";
+import { PostList } from "@/components/PostList";
+import { client } from "@/pokko";
 import {
 	ListPostsDocument,
 	ListPostsQuery,
 	ListPostsQueryVariables,
-} from "~/pokko/queries";
-import "~/styles/home.css";
-import "~/styles/post-list.css";
+} from "@/pokko/queries";
+import "@/styles/home.css";
+import "@/styles/post-list.css";
 
 export const metadata = {
 	title: "Blog - Brendan McKenzie",

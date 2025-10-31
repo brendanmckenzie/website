@@ -1,4 +1,4 @@
-import "~/styles/woddle.css";
+import "@/styles/woddle.css";
 
 export default function WoddlePage() {
   return (

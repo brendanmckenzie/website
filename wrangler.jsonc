@@ -8,7 +8,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "website-nextjs",
+	"name": "website-nextjs2",
 	"main": ".open-next/worker.js",
 	"compatibility_date": "2025-10-08",
 	"compatibility_flags": [
@@ -36,12 +36,11 @@
 	/**
 	 * Environment Variables
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
-	 *
-	 * NOTE: In production, set these as secrets using:
-	 * wrangler secret put POK_TOKEN
-	 * wrangler secret put POK_TOKEN_PREVIEW
-	 * wrangler secret put POK_PROJECT
-	 * wrangler secret put POK_ENVIRONMENT
+	 */
+	// "vars": { "MY_VARIABLE": "production_value" }
+	/**
+	 * Note: Use secrets to store sensitive data.
+	 * https://developers.cloudflare.com/workers/configuration/secrets/
 	 */
 	/**
 	 * Static Assets
