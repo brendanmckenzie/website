@@ -1,0 +1,93 @@
+import * as React from "react";
+import { positions } from "~/data/cv";
+
+export default function CurriculumVitaePage() {
+  return (
+  <div className="cv__container">
+    <div className="cv__section_container">
+      <div>
+        <h1 className="cv__intro_name">Brendan McKenzie</h1>
+        <h2 className="cv__intro_title">Software Architect</h2>
+      </div>
+      <div className="cv__section_body">
+        <ul className="cv__intro_body_list">
+          <li className="cv__intro_body_name">
+            <strong>Brendan McKenzie</strong>
+          </li>
+          <li className="cv__intro_body_location">Melbourne, Australia</li>
+          <li className="cv__intro_body_phone">
+            <a href="tel:+61477182492">0477 182 492</a>
+          </li>
+          <li className="cv__intro_body_email">
+            <a href="mailto:hello@brendanmckenzie.com">
+              hello@brendanmckenzie.com
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div className="cv__section_container cv__section_summary">
+      <div className="cv__section_overview">
+        <h3 className="cv__section_heading">Summary</h3>
+        <blockquote className="cv__quote">
+          First do it, then do it right, then do it better
+          <cite className="cv__citation">&mdash; Addy Osmani</cite>
+        </blockquote>
+      </div>
+      <div className="cv__section_body">
+        <p>
+          Seasoned software developer with a knack for tackling complex
+          technical challenges. Over the past two decades, I&apos;ve enjoyed working
+          across various industries, helping digital agencies deliver innovative
+          solutions that meet their clients&apos; needs. When I&apos;m not heads-down
+          coding, you can usually find me indulging in two of my other passions:
+          exploring the world through travel and creating culinary delights in
+          the kitchen.
+        </p>
+      </div>
+    </div>
+    <div className="cv__section_container cv__section_experience">
+      <div className="cv__section_overview">
+        <h3 className="cv__section_heading">Experience</h3>
+        <p>
+          Many years working in agencies delivering countless enterprise-level
+          products for government, not-for-profit, new ventures and consumer
+          brands.
+        </p>
+        <p>
+          See{" "}
+          <a
+            href="https://www.linkedin.com/in/brendanmckenzie"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            LinkedIn
+          </a>{" "}
+          for a full history of experience
+        </p>
+      </div>
+      <div className="cv__section_body">
+        {positions.map((ent, idx) => (
+          <div key={idx} className="cv__position_container">
+            <div className="cv__position_header">
+              <strong className="cv__position_company">{ent.company}</strong>
+              <span className="cv__position_position">{ent.position}</span>
+            </div>
+            <ul className="cv__position_meta">
+              <li>{ent.dates.join(" – ")}</li>
+              <li>{ent.location}</li>
+            </ul>
+
+            <p className="cv__position_summary">{ent.summary}</p>
+            {ent.technologies ? (
+              <p className="cv__position_tech">
+                Technologies – {ent.technologies.join(", ")}
+              </p>
+            ) : null}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+  );
+}

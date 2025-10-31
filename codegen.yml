@@ -3,12 +3,19 @@ schema:
       headers:
         X-Token: ${POK_TOKEN}
 documents:
-  - app/pokko/queries/*.graphql
+  - src/pokko/queries/*.graphql
 generates:
-  ./app/pokko/queries.ts:
+  ./src/pokko/queries.ts:
     plugins:
       - typescript
       - typescript-operations
       - typescript-react-apollo
       - fragment-matcher
+    config:
+      # Don't generate React hooks - we're using Server Components
+      withHooks: false
+      withComponent: false
+      withHOC: false
+      # But DO generate the DocumentNode objects
+      documentMode: documentNode
     

@@ -1,106 +1,63 @@
-# Brendan McKenzie's Website
+# Next.js Framework Starter
 
-A personal website built with Remix and deployed on Cloudflare Workers.
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/templates/tree/main/next-starter-template)
 
-- [Remix Docs](https://remix.run/docs)
-- [Cloudflare Pages](https://pages.cloudflare.com/)
+<!-- dash-content-start -->
 
-## Development
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). It's deployed on Cloudflare Workers as a [static website](https://developers.cloudflare.com/workers/static-assets/).
 
-Install dependencies:
+This template uses [OpenNext](https://opennext.js.org/) via the [OpenNext Cloudflare adapter](https://opennext.js.org/cloudflare), which works by taking the Next.js build output and transforming it, so that it can run in Cloudflare Workers.
 
-```sh
-npm install
+<!-- dash-content-end -->
+
+Outside of this repo, you can start a new project with this template using [C3](https://developers.cloudflare.com/pages/get-started/c3/) (the `create-cloudflare` CLI):
+
+```bash
+npm create cloudflare@latest -- --template=cloudflare/templates/next-starter-template
 ```
 
-Start the Remix development server with Wrangler:
+A live public deployment of this template is available at [https://next-starter-template.templates.workers.dev](https://next-starter-template.templates.workers.dev)
 
-```sh
+## Getting Started
+
+First, run:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+Then run the development server (using the package manager of your choice):
+
+```bash
 npm run dev
 ```
 
-This will start the development server with hot module reloading.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### Environment Variables
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-For local development, environment variables are loaded from [.dev.vars](.dev.vars). This file should contain:
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-```
-POK_ENVIRONMENT=your-environment-id
-POK_PROJECT=your-project-id
-POK_TOKEN=your-token
-POK_TOKEN_PREVIEW=your-preview-token
-```
+## Deploying To Production
 
-## Build
+| Command                           | Action                                       |
+| :-------------------------------- | :------------------------------------------- |
+| `npm run build`                   | Build your production site                   |
+| `npm run preview`                 | Preview your build locally, before deploying |
+| `npm run build && npm run deploy` | Deploy your production site to Cloudflare    |
+| `npm wrangler tail`               | View real-time logs for all Workers          |
 
-Build the application for production:
+## Learn More
 
-```sh
-npm run build
-```
+To learn more about Next.js, take a look at the following resources:
 
-This will create optimized production builds in:
-- `public/build/` - Client-side assets
-- `functions/` - Cloudflare Workers function
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Deployment
-
-### Cloudflare Pages (via Dashboard) - Recommended
-
-1. Connect your Git repository to [Cloudflare Pages](https://dash.cloudflare.com/)
-2. Configure build settings:
-   - **Build command:** `npm run build`
-   - **Build output directory:** `public`
-3. Set environment variables in the Cloudflare Pages project settings:
-   - `POK_ENVIRONMENT`
-   - `POK_PROJECT`
-   - `POK_TOKEN`
-   - `POK_TOKEN_PREVIEW`
-4. Every push to your main branch will automatically deploy
-
-See [CLOUDFLARE_PAGES_SETUP.md](CLOUDFLARE_PAGES_SETUP.md) for detailed setup instructions.
-
-### Manual Deployment via CLI
-
-Deploy to Cloudflare Pages manually:
-
-```sh
-npm run deploy
-```
-
-Or:
-
-```sh
-npm run build
-wrangler pages deploy ./public --project-name=your-project-name
-```
-
-Set environment variables using `wrangler pages secret`:
-
-```sh
-wrangler pages secret put POK_ENVIRONMENT --project-name=your-project-name
-wrangler pages secret put POK_PROJECT --project-name=your-project-name
-wrangler pages secret put POK_TOKEN --project-name=your-project-name
-wrangler pages secret put POK_TOKEN_PREVIEW --project-name=your-project-name
-```
-
-## Project Structure
-
-- `app/` - Remix application code
-  - `routes/` - File-based routing
-  - `pokko/` - GraphQL client for Pokko CMS
-  - `components/` - React components
-  - `styles/` - CSS stylesheets
-- `public/` - Static assets
-- `functions/` - Cloudflare Workers function (generated)
-- `wrangler.toml` - Cloudflare Workers configuration
-- `.dev.vars` - Local development environment variables
-
-## GraphQL Code Generation
-
-Generate TypeScript types from GraphQL schema:
-
-```sh
-npm run model
-```
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
