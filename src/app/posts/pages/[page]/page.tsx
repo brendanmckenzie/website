@@ -14,7 +14,8 @@ export const metadata = {
 	title: "Blog - Brendan McKenzie",
 };
 
-export const revalidate = 300; // Revalidate every 5 minutes
+export const dynamic = 'force-dynamic'; // Skip pre-rendering, generate on-demand
+export const revalidate = 300; // Cache for 5 minutes in CDN
 
 type PageProps = {
 	params: Promise<{ page: string }>;

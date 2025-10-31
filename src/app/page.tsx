@@ -15,7 +15,8 @@ export const metadata = {
 		"Software and technology enthusiast, focussed on pushing the envelope with emerging technologies.",
 };
 
-export const revalidate = 300; // Revalidate every 5 minutes
+export const dynamic = 'force-dynamic'; // Skip pre-rendering, generate on-demand
+export const revalidate = 300; // Cache for 5 minutes in CDN
 
 async function getPosts() {
 	const res = await client.query<ListPostsQuery, ListPostsQueryVariables>({
@@ -24,7 +25,7 @@ async function getPosts() {
 	});
 
 	return (
-		res.data.entries?.allPostBase?.nodes.map((ent) => ({
+		res.data?.entries?.allPostBase?.nodes.map((ent) => ({
 			id: ent!.id!,
 			title: ent!.title!,
 			summary: ent!.summary!,

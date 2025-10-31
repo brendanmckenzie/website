@@ -12,7 +12,8 @@ import {
 } from "~/pokko/queries";
 import "~/styles/post.css";
 
-export const revalidate = 300; // Revalidate every 5 minutes
+export const dynamic = 'force-dynamic'; // Skip pre-rendering, generate on-demand
+export const revalidate = 300; // Cache for 5 minutes in CDN
 
 type PageProps = {
 	params: Promise<{ year: string; alias: string }>;
@@ -27,14 +28,14 @@ async function getPost(year: string, alias: string) {
 		},
 	});
 
-	return res.data;
+	return res.data ?? null;
 }
 
 export async function generateMetadata({ params }: PageProps) {
 	const { year, alias } = await params;
 	const data = await getPost(year, alias);
 
-	if (!data?.entry) {
+	if (!data || !data.entry) {
 		return {};
 	}
 
@@ -48,7 +49,7 @@ export default async function Post({ params }: PageProps) {
 	const { year, alias } = await params;
 	const data = await getPost(year, alias);
 
-	if (!data.entry) {
+	if (!data || !data.entry) {
 		// Check if post was moved
 		if ((data.entries?.allPostBase?.nodes.length ?? 0) > 0) {
 			const path = data.entries?.allPostBase?.nodes[0]?.pokko.path;
