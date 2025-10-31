@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
-import "../styles/app.css";
+import "../../styles/app.css";
 
 export const metadata: Metadata = {
 	title: "Brendan McKenzie",

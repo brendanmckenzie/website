@@ -1,4 +1,5 @@
 import Script from "next/script";
+import "@/styles/app.css";
 import "@/styles/cv.css";
 
 export const metadata = {

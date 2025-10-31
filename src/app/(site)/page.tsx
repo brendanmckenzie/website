@@ -6,8 +6,8 @@ import {
 	ListPostsQueryVariables,
 } from "@/pokko/queries";
 import { PostList } from "@/components/PostList";
-import "../styles/home.css";
-import "../styles/post-list.css";
+import "../../styles/home.css";
+import "../../styles/post-list.css";
 
 export const metadata = {
 	title: "Brendan McKenzie",

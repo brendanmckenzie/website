@@ -1,5 +1,7 @@
 import Script from "next/script";
 
+import "@/styles/app.css";
+
 export const metadata = {
 	title: "QR Code Generator - Brendan McKenzie",
 	icons: {
