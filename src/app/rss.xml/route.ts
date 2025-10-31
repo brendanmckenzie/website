@@ -27,7 +27,7 @@ export async function GET() {
 	const currentYear = new Date().getFullYear();
 
 	const items =
-		res.data.entries?.allPostBase?.nodes
+		res.data?.entries?.allPostBase?.nodes
 			.map((post) => {
 				const url = `https://www.bmck.au/posts/${post?.date?.substring(
 					0,
@@ -72,4 +72,5 @@ ${items}
 	});
 }
 
-export const revalidate = 3600; // Revalidate every hour
+export const dynamic = 'force-dynamic'; // Skip pre-rendering, generate on-demand
+export const revalidate = 3600; // Cache for 1 hour in CDN
