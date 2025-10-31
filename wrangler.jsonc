@@ -8,6 +8,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
+	"account_id": "af471ae81df7ab3cf4bcff2e804598f3",
 	"name": "brendanmckenzie-website",
 	"main": ".open-next/worker.js",
 	"compatibility_date": "2025-10-08",
