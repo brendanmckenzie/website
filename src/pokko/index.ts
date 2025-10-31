@@ -2,10 +2,10 @@ import {
   ApolloClient,
   ApolloClientOptions,
   InMemoryCache,
-  NormalizedCacheObject,
   HttpLink,
+  NormalizedCacheObject,
 } from "@apollo/client";
-import { getCloudflareContext } from "@opennextjs/cloudflare";
+// import { getCloudflareContext } from "@opennextjs/cloudflare";
 import intro from "./queries";
 
 type PokkoConfig = {
@@ -21,36 +21,36 @@ type PokkoConfig = {
 
 // Get configuration from Cloudflare environment or process.env
 const getConfig = () => {
-  try {
-    // Try to get Cloudflare context in production
-    const { env } = getCloudflareContext();
-    if (env && env.POK_ENVIRONMENT) {
-      return {
-        environment: env.POK_ENVIRONMENT,
-        project: env.POK_PROJECT,
-        token: env.POK_TOKEN,
-        tokenPreview: env.POK_TOKEN_PREVIEW,
-      };
-    }
-  } catch {
-    // Not in Cloudflare context, fall through to process.env
-  }
+  // try {
+  //   // Try to get Cloudflare context in production
+  //   const { env } = getCloudflareContext();
+  //   if (env && env.POK_ENVIRONMENT) {
+  //     return {
+  //       environment: env.POK_ENVIRONMENT,
+  //       project: env.POK_PROJECT,
+  //       token: env.POK_TOKEN,
+  //       tokenPreview: env.POK_TOKEN_PREVIEW,
+  //     };
+  //   }
+  // } catch {
+  //   // Not in Cloudflare context, fall through to process.env
+  // }
 
   // Fallback to process.env for development
-  if (typeof process !== 'undefined' && process.env) {
+  if (typeof process !== "undefined" && process.env) {
     return {
-      environment: process.env.POK_ENVIRONMENT || '',
-      project: process.env.POK_PROJECT || '',
-      token: process.env.POK_TOKEN || '',
-      tokenPreview: process.env.POK_TOKEN_PREVIEW || '',
+      environment: process.env.POK_ENVIRONMENT || "",
+      project: process.env.POK_PROJECT || "",
+      token: process.env.POK_TOKEN || "",
+      tokenPreview: process.env.POK_TOKEN_PREVIEW || "",
     };
   }
 
   return {
-    environment: '',
-    project: '',
-    token: '',
-    tokenPreview: '',
+    environment: "",
+    project: "",
+    token: "",
+    tokenPreview: "",
   };
 };
 
@@ -62,14 +62,14 @@ export const createClient = (env?: PokkoConfig) => {
       possibleTypes: intro.possibleTypes,
     }),
     link: new HttpLink({
-      uri: `https://au-syd1.pokko.io/${config.project || config.POK_PROJECT}/${config.environment || config.POK_ENVIRONMENT}/graphql`,
+      uri: `https://au-syd1.pokko.io/${config.project}/${config.environment}/graphql`,
       headers: {
-        "X-Token": config.token || config.POK_TOKEN,
+        "X-Token": config.token!,
       },
     }),
     defaultOptions: {
       query: {
-        fetchPolicy: 'no-cache',
+        fetchPolicy: "no-cache",
       },
     },
   };

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import * as React from "react";
@@ -35,7 +36,8 @@ export type SlateReactPresentationProps = {
 const useSlatePresentation = (): SlatePresentationContextProps =>
   React.useContext<SlatePresentationContextProps>(SlatePresentationContext);
 
-const isElement = (value: SlateNode): boolean => Object.keys(value).includes("type");
+const isElement = (value: SlateNode): boolean =>
+  Object.keys(value).includes("type");
 
 function Children({ children = [] as SlateNode[] }) {
   const { renderElement, renderLeaf } = useSlatePresentation();
@@ -48,7 +50,7 @@ function Children({ children = [] as SlateNode[] }) {
               {renderElement({
                 attributes: {},
                 children: <Children>{child.children}</Children>,
-                element: child,
+                element: child as any,
               })}
             </React.Fragment>
           );
@@ -57,7 +59,7 @@ function Children({ children = [] as SlateNode[] }) {
             <React.Fragment key={i}>
               {renderLeaf({
                 attributes: {},
-                leaf: child,
+                leaf: child as any,
               })}
             </React.Fragment>
           );
